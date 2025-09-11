@@ -1,6 +1,7 @@
 import React from 'react';
 import './Account.css';
 import { useAuth } from './AuthContext';
+import Footer from './Footer';
 
 interface SubscriptionPlan {
   tier: 'free' | 'premium' | 'unlimited';
@@ -223,6 +224,7 @@ const Account: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -18,6 +18,8 @@ const AppContent: React.FC = () => {
         setCurrentPage('account');
       } else if (hash === 'setup') {
         setCurrentPage('setup');
+      } else if (hash === 'welcome') {
+        setCurrentPage('welcome');
       } else {
         setCurrentPage('welcome');
       }

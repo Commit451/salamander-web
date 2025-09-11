@@ -1,5 +1,6 @@
 import React from 'react';
 import './Setup.css';
+import Footer from './Footer';
 
 const Setup: React.FC = () => {
   return (
@@ -153,6 +154,7 @@ const Setup: React.FC = () => {
           <p>Need more help? Check the <a href="#" onClick={() => window.location.hash = 'welcome'}>documentation</a> or contact support.</p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

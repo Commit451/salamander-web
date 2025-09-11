@@ -92,8 +92,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       
       setUser(null);
       
-      // Redirect to home
-      window.location.hash = '';
+      // Redirect to welcome page
+      window.location.hash = 'welcome';
       
       console.log('User signed out');
     } catch (error) {

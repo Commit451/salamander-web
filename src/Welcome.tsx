@@ -1,6 +1,7 @@
 import React from 'react';
 import './Welcome.css';
 import { useAuth } from './AuthContext';
+import Footer from './Footer';
 
 const Welcome: React.FC = () => {
   const { user, logout } = useAuth();
@@ -52,7 +53,6 @@ const Welcome: React.FC = () => {
                 <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
               </>
             )}
-            <button onClick={() => window.location.hash = 'setup'} className="nav-link">Setup</button>
             <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
           </div>
         </nav>
@@ -71,12 +71,6 @@ const Welcome: React.FC = () => {
               Powered by Anthropic Claude, the best in the business.
             </p>
             <div className="hero-actions">
-              <button 
-                className="btn btn-primary"
-                onClick={() => window.location.hash = 'setup'}
-              >
-                Setup Runner
-              </button>
               <button className="btn btn-secondary">Learn More</button>
             </div>
           </div>
@@ -115,15 +109,7 @@ const Welcome: React.FC = () => {
         </section>
       </main>
 
-      <footer className="welcome-footer">
-        <div className="footer-content">
-          <div className="footer-links">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-          </div>
-          <p>&copy; 2024 Commit 451</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
