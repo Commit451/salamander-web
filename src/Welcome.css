@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary-color: #64748b;
+  --primary-color: #e64a19;
+  --primary-hover: #d84315;
+  --secondary-color: #546e7a;
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --background-primary: #ffffff;
   --background-secondary: #f8fafc;
   --border-color: #e2e8f0;
-  --premium-color: #7c3aed;
-  --premium-hover: #6d28d9;
+  --premium-color: #e64a19;
+  --premium-hover: #d84315;
 }
 
 * {
@@ -272,7 +272,7 @@
 
 /* Footer */
 .welcome-footer {
-  background: var(--text-primary);
+  background: var(--secondary-color);
   color: white;
   padding: 2rem;
   text-align: center;

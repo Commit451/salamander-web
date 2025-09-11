@@ -14,8 +14,6 @@ const Welcome: React.FC = () => {
             <h1>Salamander</h1>
           </div>
           <div className="nav-links">
-            <a href="https://play.google.com/store" className="nav-link" target="_blank" rel="noopener noreferrer">Android App</a>
-            <a href="https://apps.apple.com" className="nav-link" target="_blank" rel="noopener noreferrer">iOS App</a>
             {user ? (
               <div className="user-menu">
                 <button 
