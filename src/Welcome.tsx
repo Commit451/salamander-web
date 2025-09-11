@@ -1,7 +1,10 @@
 import React from 'react';
 import './Welcome.css';
+import { useAuth } from './AuthContext';
 
 const Welcome: React.FC = () => {
+  const { user, logout } = useAuth();
+
   return (
     <div className="welcome">
       <header className="welcome-header">
@@ -13,8 +16,44 @@ const Welcome: React.FC = () => {
           <div className="nav-links">
             <a href="https://play.google.com/store" className="nav-link" target="_blank" rel="noopener noreferrer">Android App</a>
             <a href="https://apps.apple.com" className="nav-link" target="_blank" rel="noopener noreferrer">iOS App</a>
-            <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
-            <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
+            {user ? (
+              <div className="user-menu">
+                <button 
+                  className="profile-button" 
+                  onClick={() => window.location.hash = 'account'}
+                  title={`${user.displayName || user.email} - View Account`}
+                >
+                  {user.picture ? (
+                    <img src={user.picture} alt="Profile" className="profile-image" />
+                  ) : (
+                    <div className="profile-avatar">
+                      {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
+                    </div>
+                  )}
+                </button>
+                <div className="user-dropdown">
+                  <div className="user-info">
+                    <div className="user-name">{user.displayName || 'User'}</div>
+                    <div className="user-email">{user.email}</div>
+                  </div>
+                  <div className="dropdown-divider"></div>
+                  <button 
+                    className="dropdown-item" 
+                    onClick={() => window.location.hash = 'account'}
+                  >
+                    👤 Account Settings
+                  </button>
+                  <button className="dropdown-item logout-item" onClick={logout}>
+                    🚪 Sign Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
+                <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
+              </>
+            )}
             <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
           </div>
         </nav>

@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+.account-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: 'Fira Code', 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 
+    'Consolas', 'source-code-pro', monospace;
+  color: #0f172a;
+}
+
+.account-header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.back-button:hover {
+  background: #f1f5f9;
+  color: #1d4ed8;
+}
+
+.account-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #0f172a;
+}
+
+.account-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.account-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.account-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* User Card */
+.user-card {
+  border: 2px solid #e2e8f0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.user-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-details h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-email {
+  margin: 0;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+/* Card Headers */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Subscription Card */
+.subscription-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.tier-icon {
+  font-size: 1rem;
+}
+
+.plan-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.plan-price {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Usage Card */
+.usage-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.unlimited-usage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #10b981;
+}
+
+.unlimited-icon {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.unlimited-text {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.limited-usage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.usage-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usage-label {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.usage-count {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.usage-bar {
+  height: 0.5rem;
+  background: #e2e8f0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.usage-fill {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.usage-text {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.reset-info {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #64748b;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.reset-icon {
+  font-size: 1rem;
+}
+
+/* Sign Out Card */
+.signout-card {
+  border: 2px solid #fee2e2;
+}
+
+.signout-icon {
+  color: #ef4444;
+}
+
+.signout-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.signout-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.signout-button {
+  background: #fef2f2;
+  border: 2px solid #fecaca;
+  color: #ef4444;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  width: 100%;
+}
+
+.signout-button:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.signout-button:active {
+  transform: translateY(1px);
+}
+
+.signout-button-icon {
+  font-size: 1rem;
+}
+
+/* Loading and Error States */
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.error-state {
+  color: #ef4444;
+}
+
+.error-icon {
+  font-size: 4rem;
+}
+
+.error-state h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.error-state p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.retry-button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.retry-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .account-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .account-card {
+    padding: 1.5rem;
+  }
+
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .user-avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  .usage-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-header {
+    padding: 1rem;
+  }
+
+  .account-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .back-button {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .card-header h3 {
+    font-size: 1.125rem;
+  }
+
+  .user-details h2 {
+    font-size: 1.25rem;
+  }
+}

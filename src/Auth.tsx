@@ -1,56 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { gapi } from 'gapi-script';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Auth.css';
+import { useAuth } from './AuthContext';
 
 const CLIENT_ID = '87955960620-dv9h8pfv4a97mno598dcc3m1nlt0h6u4.apps.googleusercontent.com';
 
+// Declare Google Identity Services types
+declare global {
+  interface Window {
+    google: {
+      accounts: {
+        id: {
+          initialize: (config: any) => void;
+          prompt: () => void;
+          renderButton: (element: HTMLElement, config: any) => void;
+        };
+      };
+    };
+  }
+}
+
 const Auth: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isGapiLoaded, setIsGapiLoaded] = useState(false);
+  const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
+  const { login } = useAuth();
+
+  const handleCredentialResponse = useCallback(async (response: any) => {
+    console.log('Encoded JWT ID token: ' + response.credential);
+    
+    try {
+      await login(response.credential);
+      // Redirect to account page after successful login
+      window.location.hash = 'account';
+    } catch (error) {
+      console.error('Failed to process login:', error);
+      alert(error instanceof Error ? error.message : 'Sign-in failed. Please try again.');
+    }
+  }, [login]);
 
   useEffect(() => {
-    const initializeGapi = async () => {
-      try {
-        await gapi.load('auth2', () => {
-          gapi.auth2.init({
-            client_id: CLIENT_ID,
-          }).then(() => {
-            setIsGapiLoaded(true);
-          });
+    const initializeGoogle = () => {
+      if (window.google && window.google.accounts) {
+        window.google.accounts.id.initialize({
+          client_id: CLIENT_ID,
+          callback: handleCredentialResponse,
         });
-      } catch (error) {
-        console.error('Failed to initialize Google API:', error);
+        setIsGoogleLoaded(true);
+      } else {
+        // Retry after a short delay if Google hasn't loaded yet
+        setTimeout(initializeGoogle, 100);
       }
     };
 
-    initializeGapi();
-  }, []);
+    initializeGoogle();
+  }, [handleCredentialResponse]);
 
   const handleGoogleAuth = async () => {
     setIsLoading(true);
 
-    if (!isGapiLoaded) {
-      alert('Google API not loaded. Please try again in a moment.');
+    if (!isGoogleLoaded) {
+      alert('Google Sign-In not loaded. Please try again in a moment.');
       setIsLoading(false);
       return;
     }
     
     try {
-      const authInstance = gapi.auth2.getAuthInstance();
-      const user = await authInstance.signIn();
-      const profile = user.getBasicProfile();
-      
-      console.log('User signed in:', {
-        id: profile.getId(),
-        name: profile.getName(),
-        email: profile.getEmail(),
-        imageUrl: profile.getImageUrl()
-      });
-      
-      // Here you would typically send the user data to your backend
-      // For now, just redirect to home
-      window.location.hash = '';
-      
+      // Trigger the One Tap flow
+      window.google.accounts.id.prompt();
     } catch (error) {
       console.error('Google sign-in failed:', error);
       alert('Sign-in failed. Please try again.');
