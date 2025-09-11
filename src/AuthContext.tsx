@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { getUserFromFirestore, createUserInFirestore, updateUserInFirestore, User } from './services/userService';
 
-interface User {
+interface AppUser {
   id: string;
   displayName?: string;
   email: string;
@@ -11,11 +12,12 @@ interface User {
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: AppUser | null;
   isLoading: boolean;
   login: (credential: string) => Promise<void>;
   logout: () => void;
-  updateUser: (user: User) => void;
+  updateUser: (user: AppUser) => void;
+  refreshUserData: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -25,7 +27,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AppUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -56,27 +58,45 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       // Decode the JWT token to get user info
       const payload = JSON.parse(atob(credential.split('.')[1]));
+      const userId = payload.sub;
       
-      // Create user object from Google JWT
-      const userData: User = {
-        id: payload.sub,
-        displayName: payload.name,
-        email: payload.email,
-        picture: payload.picture,
-        tier: 'free', // Default to free tier
-        remainingMessages: 10, // Default for free tier
-        lastMessageReset: new Date(),
+      // Try to get existing user from Firestore
+      let userData = await getUserFromFirestore(userId);
+      
+      if (!userData) {
+        // Create new user if doesn't exist
+        userData = {
+          id: userId,
+          displayName: payload.name,
+          email: payload.email,
+          picture: payload.picture,
+          tier: 'free', // Default to free tier
+          messagesRemaining: 10, // Default for free tier
+          lastMessageReset: new Date(),
+        };
+        
+        // Create user in Firestore
+        await createUserInFirestore(userData as User);
+      }
+      
+      // Convert Firestore user to AppUser
+      const appUser: AppUser = {
+        id: userData.id,
+        displayName: userData.displayName,
+        email: userData.email,
+        picture: userData.picture,
+        tier: userData.tier,
+        remainingMessages: userData.messagesRemaining, // Map messagesRemaining to remainingMessages
+        lastMessageReset: userData.lastMessageReset,
       };
       
       // Store user data and token
-      localStorage.setItem('salamander_user', JSON.stringify(userData));
+      localStorage.setItem('salamander_user', JSON.stringify(appUser));
       localStorage.setItem('salamander_token', credential);
       
-      setUser(userData);
+      setUser(appUser);
       
-      // Here you would typically send the credential to your backend
-      // and get proper user data including subscription tier, etc.
-      console.log('User signed in:', userData);
+      console.log('User signed in:', appUser);
       
     } catch (error) {
       console.error('Failed to process login:', error);
@@ -101,9 +121,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const updateUser = (updatedUser: User) => {
+  const updateUser = (updatedUser: AppUser) => {
     setUser(updatedUser);
     localStorage.setItem('salamander_user', JSON.stringify(updatedUser));
+  };
+
+  const refreshUserData = async (): Promise<void> => {
+    if (!user) return;
+    
+    try {
+      const userData = await getUserFromFirestore(user.id);
+      if (userData) {
+        const appUser: AppUser = {
+          id: userData.id,
+          displayName: userData.displayName,
+          email: userData.email,
+          picture: userData.picture,
+          tier: userData.tier,
+          remainingMessages: userData.messagesRemaining,
+          lastMessageReset: userData.lastMessageReset,
+        };
+        
+        setUser(appUser);
+        localStorage.setItem('salamander_user', JSON.stringify(appUser));
+      }
+    } catch (error) {
+      console.error('Failed to refresh user data:', error);
+    }
   };
 
   const value: AuthContextType = {
@@ -112,6 +156,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     login,
     logout,
     updateUser,
+    refreshUserData,
   };
 
   return (

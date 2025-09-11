@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #e64a19;
-  --primary-hover: #d84315;
-  --secondary-color: #546e7a;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --background-primary: #ffffff;
-  --background-secondary: #f8fafc;
-  --border-color: #e2e8f0;
-  --premium-color: #e64a19;
-  --premium-hover: #d84315;
+  --primary-color: #ff6b35;
+  --primary-hover: #e55a2d;
+  --secondary-color: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --background-primary: #111827;
+  --background-secondary: #1f2937;
+  --border-color: #374151;
+  --premium-color: #ff6b35;
+  --premium-hover: #e55a2d;
+  --primary-color-rgb: 255, 107, 53;
 }
 
 * {
@@ -35,7 +36,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   z-index: 100;
@@ -211,8 +212,7 @@
 
 /* Features Section */
 .features {
-  padding: 5rem 2rem;
-  background: var(--background-secondary);
+  padding: 0 2rem 5rem 2rem;
 }
 
 .features-grid {
@@ -224,16 +224,18 @@
 }
 
 .feature-card {
-  background: white;
+  background: #1f2937;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #374151;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.4);
+  border-color: #4b5563;
 }
 
 .feature-card h3 {
@@ -329,12 +331,7 @@
   font-size: 0.875rem;
 }
 
-/* User Menu Styles */
-.user-menu {
-  position: relative;
-  display: inline-block;
-}
-
+/* Profile Button Styles */
 .profile-button {
   background: none;
   border: none;
@@ -347,7 +344,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  position: relative;
+  outline: none;
 }
 
 .profile-button:hover {
@@ -360,7 +357,7 @@
   height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(107, 114, 128, 0.3);
 }
 
 .profile-avatar {
@@ -374,91 +371,7 @@
   color: white;
   font-weight: 600;
   font-size: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.user-dropdown {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  min-width: 200px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.2s ease;
-  z-index: 1000;
-}
-
-.user-menu:hover .user-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.user-info {
-  padding: 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.user-name {
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-}
-
-.user-email {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.dropdown-divider {
-  height: 1px;
-  background: var(--border-color);
-  margin: 0.5rem 0;
-}
-
-.dropdown-item {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: none;
-  border: none;
-  text-align: left;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.dropdown-item:hover {
-  background: var(--background-secondary);
-}
-
-.dropdown-item:first-child {
-  border-top-left-radius: 0.75rem;
-  border-top-right-radius: 0.75rem;
-}
-
-.dropdown-item:last-child {
-  border-bottom-left-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
-}
-
-.logout-item {
-  color: #ef4444;
-  border-top: 1px solid var(--border-color);
-  margin-top: 0.25rem;
-}
-
-.logout-item:hover {
-  background: #fef2f2;
+  border: 2px solid rgba(107, 114, 128, 0.3);
 }
 
 /* Responsive Design */
@@ -480,11 +393,6 @@
   
   .profile-avatar {
     font-size: 0.875rem;
-  }
-  
-  .user-dropdown {
-    right: -1rem;
-    min-width: 180px;
   }
   
   .hero-actions {

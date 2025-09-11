@@ -2,16 +2,16 @@
 
 .account-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
   font-family: 'Fira Code', 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 
     'Consolas', 'source-code-pro', monospace;
-  color: #0f172a;
+  color: #f9fafb;
 }
 
 .account-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(17, 24, 39, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #374151;
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
@@ -19,12 +19,13 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 70px;
 }
 
 .back-button {
   background: none;
   border: none;
-  color: #e64a19;
+  color: #ff6b35;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -32,18 +33,26 @@
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   font-family: inherit;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 }
 
 .back-button:hover {
-  background: #f1f5f9;
-  color: #d84315;
+  background: #1f2937;
+  color: #e55a2d;
 }
 
 .account-header h1 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
-  color: #0f172a;
+  color: #f9fafb;
+  flex: 1;
+  text-align: center;
+  margin-right: 48px;
 }
 
 .account-content {
@@ -56,7 +65,7 @@
 }
 
 .account-card {
-  background: white;
+  background: var(--background-primary);
   border-radius: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -70,7 +79,7 @@
 
 /* User Card */
 .user-card {
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--border-color);
 }
 
 .user-info {
@@ -103,12 +112,12 @@
   margin: 0 0 0.25rem 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .user-email {
   margin: 0;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
 }
 
@@ -128,7 +137,7 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 /* Subscription Card */
@@ -156,7 +165,7 @@
 
 .plan-description {
   margin: 0;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -165,7 +174,7 @@
   margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 /* Usage Card */
@@ -206,19 +215,19 @@
 }
 
 .usage-label {
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
 }
 
 .usage-count {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .usage-bar {
   height: 0.5rem;
-  background: #e2e8f0;
+  background: var(--border-color);
   border-radius: 0.25rem;
   overflow: hidden;
 }
@@ -231,7 +240,7 @@
 
 .usage-text {
   margin: 0;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
@@ -239,7 +248,7 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
@@ -250,7 +259,7 @@
 
 /* Sign Out Card */
 .signout-card {
-  border: 2px solid #fee2e2;
+  border: 2px solid #ef444450;
 }
 
 .signout-icon {
@@ -265,13 +274,13 @@
 
 .signout-description {
   margin: 0;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.5;
 }
 
 .signout-button {
-  background: #fef2f2;
+  background: #ef444420;
   border: 2px solid #fecaca;
   color: #ef4444;
   padding: 0.75rem 1.5rem;
@@ -289,8 +298,8 @@
 }
 
 .signout-button:hover {
-  background: #fee2e2;
-  border-color: #fca5a5;
+  background: #ef444430;
+  border-color: #ef444460;
 }
 
 .signout-button:active {
@@ -328,7 +337,7 @@
 }
 
 .loading-state p {
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin: 0;
 }
@@ -348,7 +357,7 @@
 }
 
 .error-state p {
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin: 0;
 }
@@ -404,10 +413,12 @@
 @media (max-width: 480px) {
   .account-header {
     padding: 1rem;
+    gap: 0.5rem;
   }
 
   .account-header h1 {
     font-size: 1.25rem;
+    margin-right: 36px;
   }
 
   .back-button {

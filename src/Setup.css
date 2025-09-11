@@ -4,14 +4,16 @@
   padding: 2rem;
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #f9fafb;
+  background: #111827;
+  min-height: 100vh;
 }
 
 .setup-header {
   text-align: center;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid #374151;
   position: relative;
 }
 
@@ -20,8 +22,8 @@
   left: 0;
   top: 0;
   background: none;
-  border: 1px solid #e2e8f0;
-  color: #4a5568;
+  border: 1px solid #374151;
+  color: #d1d5db;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
@@ -30,20 +32,20 @@
 }
 
 .back-button:hover {
-  background: #f7fafc;
-  border-color: #cbd5e0;
-  color: #2d3748;
+  background: #1f2937;
+  border-color: #4b5563;
+  color: #f9fafb;
 }
 
 .setup-header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #1a202c;
+  color: #f9fafb;
 }
 
 .setup-header p {
   font-size: 1.1rem;
-  color: #718096;
+  color: #d1d5db;
   margin: 0;
 }
 
@@ -54,16 +56,16 @@
 }
 
 .setup-section {
-  background: #f7fafc;
+  background: #1f2937;
   padding: 2rem;
   border-radius: 8px;
-  border-left: 4px solid #4299e1;
+  border-left: 4px solid #ff6b35;
 }
 
 .setup-section h2 {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #2d3748;
+  color: #f9fafb;
 }
 
 .prerequisite-item, .step {
@@ -73,12 +75,12 @@
 .prerequisite-item h3, .step h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #4a5568;
+  color: #d1d5db;
 }
 
 .code-block {
-  background: #2d3748;
-  color: #e2e8f0;
+  background: #1f2937;
+  color: #d1d5db;
   padding: 1rem;
   border-radius: 6px;
   margin: 1rem 0;
@@ -93,11 +95,11 @@
 }
 
 .code-block a {
-  color: #63b3ed;
+  color: #ff6b35;
 }
 
 code {
-  background: #edf2f7;
+  background: #1f2937;
   padding: 0.2rem 0.4rem;
   border-radius: 3px;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -105,16 +107,16 @@ code {
 }
 
 .setup-note {
-  background: #fef5e7;
-  border: 1px solid #f6e05e;
+  background: #374151;
+  border: 1px solid #ff6b35;
   border-radius: 6px;
   padding: 1rem;
   margin: 1rem 0;
-  color: #744210;
+  color: #fbbf24;
 }
 
 .setup-note strong {
-  color: #92400e;
+  color: #f59e0b;
 }
 
 .steps-container {
@@ -130,7 +132,7 @@ code {
 }
 
 .step-number {
-  background: #4299e1;
+  background: #ff6b35;
   color: white;
   width: 2rem;
   height: 2rem;
@@ -158,21 +160,21 @@ code {
 }
 
 .command-item {
-  background: white;
+  background: #1f2937;
   padding: 1.5rem;
   border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #374151;
 }
 
 .command-item h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: #2d3748;
+  color: #f9fafb;
 }
 
 .command-item p {
   margin: 0;
-  color: #718096;
+  color: #d1d5db;
 }
 
 .tips-container {
@@ -182,44 +184,44 @@ code {
 }
 
 .tip {
-  background: white;
+  background: #1f2937;
   padding: 1.5rem;
   border-radius: 6px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #374151;
 }
 
 .tip h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: #2d3748;
+  color: #f9fafb;
 }
 
 .tip p {
   margin: 0;
-  color: #718096;
+  color: #d1d5db;
 }
 
 .troubleshooting-item {
-  background: white;
+  background: #1f2937;
   padding: 1.5rem;
   border-radius: 6px;
-  border: 1px solid #fed7d7;
+  border: 1px solid #ef444450;
   margin-bottom: 1rem;
 }
 
 .troubleshooting-item h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: #c53030;
+  color: #f87171;
 }
 
 .troubleshooting-item p {
   margin: 0;
-  color: #718096;
+  color: #d1d5db;
 }
 
 .troubleshooting-item a {
-  color: #3182ce;
+  color: #ff6b35;
   text-decoration: none;
 }
 
@@ -231,11 +233,11 @@ code {
   text-align: center;
   padding: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #374151;
 }
 
 .setup-footer a {
-  color: #3182ce;
+  color: #ff6b35;
   text-decoration: none;
 }
 

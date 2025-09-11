@@ -16,37 +16,19 @@ const Welcome: React.FC = () => {
           </div>
           <div className="nav-links">
             {user ? (
-              <div className="user-menu">
-                <button 
-                  className="profile-button" 
-                  onClick={() => window.location.hash = 'account'}
-                  title={`${user.displayName || user.email} - View Account`}
-                >
-                  {user.picture ? (
-                    <img src={user.picture} alt="Profile" className="profile-image" />
-                  ) : (
-                    <div className="profile-avatar">
-                      {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
-                    </div>
-                  )}
-                </button>
-                <div className="user-dropdown">
-                  <div className="user-info">
-                    <div className="user-name">{user.displayName || 'User'}</div>
-                    <div className="user-email">{user.email}</div>
+              <button 
+                className="profile-button" 
+                onClick={() => window.location.hash = 'account'}
+                title={`${user.displayName || user.email} - View Account`}
+              >
+                {user.picture ? (
+                  <img src={user.picture} alt="Profile" className="profile-image" />
+                ) : (
+                  <div className="profile-avatar">
+                    {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
                   </div>
-                  <div className="dropdown-divider"></div>
-                  <button 
-                    className="dropdown-item" 
-                    onClick={() => window.location.hash = 'account'}
-                  >
-                    👤 Account Settings
-                  </button>
-                  <button className="dropdown-item logout-item" onClick={logout}>
-                    🚪 Sign Out
-                  </button>
-                </div>
-              </div>
+                )}
+              </button>
             ) : (
               <>
                 <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
@@ -98,7 +80,7 @@ const Welcome: React.FC = () => {
             <h2>Ready to enhance your workflow?</h2>
             <p>Download the Salamander app and start your AI-powered productivity journey today.</p>
             <div className="cta-buttons">
-              <a href="https://play.google.com/store" className="app-store-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander" className="app-store-link" target="_blank" rel="noopener noreferrer">
                 <img src="/images/play_store.png" alt="Get it on Google Play" className="app-store-badge" />
               </a>
               <a href="https://apps.apple.com" className="app-store-link" target="_blank" rel="noopener noreferrer">

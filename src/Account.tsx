@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Account.css';
 import { useAuth } from './AuthContext';
 import Footer from './Footer';
@@ -56,7 +56,12 @@ const subscriptionPlans: SubscriptionPlan[] = [
 ];
 
 const Account: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, refreshUserData } = useAuth();
+
+  useEffect(() => {
+    // Refresh user data from Firestore when component loads
+    refreshUserData();
+  }, [refreshUserData]);
 
   const signOut = () => {
     logout();
@@ -104,10 +109,10 @@ const Account: React.FC = () => {
   }
 
   const plan = getPlanByTier(user.tier);
-  const isUnlimited = plan.messagesPerDay === -1;
+  const isUnlimited = user.tier === 'unlimited';
   const usagePercent = isUnlimited 
     ? 0.0 
-    : (plan.messagesPerDay - user.remainingMessages) / plan.messagesPerDay;
+    : plan.messagesPerDay > 0 ? (plan.messagesPerDay - user.remainingMessages) / plan.messagesPerDay : 0;
 
   return (
     <div className="account-container">
