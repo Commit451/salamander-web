@@ -52,6 +52,7 @@ const Welcome: React.FC = () => {
                 <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
               </>
             )}
+            <button onClick={() => window.location.hash = 'setup'} className="nav-link">Setup</button>
             <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
           </div>
         </nav>
@@ -67,9 +68,15 @@ const Welcome: React.FC = () => {
               With the power of AI, you can always have a presence at your computer. 
               Create a runner, choose a directory, and start a conversation with your AI. 
               While it's doing the work, you can be out and about doing something you love.
+              Powered by Anthropic Claude, the best in the business.
             </p>
             <div className="hero-actions">
-              <button className="btn btn-primary">Get Started</button>
+              <button 
+                className="btn btn-primary"
+                onClick={() => window.location.hash = 'setup'}
+              >
+                Setup Runner
+              </button>
               <button className="btn btn-secondary">Learn More</button>
             </div>
           </div>
@@ -79,10 +86,10 @@ const Welcome: React.FC = () => {
           <div className="features-grid">
             <div className="feature-card">
               <h3>AI-Powered Workflow</h3>
-              <p>Connect your phone to your computer and let Claude CLI enhance your productivity workflow.</p>
+              <p>Using our app, you can let an AI agent enhance your productivity workflow.</p>
             </div>
             <div className="feature-card">
-              <h3>Remote Execution</h3>
+              <h3>Coding from afar</h3>
               <p>Execute tasks remotely while you're away. Get push notifications when work is complete.</p>
             </div>
             <div className="feature-card">
@@ -111,12 +118,10 @@ const Welcome: React.FC = () => {
       <footer className="welcome-footer">
         <div className="footer-content">
           <div className="footer-links">
-            <a href="#about">About</a>
-            <a href="#support">Support</a>
             <a href="#privacy">Privacy</a>
             <a href="#terms">Terms</a>
           </div>
-          <p>&copy; 2024 Commit 451. Powered by Anthropic Claude.</p>
+          <p>&copy; 2024 Commit 451</p>
         </div>
       </footer>
     </div>

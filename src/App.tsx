@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Welcome from './Welcome';
 import Auth from './Auth';
 import Account from './Account';
+import Setup from './Setup';
 import { AuthProvider, useAuth } from './AuthContext';
 
 const AppContent: React.FC = () => {
@@ -15,6 +16,8 @@ const AppContent: React.FC = () => {
         setCurrentPage('auth');
       } else if (hash === 'account') {
         setCurrentPage('account');
+      } else if (hash === 'setup') {
+        setCurrentPage('setup');
       } else {
         setCurrentPage('welcome');
       }
@@ -72,6 +75,10 @@ const AppContent: React.FC = () => {
 
   if (currentPage === 'account') {
     return <Account />;
+  }
+
+  if (currentPage === 'setup') {
+    return <Setup />;
   }
 
   return <Welcome />;

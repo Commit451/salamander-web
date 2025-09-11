@@ -1,0 +1,277 @@
+.setup-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.setup-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e2e8f0;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: none;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  color: #2d3748;
+}
+
+.setup-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+}
+
+.setup-header p {
+  font-size: 1.1rem;
+  color: #718096;
+  margin: 0;
+}
+
+.setup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.setup-section {
+  background: #f7fafc;
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #4299e1;
+}
+
+.setup-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+}
+
+.prerequisite-item, .step {
+  margin-bottom: 1.5rem;
+}
+
+.prerequisite-item h3, .step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+.code-block {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-size: 0.9rem;
+  background: none;
+  padding: 0;
+}
+
+.code-block a {
+  color: #63b3ed;
+}
+
+code {
+  background: #edf2f7;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.setup-note {
+  background: #fef5e7;
+  border: 1px solid #f6e05e;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #744210;
+}
+
+.setup-note strong {
+  color: #92400e;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.step-number {
+  background: #4299e1;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h3 {
+  margin-top: 0;
+}
+
+.commands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.command-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.command-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.command-item p {
+  margin: 0;
+  color: #718096;
+}
+
+.tips-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tip {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.tip h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.tip p {
+  margin: 0;
+  color: #718096;
+}
+
+.troubleshooting-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #fed7d7;
+  margin-bottom: 1rem;
+}
+
+.troubleshooting-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #c53030;
+}
+
+.troubleshooting-item p {
+  margin: 0;
+  color: #718096;
+}
+
+.troubleshooting-item a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+.troubleshooting-item a:hover {
+  text-decoration: underline;
+}
+
+.setup-footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.setup-footer a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+.setup-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .setup-container {
+    padding: 1rem;
+  }
+  
+  .setup-header {
+    padding-top: 3rem;
+  }
+  
+  .back-button {
+    position: static;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+  }
+  
+  .setup-header h1 {
+    font-size: 2rem;
+  }
+  
+  .setup-section {
+    padding: 1.5rem;
+  }
+  
+  .step {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .commands-grid, .tips-container {
+    grid-template-columns: 1fr;
+  }
+}
