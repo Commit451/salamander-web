@@ -13,8 +13,8 @@ const Welcome: React.FC = () => {
           <div className="nav-links">
             <a href="https://play.google.com/store" className="nav-link" target="_blank" rel="noopener noreferrer">Android App</a>
             <a href="https://apps.apple.com" className="nav-link" target="_blank" rel="noopener noreferrer">iOS App</a>
-            <a href="#login" className="nav-link">Log In</a>
-            <a href="#signup" className="nav-link nav-link-primary">Sign Up</a>
+            <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
+            <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
             <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
           </div>
         </nav>
