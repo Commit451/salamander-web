@@ -2,14 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  // You'll need to replace these with your actual Firebase config values
-  // Get these from your Firebase Console > Project Settings > General
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyDXnEjvqq8lspDRlEJiDkztxWTmLYMoDGg",
+  authDomain: "salamander-ai.firebaseapp.com",
+  projectId: "salamander-ai",
+  storageBucket: "salamander-ai.firebasestorage.app",
+  messagingSenderId: "87955960620",
+  appId: "1:87955960620:web:85b30a28edf96c71d83289",
+  measurementId: "G-ZV0YR21B6X"
 };
 
 const app = initializeApp(firebaseConfig);

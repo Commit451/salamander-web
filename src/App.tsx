@@ -3,6 +3,8 @@ import Welcome from './Welcome';
 import Auth from './Auth';
 import Account from './Account';
 import Setup from './Setup';
+import Terms from './Terms';
+import Privacy from './Privacy';
 import { AuthProvider, useAuth } from './AuthContext';
 
 const AppContent: React.FC = () => {
@@ -18,6 +20,10 @@ const AppContent: React.FC = () => {
         setCurrentPage('account');
       } else if (hash === 'setup') {
         setCurrentPage('setup');
+      } else if (hash === 'terms') {
+        setCurrentPage('terms');
+      } else if (hash === 'privacy') {
+        setCurrentPage('privacy');
       } else if (hash === 'welcome') {
         setCurrentPage('welcome');
       } else {
@@ -81,6 +87,14 @@ const AppContent: React.FC = () => {
 
   if (currentPage === 'setup') {
     return <Setup />;
+  }
+
+  if (currentPage === 'terms') {
+    return <Terms />;
+  }
+
+  if (currentPage === 'privacy') {
+    return <Privacy />;
   }
 
   return <Welcome />;

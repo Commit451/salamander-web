@@ -4,7 +4,7 @@ import { useAuth } from './AuthContext';
 import Footer from './Footer';
 
 const Welcome: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user} = useAuth();
 
   return (
     <div className="welcome">
@@ -16,8 +16,8 @@ const Welcome: React.FC = () => {
           </div>
           <div className="nav-links">
             {user ? (
-              <button 
-                className="profile-button" 
+              <button
+                className="profile-button"
                 onClick={() => window.location.hash = 'account'}
                 title={`${user.displayName || user.email} - View Account`}
               >
@@ -47,8 +47,8 @@ const Welcome: React.FC = () => {
               Never be AFK
             </h1>
             <p className="hero-description">
-              With the power of AI, you can always have a presence at your computer. 
-              Create a runner, choose a directory, and start a conversation with your AI. 
+              With the power of AI, you can always have a presence at your computer.
+              Create a runner, choose a directory, and start a conversation with your AI.
               While it's doing the work, you can be out and about doing something you love.
               Powered by Anthropic Claude, the best in the business.
             </p>

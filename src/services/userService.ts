@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export interface User {
@@ -9,6 +9,16 @@ export interface User {
   messagesRemaining: number;
   lastMessageReset?: Date;
   picture?: string;
+}
+
+export interface Plan {
+  id: string;
+  messageLimit: number;
+  name: string;
+  priceCurrency: string;
+  priceInCents: number;
+  runnerLimit: number;
+  tagline: string;
 }
 
 export const getUserFromFirestore = async (userId: string): Promise<User | null> => {
@@ -61,6 +71,32 @@ export const updateUserInFirestore = async (userId: string, updates: Partial<Use
     });
   } catch (error) {
     console.error('Error updating user in Firestore:', error);
+    throw error;
+  }
+};
+
+export const getPlansFromFirestore = async (): Promise<Plan[]> => {
+  try {
+    const plansCollection = collection(db, 'plans');
+    const plansSnapshot = await getDocs(plansCollection);
+    
+    const plans: Plan[] = [];
+    plansSnapshot.forEach((doc) => {
+      const data = doc.data();
+      plans.push({
+        id: doc.id,
+        messageLimit: data.messageLimit,
+        name: data.name,
+        priceCurrency: data.priceCurrency,
+        priceInCents: data.priceInCents,
+        runnerLimit: data.runnerLimit,
+        tagline: data.tagline,
+      });
+    });
+    
+    return plans;
+  } catch (error) {
+    console.error('Error getting plans from Firestore:', error);
     throw error;
   }
 };

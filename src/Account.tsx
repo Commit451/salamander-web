@@ -1,74 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Account.css';
 import { useAuth } from './AuthContext';
 import Footer from './Footer';
+import { getPlansFromFirestore, Plan } from './services/userService';
 
-interface SubscriptionPlan {
-  tier: 'free' | 'premium' | 'unlimited';
-  name: string;
-  description: string;
-  price: number;
-  messagesPerDay: number;
-  features: string[];
-}
-
-const subscriptionPlans: SubscriptionPlan[] = [
-  {
-    tier: 'free',
-    name: 'Free',
-    description: 'Get started with basic messaging',
-    price: 0.0,
-    messagesPerDay: 10,
-    features: [
-      '10 messages per day',
-      'Basic chat functionality',
-      'Community support',
-    ],
-  },
-  {
-    tier: 'premium',
-    name: 'Premium',
-    description: 'More messages and enhanced features',
-    price: 9.99,
-    messagesPerDay: 100,
-    features: [
-      '100 messages per day',
-      'Priority support',
-      'Advanced chat features',
-      'Export conversations',
-    ],
-  },
-  {
-    tier: 'unlimited',
-    name: 'Unlimited',
-    description: 'Unlimited everything for power users',
-    price: 19.99,
-    messagesPerDay: -1,
-    features: [
-      'Unlimited messages',
-      'Premium support',
-      'All features included',
-      'Early access to new features',
-      'Export conversations',
-      'Custom themes',
-    ],
-  },
-];
 
 const Account: React.FC = () => {
   const { user, logout, refreshUserData } = useAuth();
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [isLoadingPlans, setIsLoadingPlans] = useState(true);
 
   useEffect(() => {
-    // Refresh user data from Firestore when component loads
-    refreshUserData();
+    // Load plans and refresh user data when component loads
+    const loadData = async () => {
+      try {
+        const [plansData] = await Promise.all([
+          getPlansFromFirestore(),
+          refreshUserData()
+        ]);
+        setPlans(plansData);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setIsLoadingPlans(false);
+      }
+    };
+    
+    loadData();
   }, [refreshUserData]);
 
   const signOut = () => {
     logout();
   };
 
-  const getPlanByTier = (tier: string): SubscriptionPlan => {
-    return subscriptionPlans.find((plan) => plan.tier === tier) || subscriptionPlans[0];
+  const getPlanById = (planId: string): Plan | null => {
+    return plans.find((plan) => plan.id === planId) || null;
   };
 
   const getTierColor = (tier: string): string => {
@@ -108,11 +74,51 @@ const Account: React.FC = () => {
     return null; // This should not happen since App component handles redirects
   }
 
-  const plan = getPlanByTier(user.tier);
-  const isUnlimited = user.tier === 'unlimited';
+  if (isLoadingPlans) {
+    return (
+      <div className="account-container">
+        <div className="account-header">
+          <button 
+            className="back-button" 
+            onClick={() => window.location.hash = ''}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+          </button>
+          <h1>Account</h1>
+        </div>
+        <div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>
+      </div>
+    );
+  }
+
+  const plan = getPlanById(user.tier);
+  if (!plan) {
+    return (
+      <div className="account-container">
+        <div className="account-header">
+          <button 
+            className="back-button" 
+            onClick={() => window.location.hash = ''}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+          </button>
+          <h1>Account</h1>
+        </div>
+        <div style={{ padding: '20px', textAlign: 'center', color: 'red' }}>
+          Error: Plan not found
+        </div>
+      </div>
+    );
+  }
+
+  const isUnlimited = plan.messageLimit === -1;
   const usagePercent = isUnlimited 
     ? 0.0 
-    : plan.messagesPerDay > 0 ? (plan.messagesPerDay - user.remainingMessages) / plan.messagesPerDay : 0;
+    : plan.messageLimit > 0 ? (plan.messageLimit - user.remainingMessages) / plan.messageLimit : 0;
 
   return (
     <div className="account-container">
@@ -166,9 +172,9 @@ const Account: React.FC = () => {
               <span className="tier-icon">💎</span>
               {plan.name.toUpperCase()}
             </div>
-            <p className="plan-description">{plan.description}</p>
-            {!plan.price ? null : (
-              <p className="plan-price">${plan.price.toFixed(2)}/month</p>
+            <p className="plan-description">{plan.tagline}</p>
+            {plan.priceInCents === 0 ? null : (
+              <p className="plan-price">${(plan.priceInCents / 100).toFixed(2)}/month</p>
             )}
           </div>
         </div>
@@ -190,7 +196,7 @@ const Account: React.FC = () => {
                 <div className="usage-stats">
                   <span className="usage-label">Messages Remaining</span>
                   <span className="usage-count">
-                    {user.remainingMessages}/{plan.messagesPerDay}
+                    {user.remainingMessages}/{plan.messageLimit}
                   </span>
                 </div>
                 <div className="usage-bar">
@@ -209,6 +215,70 @@ const Account: React.FC = () => {
               <span className="reset-icon">🔄</span>
               <span className="reset-text">Resets daily at midnight</span>
             </div>
+          </div>
+        </div>
+
+        {/* Available Plans Card */}
+        <div className="account-card plans-card">
+          <div className="card-header">
+            <div className="card-icon">💎</div>
+            <h3>Available Plans</h3>
+          </div>
+          <div className="plans-list">
+            {plans.map((planOption) => {
+              const isCurrentPlan = planOption.id === user.tier;
+              const planPrice = planOption.priceInCents === 0 ? 'Free' : `$${(planOption.priceInCents / 100).toFixed(2)}/month`;
+              const messageText = planOption.messageLimit === -1 ? 'Unlimited messages' : `${planOption.messageLimit} messages per day`;
+              
+              return (
+                <div 
+                  key={planOption.id} 
+                  className={`plan-option ${isCurrentPlan ? 'current-plan' : ''}`}
+                  style={{
+                    border: isCurrentPlan ? `2px solid ${getTierColor(planOption.id)}` : '1px solid #e5e7eb',
+                    backgroundColor: isCurrentPlan ? getTierColor(planOption.id) + '0a' : 'transparent'
+                  }}
+                >
+                  <div className="plan-header">
+                    <div className="plan-name-price">
+                      <h4 className="plan-name">{planOption.name}</h4>
+                      <span className="plan-price-badge">{planPrice}</span>
+                    </div>
+                    {isCurrentPlan && (
+                      <span className="current-badge" style={{ color: getTierColor(planOption.id) }}>
+                        Current Plan
+                      </span>
+                    )}
+                  </div>
+                  <p className="plan-tagline">{planOption.tagline}</p>
+                  <div className="plan-features">
+                    <div className="plan-feature">
+                      <span className="feature-icon">💬</span>
+                      <span className="feature-text">{messageText}</span>
+                    </div>
+                    <div className="plan-feature">
+                      <span className="feature-icon">🏃</span>
+                      <span className="feature-text">{planOption.runnerLimit} runners</span>
+                    </div>
+                  </div>
+                  {!isCurrentPlan && (
+                    <button 
+                      className="upgrade-button"
+                      style={{ 
+                        backgroundColor: getTierColor(planOption.id),
+                        borderColor: getTierColor(planOption.id)
+                      }}
+                      onClick={() => {
+                        // TODO: Implement plan upgrade functionality
+                        alert('Plan upgrade functionality coming soon!');
+                      }}
+                    >
+                      {planOption.priceInCents === 0 ? 'Downgrade' : 'Upgrade'} to {planOption.name}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
