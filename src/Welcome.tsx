@@ -52,28 +52,25 @@ const Welcome: React.FC = () => {
               While it's doing the work, you can be out and about doing something you love.
               Powered by Anthropic Claude, the best in the business.
             </p>
+
+            <div className="hero-images">
+              <div className="hero-image-container">
+                <img src="/images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli" />
+              </div>
+              <div className="hero-arrow">
+                <span className="arrow">⟷</span>
+              </div>
+              <div className="hero-image-container">
+                <img src="/images/chat.png" alt="Chat Interface" className="hero-image" />
+              </div>
+            </div>
+
             <div className="hero-actions">
-              <button className="btn btn-secondary">Learn More</button>
+              <button onClick={() => window.location.hash = 'learn-more'} className="btn btn-secondary">Learn More</button>
             </div>
           </div>
         </section>
 
-        <section className="features">
-          <div className="features-grid">
-            <div className="feature-card">
-              <h3>AI-Powered Workflow</h3>
-              <p>Using our app, you can let an AI agent enhance your productivity workflow.</p>
-            </div>
-            <div className="feature-card">
-              <h3>Coding from afar</h3>
-              <p>Execute tasks remotely while you're away. Get push notifications when work is complete.</p>
-            </div>
-            <div className="feature-card">
-              <h3>Always Available</h3>
-              <p>Your AI assistant is ready to work 24/7, optimizing your output even when you're not at your desk.</p>
-            </div>
-          </div>
-        </section>
 
         <section className="cta">
           <div className="cta-content">

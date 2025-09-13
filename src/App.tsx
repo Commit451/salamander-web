@@ -5,6 +5,7 @@ import Account from './Account';
 import Setup from './Setup';
 import Terms from './Terms';
 import Privacy from './Privacy';
+import LearnMore from './LearnMore';
 import { AuthProvider, useAuth } from './AuthContext';
 
 const AppContent: React.FC = () => {
@@ -24,6 +25,8 @@ const AppContent: React.FC = () => {
         setCurrentPage('terms');
       } else if (hash === 'privacy') {
         setCurrentPage('privacy');
+      } else if (hash === 'learn-more') {
+        setCurrentPage('learn-more');
       } else if (hash === 'welcome') {
         setCurrentPage('welcome');
       } else {
@@ -95,6 +98,10 @@ const AppContent: React.FC = () => {
 
   if (currentPage === 'privacy') {
     return <Privacy />;
+  }
+
+  if (currentPage === 'learn-more') {
+    return <LearnMore />;
   }
 
   return <Welcome />;
