@@ -24,13 +24,13 @@ const Welcome: React.FC = () => {
 
             <div className="hero-images">
               <div className="hero-image-container">
-                <img src="/images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli" />
+                <img src="images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli" />
               </div>
               <div className="hero-arrow">
                 <span className="arrow">⟷</span>
               </div>
               <div className="hero-image-container">
-                <img src="/images/chat.png" alt="Chat Interface" className="hero-image" />
+                <img src="images/chat.png" alt="Chat Interface" className="hero-image" />
               </div>
             </div>
 
@@ -47,10 +47,10 @@ const Welcome: React.FC = () => {
             <p>Download the Salamander app and start your AI-powered productivity journey today.</p>
             <div className="cta-buttons">
               <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander" className="app-store-link" target="_blank" rel="noopener noreferrer">
-                <img src="/images/play_store.png" alt="Get it on Google Play" className="app-store-badge" />
+                <img src="images/play_store.png" alt="Get it on Google Play" className="app-store-badge" />
               </a>
               <a href="https://apps.apple.com" className="app-store-link" target="_blank" rel="noopener noreferrer">
-                <img src="/images/app_store.svg" alt="Download on the App Store" className="app-store-badge" />
+                <img src="images/app_store.svg" alt="Download on the App Store" className="app-store-badge" />
               </a>
             </div>
           </div>

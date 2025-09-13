@@ -34,10 +34,10 @@ const LearnMore: React.FC = () => {
                   <p>Get the Salamander app on your mobile device to control your computer remotely.</p>
                   <div className="app-downloads">
                     <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander" className="app-store-link" target="_blank" rel="noopener noreferrer">
-                      <img src="/images/play_store.png" alt="Get it on Google Play" className="app-store-badge" />
+                      <img src="images/play_store.png" alt="Get it on Google Play" className="app-store-badge" />
                     </a>
                     <a href="https://apps.apple.com" className="app-store-link" target="_blank" rel="noopener noreferrer">
-                      <img src="/images/app_store.svg" alt="Download on the App Store" className="app-store-badge" />
+                      <img src="images/app_store.svg" alt="Download on the App Store" className="app-store-badge" />
                     </a>
                   </div>
                 </div>

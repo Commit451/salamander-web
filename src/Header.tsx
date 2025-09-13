@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ isSubpage = false }) => {
           </button>
         )}
         <div className="nav-logo" onClick={() => window.location.hash = ''} style={{cursor: 'pointer'}}>
-          <img src="/images/logo_salamander.png" alt="Salamander" className="logo-image" />
+          <img src="images/logo_salamander.png" alt="Salamander" className="logo-image" />
           <h1>Salamander</h1>
         </div>
         <div className="nav-links">

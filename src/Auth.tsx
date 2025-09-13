@@ -78,7 +78,7 @@ const Auth: React.FC = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <img src="/images/logo_salamander.png" alt="Salamander" className="auth-logo" />
+          <img src="images/logo_salamander.png" alt="Salamander" className="auth-logo" />
           <h1 className="auth-title">Salamander</h1>
           <p className="auth-tagline">Never be AFK</p>
         </div>
