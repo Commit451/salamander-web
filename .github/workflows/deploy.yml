@@ -42,7 +42,7 @@ jobs:
         run: npm run build
         env:
           CI: false
-          PUBLIC_URL: /salamander-web
+          PUBLIC_URL: /
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
