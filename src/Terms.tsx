@@ -36,7 +36,7 @@ const Terms: React.FC = () => {
             <h2 style={{ color: '#1f2937', marginBottom: '1rem' }}>1. Acceptance of Terms</h2>
             <p>
               By accessing and using Salamander, you accept and agree to be bound by these terms of service.
-              Salamander is a web application that integrates with Claude CLI (Anthropic's command-line interface)
+              Salamander is an application that integrates with Claude CLI (Anthropic's command-line interface)
               to provide AI-powered development tools and services. If you do not agree to these terms,
               please do not use this service.
             </p>
@@ -45,7 +45,7 @@ const Terms: React.FC = () => {
           <section style={{ marginBottom: '2rem' }}>
             <h2 style={{ color: '#1f2937', marginBottom: '1rem' }}>2. Description of Service</h2>
             <p>
-              Salamander provides a web-based interface for Claude CLI functionality, including but not limited to:
+              Salamander provides an interface for Claude CLI functionality, including but not limited to:
             </p>
             <ul style={{ marginLeft: '1.5rem', marginTop: '0.5rem' }}>
               <li>AI-powered code assistance and development tools</li>
