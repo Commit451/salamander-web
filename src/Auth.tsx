@@ -84,9 +84,9 @@ const Auth: React.FC = () => {
         </div>
 
         <div className="auth-content">
-          <h2 className="auth-heading">Welcome back</h2>
+          <h2 className="auth-heading">Welcome</h2>
           <p className="auth-description">
-            Continue to Salamander to manage your AI-powered workflow
+            Use Salamander to manage your AI-powered workflow
           </p>
 
           <button
@@ -111,16 +111,6 @@ const Auth: React.FC = () => {
             </div>
           </button>
 
-          <div className="auth-divider">
-            <span>or</span>
-          </div>
-
-          <div className="auth-alternative">
-            <p>Don't have an account yet?</p>
-            <button className="auth-link-button">
-              Sign up with Google
-            </button>
-          </div>
         </div>
 
         <div className="auth-footer">

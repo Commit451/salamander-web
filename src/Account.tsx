@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Account.css';
 import { useAuth } from './AuthContext';
 import Footer from './Footer';
+import Header from './Header';
 import { getPlansFromFirestore, Plan } from './services/userService';
 
 
@@ -77,18 +78,10 @@ const Account: React.FC = () => {
   if (isLoadingPlans) {
     return (
       <div className="account-container">
-        <div className="account-header">
-          <button 
-            className="back-button" 
-            onClick={() => window.location.hash = ''}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
-          </button>
-          <h1>Account</h1>
+        <Header isSubpage={true} />
+        <div className="account-content" style={{ paddingTop: '6rem' }}>
+          <div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>
         </div>
-        <div style={{ padding: '20px', textAlign: 'center' }}>Loading...</div>
       </div>
     );
   }
@@ -97,19 +90,11 @@ const Account: React.FC = () => {
   if (!plan) {
     return (
       <div className="account-container">
-        <div className="account-header">
-          <button 
-            className="back-button" 
-            onClick={() => window.location.hash = ''}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-            </svg>
-          </button>
-          <h1>Account</h1>
-        </div>
-        <div style={{ padding: '20px', textAlign: 'center', color: 'red' }}>
-          Error: Plan not found
+        <Header isSubpage={true} />
+        <div className="account-content" style={{ paddingTop: '6rem' }}>
+          <div style={{ padding: '20px', textAlign: 'center', color: 'red' }}>
+            Error: Plan not found
+          </div>
         </div>
       </div>
     );
@@ -122,19 +107,8 @@ const Account: React.FC = () => {
 
   return (
     <div className="account-container">
-      <div className="account-header">
-        <button 
-          className="back-button" 
-          onClick={() => window.location.hash = ''}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-          </svg>
-        </button>
-        <h1>Account</h1>
-      </div>
-
-      <div className="account-content">
+      <Header isSubpage={true} />
+      <div className="account-content" style={{ paddingTop: '6rem' }}>
         {/* User Header Card */}
         <div className="account-card user-card">
           <div className="user-info">

@@ -2,43 +2,12 @@ import React from 'react';
 import './Welcome.css';
 import { useAuth } from './AuthContext';
 import Footer from './Footer';
+import Header from './Header';
 
 const Welcome: React.FC = () => {
-  const { user} = useAuth();
-
   return (
     <div className="welcome">
-      <header className="welcome-header">
-        <nav className="welcome-nav">
-          <div className="nav-logo">
-            <img src="/images/logo_salamander.png" alt="Salamander" className="logo-image" />
-            <h1>Salamander</h1>
-          </div>
-          <div className="nav-links">
-            {user ? (
-              <button
-                className="profile-button"
-                onClick={() => window.location.hash = 'account'}
-                title={`${user.displayName || user.email} - View Account`}
-              >
-                {user.picture ? (
-                  <img src={user.picture} alt="Profile" className="profile-image" />
-                ) : (
-                  <div className="profile-avatar">
-                    {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
-                  </div>
-                )}
-              </button>
-            ) : (
-              <>
-                <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
-                <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
-              </>
-            )}
-            <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <main className="welcome-main">
         <section className="hero">

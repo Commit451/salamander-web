@@ -1,44 +1,16 @@
 import React from 'react';
 import './LearnMore.css';
-import { useAuth } from './AuthContext';
 import Footer from './Footer';
+import Header from './Header';
 
 const LearnMore: React.FC = () => {
-  const { user } = useAuth();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="learn-more">
-      <header className="learn-more-header">
-        <nav className="learn-more-nav">
-          <div className="nav-logo">
-            <img src="/images/logo_salamander.png" alt="Salamander" className="logo-image" />
-            <h1>Salamander</h1>
-          </div>
-          <div className="nav-links">
-            <button onClick={() => window.location.hash = ''} className="nav-link">Back to Home</button>
-            {user ? (
-              <button
-                className="profile-button"
-                onClick={() => window.location.hash = 'account'}
-                title={`${user.displayName || user.email} - View Account`}
-              >
-                {user.picture ? (
-                  <img src={user.picture} alt="Profile" className="profile-image" />
-                ) : (
-                  <div className="profile-avatar">
-                    {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
-                  </div>
-                )}
-              </button>
-            ) : (
-              <>
-                <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
-                <button onClick={() => window.location.hash = 'auth'} className="nav-link nav-link-primary">Sign Up</button>
-              </>
-            )}
-          </div>
-        </nav>
-      </header>
+      <Header isSubpage={true} />
 
       <main className="learn-more-main">
         <section className="hero-section">
@@ -50,15 +22,6 @@ const LearnMore: React.FC = () => {
           </div>
         </section>
 
-        <section className="setup-overview">
-          <div className="content-container">
-            <h2>Complete Setup Guide</h2>
-            <p className="overview-text">
-              Salamander connects your mobile device with your computer through AI, allowing you to manage tasks,
-              run commands, and monitor progress remotely. Here's everything you need to get started.
-            </p>
-          </div>
-        </section>
 
         <section className="setup-steps">
           <div className="content-container">
@@ -83,24 +46,25 @@ const LearnMore: React.FC = () => {
               <div className="step-card">
                 <div className="step-number">2</div>
                 <div className="step-content">
-                  <h3>Install the CLI Tool</h3>
-                  <p>Install the Salamander CLI on your computer to enable AI-powered task execution.</p>
+                  <h3>Install Claude Code CLI</h3>
+                  <p>First, install the Claude Code CLI which powers the AI capabilities.</p>
                   <div className="code-block">
-                    <code>npm install -g salamander-cli</code>
+                    <code>Visit <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener noreferrer" style={{color: 'var(--primary-color)', textDecoration: 'underline'}}>Claude Code Documentation</a> for installation instructions</code>
                   </div>
-                  <p className="step-note">Requires Node.js 18 or higher</p>
+                  <p className="step-note">Follow the setup guide for your operating system</p>
                 </div>
               </div>
 
               <div className="step-card">
                 <div className="step-number">3</div>
                 <div className="step-content">
-                  <h3>Authenticate & Connect</h3>
-                  <p>Link your mobile app with your computer using your Salamander account.</p>
+                  <h3>Install & Authenticate Salamander CLI</h3>
+                  <p>Install the Salamander CLI and link it with your mobile app using your account.</p>
                   <div className="code-block">
+                    <code>npm install -g @commit451/salamander</code>
                     <code>salamander auth login</code>
                   </div>
-                  <p className="step-note">This will open a browser to complete authentication</p>
+                  <p className="step-note">Requires Node.js 18 or higher. Authentication opens a browser to complete setup.</p>
                 </div>
               </div>
 
@@ -120,26 +84,18 @@ const LearnMore: React.FC = () => {
               <div className="step-card">
                 <div className="step-number">5</div>
                 <div className="step-content">
-                  <h3>Start Your Runner</h3>
-                  <p>Launch the runner to begin accepting commands from your mobile device.</p>
+                  <h3>Start Your Runner & Control from Mobile</h3>
+                  <p>Launch the runner and start giving commands from your mobile app.</p>
                   <div className="code-block">
                     <code>salamander runner start</code>
                   </div>
-                  <p className="step-note">Keep this running to maintain connectivity</p>
-                </div>
-              </div>
-
-              <div className="step-card">
-                <div className="step-number">6</div>
-                <div className="step-content">
-                  <h3>Control from Mobile</h3>
-                  <p>Open your mobile app and start giving commands to your AI assistant.</p>
                   <ul className="feature-list">
-                    <li>Send text commands</li>
+                    <li>Send text commands from mobile app</li>
                     <li>Monitor task progress</li>
                     <li>Receive push notifications</li>
                     <li>View command outputs</li>
                   </ul>
+                  <p className="step-note">Keep the runner running to maintain connectivity</p>
                 </div>
               </div>
             </div>
@@ -190,20 +146,6 @@ const LearnMore: React.FC = () => {
           </div>
         </section>
 
-        <section className="cta-section">
-          <div className="content-container">
-            <h2>Ready to Get Started?</h2>
-            <p>Download the app and install the CLI to begin your AI-powered productivity journey.</p>
-            <div className="cta-buttons">
-              <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                Download Mobile App
-              </a>
-              <button onClick={() => window.location.hash = 'auth'} className="btn btn-secondary">
-                Create Account
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

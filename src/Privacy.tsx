@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Footer from './Footer';
+import Header from './Header';
 
 const Privacy: React.FC = () => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const Privacy: React.FC = () => {
       display: 'flex',
       flexDirection: 'column'
     }}>
+      <Header isSubpage={true} />
       <div style={{
         flex: 1,
         maxWidth: '800px',
@@ -20,7 +22,7 @@ const Privacy: React.FC = () => {
         padding: '2rem',
         backgroundColor: 'white',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-        marginTop: '2rem',
+        marginTop: '7rem',
         marginBottom: '2rem',
         borderRadius: '8px'
       }}>

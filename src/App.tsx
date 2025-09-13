@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Welcome from './Welcome';
 import Auth from './Auth';
 import Account from './Account';
-import Setup from './Setup';
 import Terms from './Terms';
 import Privacy from './Privacy';
 import LearnMore from './LearnMore';
@@ -19,8 +18,6 @@ const AppContent: React.FC = () => {
         setCurrentPage('auth');
       } else if (hash === 'account') {
         setCurrentPage('account');
-      } else if (hash === 'setup') {
-        setCurrentPage('setup');
       } else if (hash === 'terms') {
         setCurrentPage('terms');
       } else if (hash === 'privacy') {
@@ -86,10 +83,6 @@ const AppContent: React.FC = () => {
 
   if (currentPage === 'account') {
     return <Account />;
-  }
-
-  if (currentPage === 'setup') {
-    return <Setup />;
   }
 
   if (currentPage === 'terms') {
