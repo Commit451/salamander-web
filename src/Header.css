@@ -1,239 +1,239 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #ff6b35;
-  --primary-hover: #e55a2d;
-  --secondary-color: #1f2937;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --background-primary: #111827;
-  --background-secondary: #1f2937;
-  --border-color: #374151;
-  --premium-color: #ff6b35;
-  --premium-hover: #e55a2d;
-  --primary-color-rgb: 255, 107, 53;
+    --primary-color: #ff6b35;
+    --primary-hover: #e55a2d;
+    --secondary-color: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --background-primary: #111827;
+    --background-secondary: #1f2937;
+    --border-color: #374151;
+    --premium-color: #ff6b35;
+    --premium-hover: #e55a2d;
+    --primary-color-rgb: 255, 107, 53;
 }
 
 /* Header & Navigation */
 .app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(17, 24, 39, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
-  z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
 }
 
 .app-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    position: relative;
 }
 
 .back-arrow {
-  position: absolute;
-  left: 2rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-family: inherit;
+    position: absolute;
+    left: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .back-arrow:hover {
-  background-color: rgba(var(--primary-color-rgb), 0.1);
-  color: var(--primary-color);
-  transform: translateX(-2px);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+    transform: translateX(-2px);
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 auto;
 }
 
 .logo-image {
-  height: 2rem;
-  width: auto;
+    height: 2rem;
+    width: auto;
 }
 
 .nav-logo h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
 .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .nav-link {
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-weight: 500;
-  background: none;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  font-family: inherit;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
 }
 
 .nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
 }
 
 .nav-link-primary {
-  color: var(--primary-color);
-  font-weight: 600;
-  background: none;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+    color: var(--primary-color);
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-link-primary:hover {
-  background-color: rgba(var(--primary-color-rgb, 59, 130, 246), 0.08);
-  color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb, 59, 130, 246), 0.08);
+    color: var(--primary-color);
 }
 
 .nav-link-premium {
-  background: var(--premium-color);
-  color: white !important;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s ease;
-  text-decoration: none;
+    background: var(--premium-color);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
 }
 
 .nav-link-premium:hover {
-  background: var(--premium-hover);
+    background: var(--premium-hover);
 }
 
 /* Profile Button Styles */
 .profile-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 .profile-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .profile-image {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(107, 114, 128, 0.3);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(107, 114, 128, 0.3);
 }
 
 .profile-avatar {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--premium-color) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  border: 2px solid rgba(107, 114, 128, 0.3);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--premium-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid rgba(107, 114, 128, 0.3);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .app-nav {
-    padding: 1rem 1rem;
-  }
+    .app-nav {
+        padding: 1rem 1rem;
+    }
 
-  .back-arrow {
-    left: 1rem;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.25rem;
-  }
+    .back-arrow {
+        left: 1rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.25rem;
+    }
 
-  .nav-logo {
-    margin-left: 3rem;
-  }
+    .nav-logo {
+        margin-left: 3rem;
+    }
 
-  .nav-links {
-    gap: 1rem;
-  }
+    .nav-links {
+        gap: 1rem;
+    }
 
-  .nav-link {
-    font-size: 0.875rem;
-    padding: 6px 12px;
-  }
+    .nav-link {
+        font-size: 0.875rem;
+        padding: 6px 12px;
+    }
 
-  .profile-button,
-  .profile-image,
-  .profile-avatar {
-    width: 2rem;
-    height: 2rem;
-  }
+    .profile-button,
+    .profile-image,
+    .profile-avatar {
+        width: 2rem;
+        height: 2rem;
+    }
 
-  .profile-avatar {
-    font-size: 0.875rem;
-  }
+    .profile-avatar {
+        font-size: 0.875rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .nav-logo h1 {
-    font-size: 1.25rem;
-  }
+    .nav-logo h1 {
+        font-size: 1.25rem;
+    }
 
-  .logo-image {
-    height: 1.5rem;
-  }
+    .logo-image {
+        height: 1.5rem;
+    }
 
-  .nav-links {
-    gap: 0.5rem;
-  }
+    .nav-links {
+        gap: 0.5rem;
+    }
 
-  .nav-link {
-    padding: 4px 8px;
-    font-size: 0.75rem;
-  }
+    .nav-link {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
 }
