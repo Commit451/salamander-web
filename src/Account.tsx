@@ -80,7 +80,74 @@ const Account: React.FC = () => {
             <div className="account-container">
                 <Header isSubpage={true}/>
                 <div className="account-content" style={{paddingTop: '6rem'}}>
-                    <div style={{padding: '20px', textAlign: 'center'}}>Loading...</div>
+                    {/* User Card Skeleton */}
+                    <div className="account-card user-card skeleton">
+                        <div className="user-info">
+                            <div className="skeleton-avatar"></div>
+                            <div className="user-details">
+                                <div className="skeleton-line skeleton-title"></div>
+                                <div className="skeleton-line skeleton-subtitle"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Usage Card Skeleton */}
+                    <div className="account-card usage-card skeleton">
+                        <div className="card-header">
+                            <div className="skeleton-icon"></div>
+                            <div className="skeleton-line skeleton-header"></div>
+                        </div>
+                        <div className="skeleton-content">
+                            <div className="skeleton-line"></div>
+                            <div className="skeleton-bar"></div>
+                            <div className="skeleton-line skeleton-small"></div>
+                        </div>
+                    </div>
+
+                    {/* Plans Card Skeleton */}
+                    <div className="account-card plans-card skeleton">
+                        <div className="card-header">
+                            <div className="skeleton-icon"></div>
+                            <div className="skeleton-line skeleton-header"></div>
+                        </div>
+                        <div className="skeleton-plans">
+                            <div className="skeleton-plan">
+                                <div className="skeleton-line skeleton-plan-name"></div>
+                                <div className="skeleton-line skeleton-plan-desc"></div>
+                                <div className="skeleton-button"></div>
+                            </div>
+                            <div className="skeleton-plan">
+                                <div className="skeleton-line skeleton-plan-name"></div>
+                                <div className="skeleton-line skeleton-plan-desc"></div>
+                                <div className="skeleton-button"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Enterprise Card Skeleton */}
+                    <div className="account-card enterprise-card skeleton">
+                        <div className="card-header">
+                            <div className="skeleton-icon"></div>
+                            <div className="skeleton-line skeleton-header"></div>
+                        </div>
+                        <div className="skeleton-content">
+                            <div className="skeleton-line"></div>
+                            <div className="skeleton-line"></div>
+                            <div className="skeleton-button"></div>
+                        </div>
+                    </div>
+
+                    {/* Sign Out Card Skeleton */}
+                    <div className="account-card signout-card skeleton">
+                        <div className="card-header">
+                            <div className="skeleton-icon"></div>
+                            <div className="skeleton-line skeleton-header"></div>
+                        </div>
+                        <div className="skeleton-content">
+                            <div className="skeleton-line"></div>
+                            <div className="skeleton-button"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
