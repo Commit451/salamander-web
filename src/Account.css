@@ -493,9 +493,9 @@
     font-weight: 600;
     padding: 0.25rem 0.5rem;
     border-radius: 0.375rem;
-    background: currentColor;
+    background: rgba(255, 255, 255, 0.15);
     color: white !important;
-    opacity: 0.9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .plan-tagline {
@@ -551,6 +551,52 @@
 
 .upgrade-button:active {
     transform: translateY(0);
+}
+
+/* Enterprise Card */
+.enterprise-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.enterprise-description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.contact-sales-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.contact-sales-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+}
+
+.contact-sales-button:active {
+    transform: translateY(0);
+}
+
+.contact-sales-icon {
+    font-size: 1rem;
 }
 
 /* Mobile responsiveness for plans */

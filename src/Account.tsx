@@ -126,33 +126,6 @@ const Account: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Subscription Card */}
-                <div className="account-card subscription-card">
-                    <div className="card-header">
-                        <div className="card-icon" style={{color: getTierColor(user.tier)}}>
-                            ⭐
-                        </div>
-                        <h3>Subscription</h3>
-                    </div>
-                    <div className="subscription-info">
-                        <div
-                            className="tier-badge"
-                            style={{
-                                backgroundColor: getTierColor(user.tier) + '1a',
-                                borderColor: getTierColor(user.tier),
-                                color: getTierColor(user.tier)
-                            }}
-                        >
-                            <span className="tier-icon">💎</span>
-                            {plan.name.toUpperCase()}
-                        </div>
-                        <p className="plan-description">{plan.tagline}</p>
-                        {plan.priceInCents === 0 ? null : (
-                            <p className="plan-price">${(plan.priceInCents / 100).toFixed(2)}/month</p>
-                        )}
-                    </div>
-                </div>
-
                 {/* Usage Card */}
                 <div className="account-card usage-card">
                     <div className="card-header">
@@ -196,7 +169,7 @@ const Account: React.FC = () => {
                 <div className="account-card plans-card">
                     <div className="card-header">
                         <div className="card-icon">💎</div>
-                        <h3>Available Plans</h3>
+                        <h3>Plans</h3>
                     </div>
                     <div className="plans-list">
                         {plans.map((planOption) => {
@@ -254,6 +227,28 @@ const Account: React.FC = () => {
                                 </div>
                             );
                         })}
+                    </div>
+                </div>
+
+                {/* Enterprise Card */}
+                <div className="account-card enterprise-card">
+                    <div className="card-header">
+                        <div className="card-icon">🏢</div>
+                        <h3>Enterprise</h3>
+                    </div>
+                    <div className="enterprise-info">
+                        <p className="enterprise-description">
+                            Need custom solutions, higher limits, or dedicated support? Our Enterprise plan offers tailored features for your organization.
+                        </p>
+                        <a href="mailto:commit451@gmail.com"
+                           className="contact-sales-button"
+                           style={{
+                               backgroundColor: '#6b7280',
+                               borderColor: '#6b7280',
+                               textDecoration: 'none'
+                           }}>
+                            Contact Sales
+                        </a>
                     </div>
                 </div>
 

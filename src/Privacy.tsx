@@ -9,7 +9,7 @@ const Privacy: React.FC = () => {
     return (
         <div style={{
             minHeight: '100vh',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontFamily: "'Fira Code', 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace",
             backgroundColor: '#f8fafc',
             display: 'flex',
             flexDirection: 'column'
