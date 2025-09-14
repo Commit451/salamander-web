@@ -284,8 +284,11 @@ const Account: React.FC = () => {
                                                 borderColor: getTierColor(planOption.id)
                                             }}
                                             onClick={() => {
-                                                // TODO: Implement plan upgrade functionality
-                                                alert('Plan upgrade functionality coming soon!');
+                                                if (planOption.id === 'pro') {
+                                                    window.open('https://buy.stripe.com/00w9AU6UNei60rlbMreIw00', '_blank');
+                                                } else {
+                                                    alert('Plan upgrade functionality coming soon!');
+                                                }
                                             }}
                                         >
                                             {planOption.priceInCents === 0 ? 'Downgrade' : 'Upgrade'} to {planOption.name}

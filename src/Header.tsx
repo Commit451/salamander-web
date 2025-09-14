@@ -44,7 +44,6 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                             </button>
                         </>
                     )}
-                    <a href="#premium" className="nav-link nav-link-premium">Get Premium</a>
                 </div>
             </nav>
         </header>
