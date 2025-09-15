@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
+import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
 import {auth} from './firebase';
 import {getUserFromFirestore} from './services/userService';
@@ -117,7 +117,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         localStorage.setItem('salamander_user', JSON.stringify(updatedUser));
     };
 
-    const refreshUserData = async (): Promise<void> => {
+    const refreshUserData = useCallback(async (): Promise<void> => {
         if (!user) return;
 
         try {
@@ -139,7 +139,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         } catch (error) {
             console.error('Failed to refresh user data:', error);
         }
-    };
+    }, [user]);
 
     const value: AuthContextType = {
         user,

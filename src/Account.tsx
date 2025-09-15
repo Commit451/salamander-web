@@ -5,7 +5,6 @@ import Footer from './Footer';
 import Header from './Header';
 import {getPlansFromFirestore, Plan} from './services/userService';
 
-
 const Account: React.FC = () => {
     const {user, logout, refreshUserData} = useAuth();
     const [plans, setPlans] = useState<Plan[]>([]);
@@ -27,8 +26,8 @@ const Account: React.FC = () => {
             }
         };
 
-        loadData();
-    }, [refreshUserData]);
+        loadData().catch(console.error);
+    }, []); // Remove refreshUserData from dependencies to prevent infinite loop
 
     const signOut = () => {
         logout();
@@ -308,7 +307,8 @@ const Account: React.FC = () => {
                     </div>
                     <div className="enterprise-info">
                         <p className="enterprise-description">
-                            Need custom solutions, higher limits, or dedicated support? Our Enterprise plan offers tailored features for your organization.
+                            Need custom solutions, higher limits, or dedicated support? Our Enterprise plan offers
+                            tailored features for your organization.
                         </p>
                         <a href="mailto:commit451@gmail.com"
                            className="contact-sales-button"
