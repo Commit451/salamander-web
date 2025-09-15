@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './Account.css';
-import {useAuth} from './AuthContext';
-import Footer from './Footer';
-import Header from './Header';
-import {getPlansFromFirestore, Plan} from './services/userService';
+import {useAuth} from '../../contexts/AuthContext';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import {getPlansFromFirestore, Plan} from '../../services/userService';
 
 const Account: React.FC = () => {
     const {user, logout, refreshUserData} = useAuth();
@@ -325,7 +325,7 @@ const Account: React.FC = () => {
                 {/* Sign Out Card */}
                 <div className="account-card signout-card">
                     <div className="card-header">
-                        <div className="card-icon signout-icon">🚪</div>
+                        <div className="card-icon signout-icon">👤</div>
                         <h3>Sign Out</h3>
                     </div>
                     <div className="signout-info">
@@ -333,7 +333,6 @@ const Account: React.FC = () => {
                             Sign out of your account and return to the home screen.
                         </p>
                         <button className="signout-button" onClick={handleSignOut}>
-                            <span className="signout-button-icon">🚪</span>
                             Sign Out
                         </button>
                     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './LearnMore.css';
-import Footer from './Footer';
-import Header from './Header';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 const LearnMore: React.FC = () => {
     React.useEffect(() => {

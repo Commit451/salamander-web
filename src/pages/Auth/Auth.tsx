@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './Auth.css';
-import {useAuth} from './AuthContext';
+import {useAuth} from '../../contexts/AuthContext';
 
 const CLIENT_ID = '87955960620-dv9h8pfv4a97mno598dcc3m1nlt0h6u4.apps.googleusercontent.com';
 

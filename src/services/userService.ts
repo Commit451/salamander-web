@@ -1,5 +1,5 @@
 import {collection, doc, getDoc, getDocs, updateDoc} from 'firebase/firestore';
-import {db} from '../firebase';
+import {db} from '../config/firebase';
 
 export interface User {
     id: string;

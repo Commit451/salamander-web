@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import {useAuth} from './AuthContext';
+import {useAuth} from '../../contexts/AuthContext';
 
 interface HeaderProps {
     isSubpage?: boolean;

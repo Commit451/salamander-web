@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Welcome from './Welcome';
-import Auth from './Auth';
-import Account from './Account';
-import Terms from './Terms';
-import Privacy from './Privacy';
-import LearnMore from './LearnMore';
-import {AuthProvider, useAuth} from './AuthContext';
+import Welcome from './pages/Welcome';
+import Auth from './pages/Auth';
+import Account from './pages/Account';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import LearnMore from './pages/LearnMore';
+import {AuthProvider, useAuth} from './contexts/AuthContext';
 
 const AppContent: React.FC = () => {
     const [currentPage, setCurrentPage] = useState('welcome');
@@ -71,9 +71,9 @@ const AppContent: React.FC = () => {
         return null;
     }
 
-    // If user is not logged in and trying to access account page, redirect to auth
+    // If user is not logged in and trying to access account page, redirect to welcome
     if (!user && currentPage === 'account') {
-        window.location.hash = 'auth';
+        window.location.hash = 'welcome';
         return null;
     }
 

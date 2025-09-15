@@ -1,7 +1,7 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
-import {auth} from './firebase';
-import {getUserFromFirestore} from './services/userService';
+import {auth} from '../config/firebase';
+import {getUserFromFirestore} from '../services/userService';
 
 interface AppUser {
     id: string;
