@@ -718,3 +718,218 @@
         align-self: flex-start;
     }
 }
+
+/* Runners Card Styles */
+.runners-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.no-runners {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #d1d5db;
+}
+
+.no-runners-text {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.cli-command {
+    display: inline-block;
+    background: rgba(156, 163, 175, 0.1);
+    color: #10b981;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.runners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.runner-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: rgba(55, 65, 81, 0.3);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.runner-item:hover {
+    background: rgba(55, 65, 81, 0.5);
+    border-color: rgba(75, 85, 99, 0.8);
+}
+
+.runner-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+
+.runner-details {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.runner-name {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f9fafb;
+}
+
+
+.runner-path {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #d1d5db;
+    font-family: 'Fira Code', monospace;
+    word-break: break-all;
+}
+
+.runner-machine {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.runner-last-seen {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.runner-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.rename-button,
+.delete-button {
+    background: rgba(55, 65, 81, 0.5);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+}
+
+.rename-button:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.delete-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.runner-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.runner-name-input {
+    background: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    color: #f9fafb;
+    font-family: inherit;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.runner-name-input:focus {
+    border-color: #3b82f6;
+}
+
+.runner-edit-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.save-button,
+.cancel-button {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.save-button {
+    background: #10b981;
+    border: none;
+    color: white;
+}
+
+.save-button:disabled {
+    background: rgba(16, 185, 129, 0.5);
+    cursor: not-allowed;
+}
+
+.save-button:hover:not(:disabled) {
+    background: #059669;
+}
+
+.cancel-button {
+    background: rgba(55, 65, 81, 0.5);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    color: #d1d5db;
+}
+
+.cancel-button:hover {
+    background: rgba(55, 65, 81, 0.8);
+    border-color: rgba(75, 85, 99, 0.8);
+}
+
+/* Mobile responsiveness for runners */
+@media (max-width: 768px) {
+    .runner-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .runner-info {
+        align-items: flex-start;
+    }
+
+    .runner-actions {
+        justify-content: center;
+    }
+
+
+    .cli-command {
+        word-break: break-all;
+    }
+}

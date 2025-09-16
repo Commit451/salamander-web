@@ -1,4 +1,4 @@
-import {collection, doc, getDoc, getDocs, updateDoc} from 'firebase/firestore';
+import {collection, doc, getDoc, getDocs, updateDoc, query, where, writeBatch} from 'firebase/firestore';
 import {db} from '../config/firebase';
 
 export interface User {
@@ -21,11 +21,24 @@ export interface Plan {
     tagline: string;
 }
 
+export interface Runner {
+    id: string;
+    userId: string;
+    name: string;
+    status: 'online' | 'offline' | 'running';
+    lastSeen?: Date;
+    createdAt: Date;
+    directory?: string;
+    pendingCommand?: string;
+    machineId?: string;
+    machineName?: string;
+}
+
 export const getUserFromFirestore = async (userId: string): Promise<User> => {
     try {
         console.log('Attempting to get user from Firestore with ID:', userId);
 
-        if (!userId || typeof userId !== 'string') {
+        if (!userId) {
             throw new Error(`Invalid userId: ${userId}`);
         }
 
@@ -93,6 +106,72 @@ export const getPlansFromFirestore = async (): Promise<Plan[]> => {
         return plans;
     } catch (error) {
         console.error('Error getting plans from Firestore:', error);
+        throw error;
+    }
+};
+
+export const getRunnersFromFirestore = async (userId: string): Promise<Runner[]> => {
+    try {
+        const runnersCollection = collection(db, 'runners');
+        const q = query(runnersCollection, where('userId', '==', userId));
+        const runnersSnapshot = await getDocs(q);
+
+        const runners: Runner[] = [];
+        runnersSnapshot.forEach((doc) => {
+            const data = doc.data();
+            runners.push({
+                id: doc.id,
+                userId: data.userId,
+                name: data.name || 'Unnamed Runner',
+                status: data.online ? 'online' : 'offline',
+                lastSeen: data.lastUsed?.toDate(),
+                createdAt: data.createdAt?.toDate() || new Date(),
+                directory: data.directory,
+                pendingCommand: data.pendingCommand,
+                machineId: data.machineId,
+                machineName: data.machineName,
+            });
+        });
+
+        return runners.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    } catch (error) {
+        console.error('Error getting runners from Firestore:', error);
+        throw error;
+    }
+};
+
+export const updateRunnerInFirestore = async (runnerId: string, updates: Partial<Runner>): Promise<void> => {
+    try {
+        await updateDoc(doc(db, 'runners', runnerId), {
+            ...updates,
+            updatedAt: new Date(),
+        });
+    } catch (error) {
+        console.error('Error updating runner in Firestore:', error);
+        throw error;
+    }
+};
+
+export const deleteRunnerFromFirestore = async (runnerId: string): Promise<void> => {
+    try {
+        const batch = writeBatch(db);
+
+        // Delete all messages in the subcollection
+        const runnerDocRef = doc(db, 'runners', runnerId);
+        const messagesCollectionRef = collection(runnerDocRef, 'messages');
+        const messagesSnapshot = await getDocs(messagesCollectionRef);
+
+        for (const messageDoc of messagesSnapshot.docs) {
+            batch.delete(messageDoc.ref);
+        }
+
+        // Delete the runner document
+        batch.delete(runnerDocRef);
+
+        // Commit the batch
+        await batch.commit();
+    } catch (error) {
+        console.error('Error deleting runner from Firestore:', error);
         throw error;
     }
 };

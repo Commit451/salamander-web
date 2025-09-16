@@ -3,12 +3,16 @@ import './Account.css';
 import {useAuth} from '../../contexts/AuthContext';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import {getPlansFromFirestore, Plan} from '../../services/userService';
+import {getPlansFromFirestore, Plan, getRunnersFromFirestore, Runner, updateRunnerInFirestore, deleteRunnerFromFirestore} from '../../services/userService';
 
 const Account: React.FC = () => {
     const {user, logout, refreshUserData} = useAuth();
     const [plans, setPlans] = useState<Plan[]>([]);
     const [isLoadingPlans, setIsLoadingPlans] = useState(true);
+    const [runners, setRunners] = useState<Runner[]>([]);
+    const [isLoadingRunners, setIsLoadingRunners] = useState(true);
+    const [editingRunner, setEditingRunner] = useState<string | null>(null);
+    const [editingName, setEditingName] = useState('');
 
     useEffect(() => {
         // Load plans and refresh user data when component loads
@@ -27,7 +31,25 @@ const Account: React.FC = () => {
         };
 
         loadData().catch(console.error);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); // Remove refreshUserData from dependencies to prevent infinite loop
+
+    useEffect(() => {
+        const loadRunners = async () => {
+            if (!user) return;
+
+            try {
+                const runnersData = await getRunnersFromFirestore(user.id);
+                setRunners(runnersData);
+            } catch (error) {
+                console.error('Error loading runners:', error);
+            } finally {
+                setIsLoadingRunners(false);
+            }
+        };
+
+        loadRunners();
+    }, [user]);
 
     const signOut = () => {
         logout();
@@ -70,11 +92,53 @@ const Account: React.FC = () => {
         }
     };
 
+    const handleRenameRunner = async (runnerId: string, newName: string) => {
+        try {
+            await updateRunnerInFirestore(runnerId, { name: newName });
+            setRunners(runners.map(runner =>
+                runner.id === runnerId
+                    ? { ...runner, name: newName }
+                    : runner
+            ));
+            setEditingRunner(null);
+            setEditingName('');
+        } catch (error) {
+            console.error('Error renaming runner:', error);
+            alert('Failed to rename runner. Please try again.');
+        }
+    };
+
+    const handleDeleteRunner = async (runnerId: string, runnerName: string) => {
+        const confirmed = window.confirm(
+            `Are you sure you want to delete "${runnerName}"? This action cannot be undone.`
+        );
+        if (confirmed) {
+            try {
+                await deleteRunnerFromFirestore(runnerId);
+                setRunners(runners.filter(runner => runner.id !== runnerId));
+            } catch (error) {
+                console.error('Error deleting runner:', error);
+                alert('Failed to delete runner. Please try again.');
+            }
+        }
+    };
+
+    const startEditingRunner = (runner: Runner) => {
+        setEditingRunner(runner.id);
+        setEditingName(runner.name);
+    };
+
+    const cancelEditingRunner = () => {
+        setEditingRunner(null);
+        setEditingName('');
+    };
+
+
     if (!user) {
         return null; // This should not happen since App component handles redirects
     }
 
-    if (isLoadingPlans) {
+    if (isLoadingPlans || isLoadingRunners) {
         return (
             <div className="account-container">
                 <Header isSubpage={true}/>
@@ -120,6 +184,18 @@ const Account: React.FC = () => {
                                 <div className="skeleton-line skeleton-plan-desc"></div>
                                 <div className="skeleton-button"></div>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Runners Card Skeleton */}
+                    <div className="account-card runners-card skeleton">
+                        <div className="card-header">
+                            <div className="skeleton-icon"></div>
+                            <div className="skeleton-line skeleton-header"></div>
+                        </div>
+                        <div className="skeleton-content">
+                            <div className="skeleton-line"></div>
+                            <div className="skeleton-line skeleton-small"></div>
                         </div>
                     </div>
 
@@ -296,6 +372,94 @@ const Account: React.FC = () => {
                                 </div>
                             );
                         })}
+                    </div>
+                </div>
+
+                {/* Runners Card */}
+                <div className="account-card runners-card">
+                    <div className="card-header">
+                        <div className="card-icon">🏃</div>
+                        <h3>My Runners</h3>
+                    </div>
+                    <div className="runners-info">
+                        {runners.length === 0 ? (
+                            <div className="no-runners">
+                                <p className="no-runners-text">
+                                    You don't have any runners yet. Create one using the CLI:
+                                </p>
+                                <code className="cli-command">salamander create</code>
+                            </div>
+                        ) : (
+                            <div className="runners-list">
+                                {runners.map((runner) => (
+                                    <div key={runner.id} className="runner-item">
+                                        <div className="runner-info">
+                                            <div className="runner-details">
+                                                {editingRunner === runner.id ? (
+                                                    <div className="runner-edit">
+                                                        <input
+                                                            type="text"
+                                                            value={editingName}
+                                                            onChange={(e) => setEditingName(e.target.value)}
+                                                            className="runner-name-input"
+                                                            placeholder="Runner name"
+                                                        />
+                                                        <div className="runner-edit-actions">
+                                                            <button
+                                                                className="save-button"
+                                                                onClick={() => handleRenameRunner(runner.id, editingName)}
+                                                                disabled={!editingName.trim()}
+                                                            >
+                                                                Save
+                                                            </button>
+                                                            <button
+                                                                className="cancel-button"
+                                                                onClick={cancelEditingRunner}
+                                                            >
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <>
+                                                        <h4 className="runner-name">{runner.name}</h4>
+                                                        {runner.directory && (
+                                                            <p className="runner-path">{runner.directory}</p>
+                                                        )}
+                                                        {runner.machineName && (
+                                                            <p className="runner-machine">Machine: {runner.machineName}</p>
+                                                        )}
+                                                        {runner.lastSeen && (
+                                                            <p className="runner-last-seen">
+                                                                Last seen: {runner.lastSeen.toLocaleString()}
+                                                            </p>
+                                                        )}
+                                                    </>
+                                                )}
+                                            </div>
+                                        </div>
+                                        {editingRunner !== runner.id && (
+                                            <div className="runner-actions">
+                                                <button
+                                                    className="rename-button"
+                                                    onClick={() => startEditingRunner(runner)}
+                                                    title="Rename runner"
+                                                >
+                                                    ✏️
+                                                </button>
+                                                <button
+                                                    className="delete-button"
+                                                    onClick={() => handleDeleteRunner(runner.id, runner.name)}
+                                                    title="Delete runner"
+                                                >
+                                                    🗑️
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 
