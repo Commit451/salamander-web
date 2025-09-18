@@ -61,6 +61,7 @@ const LearnMore: React.FC = () => {
                                         }}>Claude Code Documentation</a> for installation instructions</code>
                                     </div>
                                     <p className="step-note">Follow the setup guide for your operating system</p>
+                                    <p className="step-note">You should run the `claude` command for initial setup once installed</p>
                                 </div>
                             </div>
 
@@ -72,7 +73,7 @@ const LearnMore: React.FC = () => {
                                         account.</p>
                                     <div className="code-block">
                                         <code>npm install -g @commit451/salamander</code>
-                                        <code>salamander auth login</code>
+                                        <code>salamander</code>
                                     </div>
                                     <p className="step-note">Requires Node.js 18 or higher. Authentication opens a
                                         browser to complete setup.</p>
@@ -106,58 +107,35 @@ const LearnMore: React.FC = () => {
                                         <li>Receive push notifications</li>
                                         <li>View command outputs</li>
                                     </ul>
-                                    <p className="step-note">Keep the runner running to maintain connectivity</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
 
-                <section className="features-detail">
-                    <div className="content-container">
-                        <h2>What You Can Do</h2>
-                        <div className="features-grid">
-                            <div className="feature-item">
-                                <h4>Code & Development</h4>
-                                <p>Run builds, execute tests, commit changes, and deploy applications - all from your
-                                    phone.</p>
-                            </div>
-                            <div className="feature-item">
-                                <h4>File Management</h4>
-                                <p>Create, edit, move, and organize files and directories through natural language
-                                    commands.</p>
-                            </div>
-                            <div className="feature-item">
-                                <h4>System Tasks</h4>
-                                <p>Monitor system resources, manage processes, and execute system administration
-                                    tasks.</p>
-                            </div>
-                            <div className="feature-item">
-                                <h4>Custom Workflows</h4>
-                                <p>Set up automated workflows and let AI handle complex multi-step processes.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="troubleshooting">
-                    <div className="content-container">
-                        <h2>Troubleshooting</h2>
-                        <div className="faq-grid">
-                            <div className="faq-item">
-                                <h4>Connection Issues?</h4>
-                                <p>Ensure both devices are connected to the internet and you're logged into the same
-                                    account on both the mobile app and CLI.</p>
-                            </div>
-                            <div className="faq-item">
-                                <h4>Commands Not Working?</h4>
-                                <p>Check that your runner is active and the CLI has the necessary permissions for the
-                                    requested operations.</p>
-                            </div>
-                            <div className="faq-item">
-                                <h4>Need Help?</h4>
-                                <p>Visit our documentation or contact support through the mobile app for additional
-                                    assistance.</p>
+                            <div className="step-card">
+                                <div className="step-number">6</div>
+                                <div className="step-content">
+                                    <h3>Keep your machine awake</h3>
+                                    <p>You will need to keep your machine from going to sleep.
+                                        We recommend the following:</p>
+                                    <ul className="feature-list">
+                                        <li><a href="https://dlaa.me/Insomnia/" target="_blank" rel="noopener noreferrer" style={{
+                                            color: 'var(--primary-color)',
+                                            textDecoration: 'underline'
+                                        }}>Insomnia</a> for Windows</li>
+                                        <li><a href="https://www.caffeine-app.net/" target="_blank" rel="noopener noreferrer" style={{
+                                            color: 'var(--primary-color)',
+                                            textDecoration: 'underline'
+                                        }}>Caffeine</a> for macOS</li>
+                                        <li><a href="https://codeberg.org/WhyNotHugo/caffeine-ng" target="_blank" rel="noopener noreferrer" style={{
+                                            color: 'var(--primary-color)',
+                                            textDecoration: 'underline'
+                                        }}>Caffeine-ng</a> for Linux</li>
+                                    </ul>
+                                    <p className="step-note">If these apps are not permitted, you can always get a <a
+                                        href="https://a.co/d/cygzeFj" target="_blank" rel="noopener noreferrer" style={{
+                                            color: 'var(--primary-color)',
+                                            textDecoration: 'underline'
+                                        }}>mouse mover</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>

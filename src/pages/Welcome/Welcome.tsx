@@ -23,19 +23,19 @@ const Welcome: React.FC = () => {
 
                         <div className="hero-images">
                             <div className="hero-image-container">
-                                <img src="images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli"/>
+                                <img src="images/chat.png" alt="Chat Interface" className="hero-image"/>
                             </div>
                             <div className="hero-arrow">
                                 <span className="arrow">⟷</span>
                             </div>
                             <div className="hero-image-container">
-                                <img src="images/chat.png" alt="Chat Interface" className="hero-image"/>
+                                <img src="images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli"/>
                             </div>
                         </div>
 
                         <div className="hero-actions">
                             <button onClick={() => window.location.hash = 'learn-more'}
-                                    className="btn btn-secondary">Learn More
+                                    className="btn btn-secondary">Get Started
                             </button>
                         </div>
                     </div>
