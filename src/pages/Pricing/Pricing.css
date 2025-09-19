@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #ff6b35;
+    --primary-hover: #e55a2d;
+    --secondary-color: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --background-primary: #111827;
+    --background-secondary: #1f2937;
+    --border-color: #374151;
+    --premium-color: #ff6b35;
+    --premium-hover: #e55a2d;
+    --primary-color-rgb: 255, 107, 53;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pricing {
+    min-height: 100vh;
+    font-family: 'Fira Code', 'JetBrains Mono', 'Monaco', 'Menlo', 'Ubuntu Mono',
+    'Consolas', 'source-code-pro', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-primary);
+    background-color: var(--background-primary);
+}
+
+.pricing-main {
+    padding-top: 5rem;
+}
+
+/* Plans Section */
+.pricing-plans {
+    padding: 3rem 2rem 5rem 2rem;
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Plan Cards */
+.plan-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    padding: 3rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.plan-pro {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(245, 158, 11, 0.2) 100%);
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.plan-pro:hover {
+    border-color: rgba(236, 72, 153, 0.5);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+}
+
+/* Plan Header */
+.plan-header {
+    margin-bottom: 2rem;
+}
+
+.plan-name {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.price-free {
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.price-amount {
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* Plan Divider */
+.plan-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+    width: 100%;
+}
+
+/* Plan Features */
+.plan-features {
+    flex: 1;
+    margin-bottom: 2rem;
+}
+
+.features-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-features li {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.feature-check {
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 1rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+/* Plan Action */
+.plan-action {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Buttons */
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: white;
+    color: #1e293b;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.more-info {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.more-info:hover {
+    color: var(--text-primary);
+}
+
+/* Loading and Error States */
+.pricing-loading,
+.pricing-error {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+.pricing-error h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.pricing-error p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.no-plans {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.no-plans h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.no-plans p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        gap: 1.5rem;
+    }
+
+    .plan-card {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-plans {
+        padding: 2rem 1rem 3rem 1rem;
+    }
+
+    .plan-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .plan-name {
+        font-size: 1.75rem;
+    }
+
+    .price-amount,
+    .price-free {
+        font-size: 3rem;
+    }
+
+    .price-period {
+        font-size: 1.25rem;
+    }
+
+    .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .plan-card {
+        padding: 1.5rem;
+    }
+
+    .plan-name {
+        font-size: 1.5rem;
+    }
+
+    .price-amount,
+    .price-free {
+        font-size: 2.5rem;
+    }
+
+    .plan-action {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

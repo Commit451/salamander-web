@@ -22,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                     <h1>Salamander</h1>
                 </div>
                 <div className="nav-links">
+                    <button onClick={() => window.location.hash = 'pricing'} className="nav-link">Pricing</button>
                     {user ? (
                         <button
                             className="profile-button"
