@@ -1,4 +1,4 @@
-import {collection, doc, getDoc, getDocs, updateDoc, query, where, writeBatch} from 'firebase/firestore';
+import {collection, doc, getDoc, getDocs, updateDoc, query, where} from 'firebase/firestore';
 import {db} from '../config/firebase';
 
 export interface User {
@@ -140,38 +140,10 @@ export const getRunnersFromFirestore = async (userId: string): Promise<Runner[]>
     }
 };
 
-export const updateRunnerInFirestore = async (runnerId: string, updates: Partial<Runner>): Promise<void> => {
-    try {
-        await updateDoc(doc(db, 'runners', runnerId), {
-            ...updates,
-            updatedAt: new Date(),
-        });
-    } catch (error) {
-        console.error('Error updating runner in Firestore:', error);
-        throw error;
-    }
-};
+// NOTE: updateRunnerInFirestore has been removed and replaced with RunnerApiService.updateRunnerName()
+// This change standardizes runner updates across all platforms (web, CLI, Flutter)
+// to use the same API endpoint pattern: PUT /v1/runner/{id} with auth headers
 
-export const deleteRunnerFromFirestore = async (runnerId: string): Promise<void> => {
-    try {
-        const batch = writeBatch(db);
-
-        // Delete all messages in the subcollection
-        const runnerDocRef = doc(db, 'runners', runnerId);
-        const messagesCollectionRef = collection(runnerDocRef, 'messages');
-        const messagesSnapshot = await getDocs(messagesCollectionRef);
-
-        for (const messageDoc of messagesSnapshot.docs) {
-            batch.delete(messageDoc.ref);
-        }
-
-        // Delete the runner document
-        batch.delete(runnerDocRef);
-
-        // Commit the batch
-        await batch.commit();
-    } catch (error) {
-        console.error('Error deleting runner from Firestore:', error);
-        throw error;
-    }
-};
+// NOTE: deleteRunnerFromFirestore has been removed and replaced with RunnerApiService.deleteRunner()
+// This change standardizes runner deletion across all platforms (web, CLI, Flutter)
+// to use the same API endpoint pattern instead of direct Firestore operations.

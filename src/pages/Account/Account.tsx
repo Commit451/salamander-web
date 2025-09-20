@@ -3,7 +3,8 @@ import './Account.css';
 import {useAuth} from '../../contexts/AuthContext';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import {getPlansFromFirestore, Plan, getRunnersFromFirestore, Runner, updateRunnerInFirestore, deleteRunnerFromFirestore} from '../../services/userService';
+import {getPlansFromFirestore, Plan, getRunnersFromFirestore, Runner} from '../../services/userService';
+import {RunnerApiService, ApiError} from '../../services/apiService';
 
 const Account: React.FC = () => {
     const {user, logout, refreshUserData} = useAuth();
@@ -94,7 +95,8 @@ const Account: React.FC = () => {
 
     const handleRenameRunner = async (runnerId: string, newName: string) => {
         try {
-            await updateRunnerInFirestore(runnerId, { name: newName });
+            // Use the new API service that matches CLI pattern
+            await RunnerApiService.updateRunnerName(runnerId, newName);
             setRunners(runners.map(runner =>
                 runner.id === runnerId
                     ? { ...runner, name: newName }
@@ -104,7 +106,13 @@ const Account: React.FC = () => {
             setEditingName('');
         } catch (error) {
             console.error('Error renaming runner:', error);
-            alert('Failed to rename runner. Please try again.');
+
+            // Provide more specific error messages
+            if (error instanceof ApiError) {
+                alert(`Failed to rename runner: ${error.message}`);
+            } else {
+                alert('Failed to rename runner. Please try again.');
+            }
         }
     };
 
@@ -114,11 +122,18 @@ const Account: React.FC = () => {
         );
         if (confirmed) {
             try {
-                await deleteRunnerFromFirestore(runnerId);
+                // Use the new API service that matches CLI and Flutter pattern
+                await RunnerApiService.deleteRunner(runnerId);
                 setRunners(runners.filter(runner => runner.id !== runnerId));
             } catch (error) {
                 console.error('Error deleting runner:', error);
-                alert('Failed to delete runner. Please try again.');
+
+                // Provide more specific error messages
+                if (error instanceof ApiError) {
+                    alert(`Failed to delete runner: ${error.message}`);
+                } else {
+                    alert('Failed to delete runner. Please try again.');
+                }
             }
         }
     };
