@@ -73,6 +73,9 @@ const LearnMore: React.FC = () => {
                                         account.</p>
                                     <div className="code-block">
                                         <code>npm install -g @commit451/salamander</code>
+                                    </div>
+                                    <p className="step-note">and then</p>
+                                    <div className="code-block">
                                         <code>salamander</code>
                                     </div>
                                     <p className="step-note">Requires Node.js 18 or higher. Authentication opens a
