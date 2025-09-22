@@ -4,7 +4,6 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { db } from '../../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { useAuth } from '../../contexts/AuthContext';
 
 interface Plan {
     id: string;
@@ -20,21 +19,14 @@ const Pricing: React.FC = () => {
     const [plans, setPlans] = useState<Plan[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const { user } = useAuth();
 
     const handlePlanClick = (plan: Plan) => {
         if (plan.priceInCents === 0) {
             // Free plan - go to learn more
             window.location.hash = 'learn-more';
         } else {
-            // Pro plan
-            if (user) {
-                // User is logged in - open Stripe checkout
-                window.open('https://buy.stripe.com/00w9AU6UNei60rlbMreIw00', '_blank');
-            } else {
-                // User not logged in - go to auth
-                window.location.hash = 'auth';
-            }
+            // Pro plan - redirect to mobile app subscription info
+            alert('To subscribe to Pro, please download our iOS or Android app where you can manage your subscription.');
         }
     };
 
@@ -157,7 +149,7 @@ const Pricing: React.FC = () => {
                                                 className="btn btn-primary"
                                                 onClick={() => handlePlanClick(plan)}
                                             >
-                                                {plan.priceInCents === 0 ? 'Get Started' : 'Get Pro'}
+                                                {plan.priceInCents === 0 ? 'Get Started' : 'Subscribe via Mobile App'}
                                             </button>
                                         </div>
                                     </div>

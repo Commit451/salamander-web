@@ -359,23 +359,19 @@ const Account: React.FC = () => {
                                             <span className="feature-text">{planOption.runnerLimit} runners</span>
                                         </div>
                                     </div>
-                                    {!isCurrentPlan && (
-                                        <button
-                                            className="upgrade-button"
-                                            style={{
-                                                backgroundColor: getTierColor(planOption.id),
-                                                borderColor: getTierColor(planOption.id)
-                                            }}
-                                            onClick={() => {
-                                                if (planOption.id === 'pro') {
-                                                    window.open('https://buy.stripe.com/00w9AU6UNei60rlbMreIw00', '_blank');
-                                                } else {
-                                                    alert('Plan upgrade functionality coming soon!');
-                                                }
-                                            }}
-                                        >
-                                            {planOption.priceInCents === 0 ? 'Downgrade' : 'Upgrade'} to {planOption.name}
-                                        </button>
+                                    {isCurrentPlan && planOption.priceInCents > 0 && (
+                                        <div className="mobile-subscription-notice">
+                                            <p className="mobile-notice-text">
+                                                You can manage your subscription within the mobile app.
+                                            </p>
+                                        </div>
+                                    )}
+                                    {!isCurrentPlan && planOption.priceInCents > 0 && (
+                                        <div className="mobile-subscription-notice">
+                                            <p className="mobile-notice-text">
+                                                To subscribe to {planOption.name}, please use our iOS or Android app.
+                                            </p>
+                                        </div>
                                     )}
                                 </div>
                             );
