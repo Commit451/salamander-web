@@ -145,12 +145,18 @@ const Pricing: React.FC = () => {
                                         </div>
 
                                         <div className="plan-action">
-                                            <button
-                                                className="btn btn-primary"
-                                                onClick={() => handlePlanClick(plan)}
-                                            >
-                                                {plan.priceInCents === 0 ? 'Get Started' : 'Subscribe via Mobile App'}
-                                            </button>
+                                            {plan.priceInCents === 0 ? (
+                                                <button
+                                                    className="btn btn-primary"
+                                                    onClick={() => handlePlanClick(plan)}
+                                                >
+                                                    Get Started
+                                                </button>
+                                            ) : (
+                                                <div className="upgrade-text">
+                                                    Upgrade in the mobile app
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 ))}
