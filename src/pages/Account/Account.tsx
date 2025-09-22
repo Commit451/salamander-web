@@ -243,7 +243,7 @@ const Account: React.FC = () => {
         );
     }
 
-    const plan = getPlanById(user.tier);
+    const plan = getPlanById(user.plan);
     if (!plan) {
         return (
             <div className="account-container">
@@ -260,7 +260,7 @@ const Account: React.FC = () => {
     const isUnlimited = plan.messageLimit === -1;
     const usagePercent = isUnlimited
         ? 0.0
-        : plan.messageLimit > 0 ? (plan.messageLimit - user.remainingMessages) / plan.messageLimit : 0;
+        : plan.messageLimit > 0 ? (plan.messageLimit - user.messagesRemaining) / plan.messageLimit : 0;
 
     return (
         <div className="account-container">
@@ -269,13 +269,6 @@ const Account: React.FC = () => {
                 {/* User Header Card */}
                 <div className="account-card user-card">
                     <div className="user-info">
-                        <div className="user-avatar">
-                            {user.picture ? (
-                                <img src={user.picture} alt="Profile" className="user-avatar-image"/>
-                            ) : (
-                                <span>{user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}</span>
-                            )}
-                        </div>
                         <div className="user-details">
                             <h2>{user.displayName || 'User'}</h2>
                             <p className="user-email">{user.email}</p>
@@ -300,7 +293,7 @@ const Account: React.FC = () => {
                                 <div className="usage-stats">
                                     <span className="usage-label">Messages Remaining</span>
                                     <span className="usage-count">
-                    {user.remainingMessages}/{plan.messageLimit}
+                    {user.messagesRemaining}/{plan.messageLimit}
                   </span>
                                 </div>
                                 <div className="usage-bar">
@@ -330,7 +323,7 @@ const Account: React.FC = () => {
                     </div>
                     <div className="plans-list">
                         {plans.map((planOption) => {
-                            const isCurrentPlan = planOption.id === user.tier;
+                            const isCurrentPlan = planOption.id === user.plan;
                             const planPrice = planOption.priceInCents === 0 ? 'Free' : `$${(planOption.priceInCents / 100).toFixed(2)}/month`;
                             const messageText = planOption.messageLimit === -1 ? 'Unlimited messages' : `${planOption.messageLimit} messages per day`;
 

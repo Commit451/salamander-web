@@ -25,17 +25,11 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                     <button onClick={() => window.location.hash = 'pricing'} className="nav-link">Pricing</button>
                     {user ? (
                         <button
-                            className="profile-button"
+                            className="nav-link"
                             onClick={() => window.location.hash = 'account'}
                             title={`${user.displayName || user.email} - View Account`}
                         >
-                            {user.picture ? (
-                                <img src={user.picture} alt="Profile" className="profile-image"/>
-                            ) : (
-                                <div className="profile-avatar">
-                                    {user.displayName ? user.displayName[0].toUpperCase() : user.email[0].toUpperCase()}
-                                </div>
-                            )}
+                            Profile
                         </button>
                     ) : (
                         <>

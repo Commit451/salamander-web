@@ -1,24 +1,14 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
 import {auth} from '../config/firebase';
-import {getUserFromFirestore} from '../services/userService';
-
-interface AppUser {
-    id: string;
-    displayName?: string;
-    email: string;
-    tier: 'free' | 'premium' | 'unlimited';
-    remainingMessages: number;
-    lastMessageReset?: Date;
-    picture?: string;
-}
+import {getUserFromFirestore, User} from '../services/userService';
 
 interface AuthContextType {
-    user: AppUser | null;
+    user: User | null;
     isLoading: boolean;
     login: (credential: string) => Promise<void>;
     logout: () => void;
-    updateUser: (user: AppUser) => void;
+    updateUser: (user: User) => void;
     refreshUserData: () => Promise<void>;
 }
 
@@ -29,7 +19,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
-    const [user, setUser] = useState<AppUser | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -71,14 +61,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             let userData = await getUserFromFirestore(firebaseUser.uid);
 
             // Convert Firestore user to AppUser
-            const appUser: AppUser = {
+            const appUser: User = {
                 id: userData.id,
                 displayName: userData.displayName,
                 email: userData.email,
-                picture: userData.picture,
-                tier: userData.tier,
-                remainingMessages: userData.messagesRemaining, // Map messagesRemaining to remainingMessages
-                lastMessageReset: userData.lastMessageReset,
+                plan: userData.plan,
+                messagesRemaining: userData.messagesRemaining, // Map messagesRemaining to remainingMessages
             };
 
             // Store user data and token
@@ -112,7 +100,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         }
     };
 
-    const updateUser = (updatedUser: AppUser) => {
+    const updateUser = (updatedUser: User) => {
         setUser(updatedUser);
         localStorage.setItem('salamander_user', JSON.stringify(updatedUser));
     };
@@ -123,14 +111,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         try {
             const userData = await getUserFromFirestore(user.id);
             if (userData) {
-                const appUser: AppUser = {
+                const appUser: User = {
                     id: userData.id,
                     displayName: userData.displayName,
                     email: userData.email,
-                    picture: userData.picture,
-                    tier: userData.tier,
-                    remainingMessages: userData.messagesRemaining,
-                    lastMessageReset: userData.lastMessageReset,
+                    plan: userData.plan,
+                    messagesRemaining: userData.messagesRemaining,
                 };
 
                 setUser(appUser);

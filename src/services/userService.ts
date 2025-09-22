@@ -1,14 +1,12 @@
-import {collection, doc, getDoc, getDocs, updateDoc, query, where} from 'firebase/firestore';
+import {collection, doc, getDoc, getDocs, query, where} from 'firebase/firestore';
 import {db} from '../config/firebase';
 
 export interface User {
     id: string;
     displayName?: string;
     email: string;
-    tier: 'free' | 'premium' | 'unlimited';
+    plan: 'free' | 'pro';
     messagesRemaining: number;
-    lastMessageReset?: Date;
-    picture?: string;
 }
 
 export interface Plan {
@@ -25,7 +23,6 @@ export interface Runner {
     id: string;
     userId: string;
     name: string;
-    status: 'online' | 'offline' | 'running';
     lastSeen?: Date;
     createdAt: Date;
     directory?: string;
@@ -51,10 +48,8 @@ export const getUserFromFirestore = async (userId: string): Promise<User> => {
                 id: userId,
                 displayName: data.displayName,
                 email: data.email,
-                tier: data.tier || 'free',
+                plan: data.plan || 'free',
                 messagesRemaining: data.messagesRemaining || 0,
-                lastMessageReset: data.lastMessageReset?.toDate(),
-                picture: data.picture,
             };
         } else {
             console.log('User not found in Firestore, returning null for userId:', userId);
@@ -68,18 +63,6 @@ export const getUserFromFirestore = async (userId: string): Promise<User> => {
             errorCode: (error as any)?.code,
             errorDetails: (error as any)?.details
         });
-        throw error;
-    }
-};
-
-export const updateUserInFirestore = async (userId: string, updates: Partial<User>): Promise<void> => {
-    try {
-        await updateDoc(doc(db, 'users', userId), {
-            ...updates,
-            updatedAt: new Date(),
-        });
-    } catch (error) {
-        console.error('Error updating user in Firestore:', error);
         throw error;
     }
 };
@@ -123,7 +106,6 @@ export const getRunnersFromFirestore = async (userId: string): Promise<Runner[]>
                 id: doc.id,
                 userId: data.userId,
                 name: data.name || 'Unnamed Runner',
-                status: data.online ? 'online' : 'offline',
                 lastSeen: data.lastUsed?.toDate(),
                 createdAt: data.createdAt?.toDate() || new Date(),
                 directory: data.directory,
