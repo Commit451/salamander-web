@@ -3,8 +3,8 @@ import './Account.css';
 import {useAuth} from '../../contexts/AuthContext';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import {getPlansFromFirestore, Plan, getRunnersFromFirestore, Runner} from '../../services/userService';
-import {RunnerApiService, ApiError} from '../../services/apiService';
+import {getPlansFromFirestore, getRunnersFromFirestore, Plan, Runner} from '../../services/userService';
+import {ApiError, RunnerApiService} from '../../services/apiService';
 
 const Account: React.FC = () => {
     const {user, logout, refreshUserData} = useAuth();
@@ -64,10 +64,8 @@ const Account: React.FC = () => {
         switch (tier) {
             case 'free':
                 return '#6b7280';
-            case 'premium':
+            case 'pro':
                 return '#2563eb';
-            case 'unlimited':
-                return '#7c3aed';
             default:
                 return '#6b7280';
         }
@@ -99,7 +97,7 @@ const Account: React.FC = () => {
             await RunnerApiService.updateRunnerName(runnerId, newName);
             setRunners(runners.map(runner =>
                 runner.id === runnerId
-                    ? { ...runner, name: newName }
+                    ? {...runner, name: newName}
                     : runner
             ));
             setEditingRunner(null);
@@ -158,16 +156,6 @@ const Account: React.FC = () => {
             <div className="account-container">
                 <Header isSubpage={true}/>
                 <div className="account-content" style={{paddingTop: '6rem'}}>
-                    {/* User Card Skeleton */}
-                    <div className="account-card user-card skeleton">
-                        <div className="user-info">
-                            <div className="skeleton-avatar"></div>
-                            <div className="user-details">
-                                <div className="skeleton-line skeleton-title"></div>
-                                <div className="skeleton-line skeleton-subtitle"></div>
-                            </div>
-                        </div>
-                    </div>
 
                     {/* Usage Card Skeleton */}
                     <div className="account-card usage-card skeleton">
@@ -266,15 +254,6 @@ const Account: React.FC = () => {
         <div className="account-container">
             <Header isSubpage={true}/>
             <div className="account-content" style={{paddingTop: '6rem'}}>
-                {/* User Header Card */}
-                <div className="account-card user-card">
-                    <div className="user-info">
-                        <div className="user-details">
-                            <h2>{user.displayName || 'User'}</h2>
-                            <p className="user-email">{user.email}</p>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Usage Card */}
                 <div className="account-card usage-card">
@@ -369,7 +348,7 @@ const Account: React.FC = () => {
                                     {!isCurrentPlan && planOption.priceInCents > 0 && (
                                         <div className="mobile-subscription-notice">
                                             <p className="mobile-notice-text">
-                                                To subscribe to {planOption.name}, please use our iOS or Android app.
+                                                Upgrade in the mobile app
                                             </p>
                                         </div>
                                     )}

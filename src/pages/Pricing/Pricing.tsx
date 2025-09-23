@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Pricing.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { db } from '../../config/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import {db} from '../../config/firebase';
+import {collection, getDocs} from 'firebase/firestore';
 
 interface Plan {
     id: string;
@@ -56,14 +56,14 @@ const Pricing: React.FC = () => {
     if (loading) {
         return (
             <div className="pricing">
-                <Header isSubpage={true} />
+                <Header isSubpage={true}/>
                 <main className="pricing-main">
                     <div className="pricing-loading">
                         <div className="loading-spinner"></div>
                         <p>Loading pricing plans...</p>
                     </div>
                 </main>
-                <Footer />
+                <Footer/>
             </div>
         );
     }
@@ -71,7 +71,7 @@ const Pricing: React.FC = () => {
     if (error) {
         return (
             <div className="pricing">
-                <Header isSubpage={true} />
+                <Header isSubpage={true}/>
                 <main className="pricing-main">
                     <div className="pricing-error">
                         <h2>Unable to Load Pricing</h2>
@@ -84,14 +84,14 @@ const Pricing: React.FC = () => {
                         </button>
                     </div>
                 </main>
-                <Footer />
+                <Footer/>
             </div>
         );
     }
 
     return (
         <div className="pricing">
-            <Header isSubpage={true} />
+            <Header isSubpage={true}/>
 
             <main className="pricing-main">
                 <section className="pricing-plans">
@@ -166,7 +166,7 @@ const Pricing: React.FC = () => {
                 </section>
             </main>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 };

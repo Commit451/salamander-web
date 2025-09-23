@@ -61,7 +61,8 @@ const LearnMore: React.FC = () => {
                                         }}>Claude Code Documentation</a> for installation instructions</code>
                                     </div>
                                     <p className="step-note">Follow the setup guide for your operating system</p>
-                                    <p className="step-note">You should run the `claude` command for initial setup once installed</p>
+                                    <p className="step-note">You should run the `claude` command for initial setup once
+                                        installed</p>
                                 </div>
                             </div>
 
@@ -120,24 +121,30 @@ const LearnMore: React.FC = () => {
                                     <p>You will need to keep your machine from going to sleep.
                                         We recommend the following:</p>
                                     <ul className="feature-list">
-                                        <li><a href="https://dlaa.me/Insomnia/" target="_blank" rel="noopener noreferrer" style={{
+                                        <li><a href="https://dlaa.me/Insomnia/" target="_blank"
+                                               rel="noopener noreferrer" style={{
                                             color: 'var(--primary-color)',
                                             textDecoration: 'underline'
-                                        }}>Insomnia</a> for Windows</li>
-                                        <li><a href="https://www.caffeine-app.net/" target="_blank" rel="noopener noreferrer" style={{
+                                        }}>Insomnia</a> for Windows
+                                        </li>
+                                        <li><a href="https://www.caffeine-app.net/" target="_blank"
+                                               rel="noopener noreferrer" style={{
                                             color: 'var(--primary-color)',
                                             textDecoration: 'underline'
-                                        }}>Caffeine</a> for macOS</li>
-                                        <li><a href="https://codeberg.org/WhyNotHugo/caffeine-ng" target="_blank" rel="noopener noreferrer" style={{
+                                        }}>Caffeine</a> for macOS
+                                        </li>
+                                        <li><a href="https://codeberg.org/WhyNotHugo/caffeine-ng" target="_blank"
+                                               rel="noopener noreferrer" style={{
                                             color: 'var(--primary-color)',
                                             textDecoration: 'underline'
-                                        }}>Caffeine-ng</a> for Linux</li>
+                                        }}>Caffeine-ng</a> for Linux
+                                        </li>
                                     </ul>
                                     <p className="step-note">If these apps are not permitted, you can always get a <a
                                         href="https://a.co/d/cygzeFj" target="_blank" rel="noopener noreferrer" style={{
-                                            color: 'var(--primary-color)',
-                                            textDecoration: 'underline'
-                                        }}>mouse mover</a></p>
+                                        color: 'var(--primary-color)',
+                                        textDecoration: 'underline'
+                                    }}>mouse mover</a></p>
                                 </div>
                             </div>
                         </div>

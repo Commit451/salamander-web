@@ -96,7 +96,7 @@ export abstract class BaseApiService {
             throw new ApiError(
                 error instanceof Error ? error.message : 'Network error occurred',
                 0,
-                { originalError: error }
+                {originalError: error}
             );
         }
     }
@@ -105,7 +105,7 @@ export abstract class BaseApiService {
      * Generic GET request
      */
     protected static async get<T>(endpoint: string): Promise<T> {
-        return this.makeRequest<T>(endpoint, { method: 'GET' });
+        return this.makeRequest<T>(endpoint, {method: 'GET'});
     }
 
     /**
@@ -132,7 +132,7 @@ export abstract class BaseApiService {
      * Generic DELETE request
      */
     protected static async delete<T>(endpoint: string): Promise<T> {
-        return this.makeRequest<T>(endpoint, { method: 'DELETE' });
+        return this.makeRequest<T>(endpoint, {method: 'DELETE'});
     }
 }
 
@@ -203,7 +203,7 @@ export class RunnerApiService extends BaseApiService {
         }
 
         try {
-            await this.put(`/runner/${runnerId}`, { name: name.trim() });
+            await this.put(`/runner/${runnerId}`, {name: name.trim()});
         } catch (error) {
             if (error instanceof ApiError) {
                 throw new ApiError(

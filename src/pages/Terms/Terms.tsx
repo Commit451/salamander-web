@@ -35,13 +35,18 @@ const Terms: React.FC = () => {
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>1. Acceptance of Terms</h2>
                         <p>
-                            By accessing and using Salamander ("Service", "Platform", "App"), you accept and agree to be bound by these Terms of Service ("Terms").
-                            Salamander is a platform that enables remote AI-powered command execution on your local machine through multiple interfaces including
-                            mobile applications, web interface, and command-line tools. If you do not agree to these Terms, please do not use this Service.
+                            By accessing and using Salamander ("Service", "Platform", "App"), you accept and agree to be
+                            bound by these Terms of Service ("Terms").
+                            Salamander is a platform that enables remote AI-powered command execution on your local
+                            machine through multiple interfaces including
+                            mobile applications, web interface, and command-line tools. If you do not agree to these
+                            Terms, please do not use this Service.
                         </p>
                         <p style={{marginTop: '1rem'}}>
-                            These Terms constitute a legally binding agreement between you and Commit 451 ("we", "us", "our").
-                            By creating an account or using any part of our Service, you acknowledge that you have read, understood, and agree to be bound by these Terms.
+                            These Terms constitute a legally binding agreement between you and Commit 451 ("we", "us",
+                            "our").
+                            By creating an account or using any part of our Service, you acknowledge that you have read,
+                            understood, and agree to be bound by these Terms.
                         </p>
                     </section>
 
@@ -51,29 +56,50 @@ const Terms: React.FC = () => {
                             Salamander is a comprehensive AI-powered productivity platform that provides:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Remote AI Command Execution:</strong> Execute AI commands on your local machine from mobile or web interfaces</li>
-                            <li><strong>Multi-Platform AI Integration:</strong> Support for Claude (Anthropic), Gemini (Google), and Codex (OpenAI) AI models (with Gemini and Codex coming at a later date)</li>
-                            <li><strong>Cross-Device Synchronization:</strong> Access your AI runners from mobile apps, web browser, and command-line tools</li>
-                            <li><strong>Real-time Communication:</strong> Push notifications and real-time messaging via Firebase Cloud Messaging (FCM)</li>
-                            <li><strong>Secure Authentication:</strong> Google OAuth 2.0 integration for account management</li>
-                            <li><strong>Data Storage and Analytics:</strong> Firebase Firestore for data persistence and Firebase Analytics for usage insights</li>
-                            <li><strong>Error Monitoring:</strong> Firebase Crashlytics for crash reporting and service reliability improvement</li>
-                            <li><strong>Command History and Management:</strong> Track and manage AI command interactions across all your devices</li>
+                            <li><strong>Remote AI Command Execution:</strong> Execute AI commands on your local machine
+                                from mobile or web interfaces
+                            </li>
+                            <li><strong>Multi-Platform AI Integration:</strong> Support for Claude (Anthropic), Gemini
+                                (Google), and Codex (OpenAI) AI models (with Gemini and Codex coming at a later date)
+                            </li>
+                            <li><strong>Cross-Device Synchronization:</strong> Access your AI runners from mobile apps,
+                                web browser, and command-line tools
+                            </li>
+                            <li><strong>Real-time Communication:</strong> Push notifications and real-time messaging via
+                                Firebase Cloud Messaging (FCM)
+                            </li>
+                            <li><strong>Secure Authentication:</strong> Google OAuth 2.0 integration for account
+                                management
+                            </li>
+                            <li><strong>Data Storage and Analytics:</strong> Firebase Firestore for data persistence and
+                                Firebase Analytics for usage insights
+                            </li>
+                            <li><strong>Error Monitoring:</strong> Firebase Crashlytics for crash reporting and service
+                                reliability improvement
+                            </li>
+                            <li><strong>Command History and Management:</strong> Track and manage AI command
+                                interactions across all your devices
+                            </li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            The Service allows you to create "runners" - AI agents that can execute commands in specified directories on your local machine.
-                            You can interact with these runners remotely through our mobile apps or web interface while they operate with administrative privileges on your system.
+                            The Service allows you to create "runners" - AI agents that can execute commands in
+                            specified directories on your local machine.
+                            You can interact with these runners remotely through our mobile apps or web interface while
+                            they operate with administrative privileges on your system.
                         </p>
                         <p style={{marginTop: '1rem'}}>
-                            We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time, with or without notice.
-                            We may also impose limits on certain features or restrict access to parts of the Service without notice or liability.
+                            We reserve the right to modify, suspend, or discontinue any aspect of the Service at any
+                            time, with or without notice.
+                            We may also impose limits on certain features or restrict access to parts of the Service
+                            without notice or liability.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>3. User Accounts and Authentication</h2>
                         <p>
-                            To use Salamander, you must create an account by authenticating with Google Sign-In. By creating an account, you represent and warrant that:
+                            To use Salamander, you must create an account by authenticating with Google Sign-In. By
+                            creating an account, you represent and warrant that:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>You are at least 18 years old and have the legal capacity to enter into these Terms</li>
@@ -84,37 +110,58 @@ const Terms: React.FC = () => {
                         <p style={{marginTop: '1rem'}}>You are responsible for:</p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>Maintaining the security and confidentiality of your Google account credentials</li>
-                            <li>All activities that occur under your account, including commands executed by your runners</li>
-                            <li>Notifying us immediately of any unauthorized use of your account or security breaches</li>
+                            <li>All activities that occur under your account, including commands executed by your
+                                runners
+                            </li>
+                            <li>Notifying us immediately of any unauthorized use of your account or security breaches
+                            </li>
                             <li>Ensuring compliance with all applicable laws when using the Service</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            We use Firebase Authentication to manage user sessions and store minimal user profile information
-                            in Firebase Firestore for service functionality. Your account includes usage quotas and limits that may vary based on your subscription level.
+                            We use Firebase Authentication to manage user sessions and store minimal user profile
+                            information
+                            in Firebase Firestore for service functionality. Your account includes usage quotas and
+                            limits that may vary based on your subscription level.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>4. Runner Installation and System Access</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>4. Runner Installation and System
+                            Access</h2>
                         <p>
-                            <strong>CRITICAL SECURITY NOTICE:</strong> Salamander's CLI tool ("Runner") executes commands with elevated privileges on your local machine,
-                            including the use of flags like <code>--dangerously-skip-permissions</code>. By installing and using the Runner, you acknowledge and accept that:
+                            <strong>CRITICAL SECURITY NOTICE:</strong> Salamander's CLI tool ("Runner") executes
+                            commands with elevated privileges on your local machine,
+                            including the use of flags like <code>--dangerously-skip-permissions</code>. By installing
+                            and using the Runner, you acknowledge and accept that:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Full System Access:</strong> The Runner can read, write, modify, and delete files in the directories you specify</li>
-                            <li><strong>Command Execution:</strong> AI-generated commands will be executed directly on your system with your user privileges</li>
-                            <li><strong>Security Bypasses:</strong> Permission checks are intentionally bypassed for functionality</li>
-                            <li><strong>Remote Control:</strong> Commands sent from mobile interfaces will execute on your local machine</li>
-                            <li><strong>No Sandboxing:</strong> There are no built-in restrictions on what commands can be executed</li>
+                            <li><strong>Full System Access:</strong> The Runner can read, write, modify, and delete
+                                files in the directories you specify
+                            </li>
+                            <li><strong>Command Execution:</strong> AI-generated commands will be executed directly on
+                                your system with your user privileges
+                            </li>
+                            <li><strong>Security Bypasses:</strong> Permission checks are intentionally bypassed for
+                                functionality
+                            </li>
+                            <li><strong>Remote Control:</strong> Commands sent from mobile interfaces will execute on
+                                your local machine
+                            </li>
+                            <li><strong>No Sandboxing:</strong> There are no built-in restrictions on what commands can
+                                be executed
+                            </li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>YOU USE THE RUNNER AT YOUR OWN RISK.</strong> We strongly recommend only running the service in isolated environments
-                            or directories that do not contain sensitive data. Never run the service with administrative/root privileges or in system directories.
+                            <strong>YOU USE THE RUNNER AT YOUR OWN RISK.</strong> We strongly recommend only running the
+                            service in isolated environments
+                            or directories that do not contain sensitive data. Never run the service with
+                            administrative/root privileges or in system directories.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>5. Acceptable Use and AI Service Integration</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>5. Acceptable Use and AI Service
+                            Integration</h2>
                         <p>You agree to use Salamander responsibly and in compliance with:</p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>All applicable local, state, federal, and international laws and regulations</li>
@@ -141,22 +188,36 @@ const Terms: React.FC = () => {
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>6. Data Processing and Privacy</h2>
                         <p>
-                            Your privacy is important to us. Our Service processes data through multiple third-party services and systems:
+                            Your privacy is important to us. Our Service processes data through multiple third-party
+                            services and systems:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Google Firebase:</strong> Authentication, Firestore database, Cloud Messaging, Analytics, and Crashlytics</li>
-                            <li><strong>AI Service Providers:</strong> Anthropic Claude API, Google Gemini API, and OpenAI Codex for command processing</li>
-                            <li><strong>Local Machine Data:</strong> Commands are executed on your local machine with access to your file system</li>
-                            <li><strong>Communication Data:</strong> Messages, commands, and responses are transmitted and stored</li>
+                            <li><strong>Google Firebase:</strong> Authentication, Firestore database, Cloud Messaging,
+                                Analytics, and Crashlytics
+                            </li>
+                            <li><strong>AI Service Providers:</strong> Anthropic Claude API, Google Gemini API, and
+                                OpenAI Codex for command processing
+                            </li>
+                            <li><strong>Local Machine Data:</strong> Commands are executed on your local machine with
+                                access to your file system
+                            </li>
+                            <li><strong>Communication Data:</strong> Messages, commands, and responses are transmitted
+                                and stored
+                            </li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>Important:</strong> Commands you send through the Service may contain sensitive information from your local file system.
-                            This data is processed by third-party AI services and may be subject to their data retention and processing policies.
-                            Please review our Privacy Policy and the privacy policies of Google, Anthropic, and OpenAI to understand how your data is handled.
+                            <strong>Important:</strong> Commands you send through the Service may contain sensitive
+                            information from your local file system.
+                            This data is processed by third-party AI services and may be subject to their data retention
+                            and processing policies.
+                            Please review our Privacy Policy and the privacy policies of Google, Anthropic, and OpenAI
+                            to understand how your data is handled.
                         </p>
                         <p style={{marginTop: '1rem'}}>
-                            We implement Firebase Crashlytics to monitor application stability and performance. This service may collect
-                            technical information about crashes and errors, including device information and usage patterns.
+                            We implement Firebase Crashlytics to monitor application stability and performance. This
+                            service may collect
+                            technical information about crashes and errors, including device information and usage
+                            patterns.
                         </p>
                     </section>
 
@@ -172,24 +233,30 @@ const Terms: React.FC = () => {
                             <li>Data storage and transfer limits</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            We reserve the right to modify quotas, implement rate limiting, or suspend access for accounts that exceed
+                            We reserve the right to modify quotas, implement rate limiting, or suspend access for
+                            accounts that exceed
                             reasonable usage patterns or violate these Terms.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>8. Third-Party Services and Integration</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>8. Third-Party Services and
+                            Integration</h2>
                         <p>
-                            Salamander relies heavily on third-party services. Your use of the Service involves interaction with:
+                            Salamander relies heavily on third-party services. Your use of the Service involves
+                            interaction with:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Google Services:</strong> Firebase, OAuth, Analytics, Crashlytics, and Gemini AI</li>
+                            <li><strong>Google Services:</strong> Firebase, OAuth, Analytics, Crashlytics, and Gemini AI
+                            </li>
                             <li><strong>Anthropic:</strong> Claude AI API for natural language processing</li>
                             <li><strong>OpenAI:</strong> Codex API for code generation and analysis</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>Third-Party Terms Apply:</strong> Your use of these integrated services is subject to their respective terms of service,
-                            privacy policies, and usage guidelines. We are not responsible for the availability, practices, content, or policies of these third-party services.
+                            <strong>Third-Party Terms Apply:</strong> Your use of these integrated services is subject
+                            to their respective terms of service,
+                            privacy policies, and usage guidelines. We are not responsible for the availability,
+                            practices, content, or policies of these third-party services.
                             Service disruptions or changes to third-party APIs may affect Salamander's functionality.
                         </p>
                     </section>
@@ -197,8 +264,10 @@ const Terms: React.FC = () => {
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>9. DISCLAIMER OF WARRANTIES</h2>
                         <p>
-                            <strong>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.</strong>
-                            TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO:
+                            <strong>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND,
+                                EXPRESS OR IMPLIED.</strong>
+                            TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING BUT NOT
+                            LIMITED TO:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT</li>
@@ -208,7 +277,8 @@ const Terms: React.FC = () => {
                             <li>THAT THIRD-PARTY SERVICES WILL REMAIN AVAILABLE OR UNCHANGED</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>AI ACCURACY DISCLAIMER:</strong> AI-generated content and commands may be inaccurate, incomplete, or inappropriate.
+                            <strong>AI ACCURACY DISCLAIMER:</strong> AI-generated content and commands may be
+                            inaccurate, incomplete, or inappropriate.
                             Always review and validate AI outputs before execution, especially for critical operations.
                         </p>
                     </section>
@@ -216,9 +286,11 @@ const Terms: React.FC = () => {
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>10. LIMITATION OF LIABILITY</h2>
                         <p>
-                            <strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMMIT 451 AND ITS AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS,
-                            AND LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES,
-                            INCLUDING BUT NOT LIMITED TO:</strong>
+                            <strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMMIT 451 AND ITS AFFILIATES, OFFICERS,
+                                EMPLOYEES, AGENTS, PARTNERS,
+                                AND LICENSORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL,
+                                PUNITIVE, OR EXEMPLARY DAMAGES,
+                                INCLUDING BUT NOT LIMITED TO:</strong>
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>LOSS OF PROFITS, REVENUE, DATA, USE, OR OTHER ECONOMIC ADVANTAGE</li>
@@ -229,20 +301,26 @@ const Terms: React.FC = () => {
                             <li>THIRD-PARTY SERVICE FAILURES OR DATA BREACHES</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>AGGREGATE LIABILITY CAP:</strong> OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATING TO THE SERVICE
-                            SHALL NOT EXCEED THE AMOUNT YOU PAID TO US FOR THE SERVICE IN THE 12 MONTHS PRECEDING THE CLAIM, OR $100, WHICHEVER IS GREATER.
+                            <strong>AGGREGATE LIABILITY CAP:</strong> OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING
+                            FROM OR RELATING TO THE SERVICE
+                            SHALL NOT EXCEED THE AMOUNT YOU PAID TO US FOR THE SERVICE IN THE 12 MONTHS PRECEDING THE
+                            CLAIM, OR $100, WHICHEVER IS GREATER.
                         </p>
                         <p style={{marginTop: '1rem'}}>
-                            <strong>SECURITY AND DATA LOSS:</strong> WE ARE NOT LIABLE FOR ANY SECURITY BREACHES, DATA LOSS, OR DAMAGE
-                            RESULTING FROM THE USE OF THE RUNNER ON YOUR LOCAL MACHINE OR THE EXECUTION OF AI-GENERATED COMMANDS.
+                            <strong>SECURITY AND DATA LOSS:</strong> WE ARE NOT LIABLE FOR ANY SECURITY BREACHES, DATA
+                            LOSS, OR DAMAGE
+                            RESULTING FROM THE USE OF THE RUNNER ON YOUR LOCAL MACHINE OR THE EXECUTION OF AI-GENERATED
+                            COMMANDS.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>11. Indemnification</h2>
                         <p>
-                            You agree to indemnify, defend, and hold harmless Commit 451, its affiliates, officers, directors, employees,
-                            agents, and licensors from and against any claims, liabilities, damages, losses, costs, or expenses (including
+                            You agree to indemnify, defend, and hold harmless Commit 451, its affiliates, officers,
+                            directors, employees,
+                            agents, and licensors from and against any claims, liabilities, damages, losses, costs, or
+                            expenses (including
                             reasonable attorneys' fees) arising from or relating to:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
@@ -258,14 +336,16 @@ const Terms: React.FC = () => {
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>12. Termination</h2>
                         <p>
-                            Either party may terminate your access to the Service at any time, with or without cause or notice.
+                            Either party may terminate your access to the Service at any time, with or without cause or
+                            notice.
                             Upon termination:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>Your access to the Service will be immediately revoked</li>
                             <li>Any outstanding usage quotas or credits may be forfeited</li>
                             <li>We may delete your account data according to our data retention policies</li>
-                            <li>You must immediately stop using all components of the Service, including the CLI tool</li>
+                            <li>You must immediately stop using all components of the Service, including the CLI tool
+                            </li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
                             We reserve the right to terminate accounts that violate these Terms, exceed usage quotas,
@@ -287,25 +367,32 @@ const Terms: React.FC = () => {
                             <li>Legal or regulatory requirements</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time
+                            We reserve the right to modify, suspend, or discontinue any aspect of the Service at any
+                            time
                             without prior notice or liability.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>14. Governing Law and Dispute Resolution</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>14. Governing Law and Dispute
+                            Resolution</h2>
                         <p>
-                            These Terms are governed by and construed in accordance with the laws of the jurisdiction where
-                            Commit 451 is located, without regard to conflict of law principles. Any disputes arising from
-                            these Terms or your use of the Service shall be resolved through binding arbitration in accordance
-                            with the rules of the American Arbitration Association, except for claims seeking injunctive relief.
+                            These Terms are governed by and construed in accordance with the laws of the jurisdiction
+                            where
+                            Commit 451 is located, without regard to conflict of law principles. Any disputes arising
+                            from
+                            these Terms or your use of the Service shall be resolved through binding arbitration in
+                            accordance
+                            with the rules of the American Arbitration Association, except for claims seeking injunctive
+                            relief.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>15. Changes to Terms</h2>
                         <p>
-                            We reserve the right to modify these Terms at any time. When we make material changes, we will:
+                            We reserve the right to modify these Terms at any time. When we make material changes, we
+                            will:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>Update the "Last updated" date at the top of these Terms</li>
@@ -313,17 +400,22 @@ const Terms: React.FC = () => {
                             <li>Provide at least 30 days' notice for material changes that affect your rights</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            Your continued use of the Service after changes become effective constitutes acceptance of the new Terms.
-                            If you do not agree to the changes, you must stop using the Service and may terminate your account.
+                            Your continued use of the Service after changes become effective constitutes acceptance of
+                            the new Terms.
+                            If you do not agree to the changes, you must stop using the Service and may terminate your
+                            account.
                         </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
                         <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>16. Miscellaneous</h2>
                         <p>
-                            These Terms constitute the entire agreement between you and Commit 451 regarding the Service.
-                            If any provision is deemed invalid or unenforceable, the remaining provisions will remain in full effect.
-                            Our failure to enforce any provision does not waive our right to do so later. These Terms are binding
+                            These Terms constitute the entire agreement between you and Commit 451 regarding the
+                            Service.
+                            If any provision is deemed invalid or unenforceable, the remaining provisions will remain in
+                            full effect.
+                            Our failure to enforce any provision does not waive our right to do so later. These Terms
+                            are binding
                             on your heirs, successors, and assigns.
                         </p>
                     </section>
@@ -339,7 +431,8 @@ const Terms: React.FC = () => {
                             <li>Through our website at salamander.space</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
-                            For legal matters, please mark your communication as "Legal Notice" and allow up to 30 days for response.
+                            For legal matters, please mark your communication as "Legal Notice" and allow up to 30 days
+                            for response.
                         </p>
                     </section>
                 </div>

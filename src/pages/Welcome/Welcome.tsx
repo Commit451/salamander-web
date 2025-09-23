@@ -18,7 +18,7 @@ const Welcome: React.FC = () => {
                             With the power of AI, you can always have a presence at your computer.
                             Create a runner, choose a directory, and start a conversation with your AI.
                             While it's doing the work, you can be out and about doing something you love.
-                            Powered by Anthropic Claude, the best in the business.
+                            Powered by Anthropic Claude and your imagination.
                         </p>
 
                         <div className="hero-images">
