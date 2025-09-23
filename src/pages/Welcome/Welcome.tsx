@@ -25,8 +25,21 @@ const Welcome: React.FC = () => {
                             <div className="hero-image-container">
                                 <img src="images/chat.png" alt="Chat Interface" className="hero-image"/>
                             </div>
-                            <div className="hero-arrow">
-                                <span className="arrow">⟷</span>
+                            <div className="communication-indicator">
+                                <div className="signal-container">
+                                    <div className="signal-line"></div>
+                                    <div className="signal-dots">
+                                        <div className="signal-dot dot-1"></div>
+                                        <div className="signal-dot dot-2"></div>
+                                        <div className="signal-dot dot-3"></div>
+                                    </div>
+                                    <div className="signal-waves">
+                                        <div className="wave wave-1"></div>
+                                        <div className="wave wave-2"></div>
+                                        <div className="wave wave-3"></div>
+                                    </div>
+                                </div>
+                                <div className="connection-label">Real-time sync</div>
                             </div>
                             <div className="hero-image-container">
                                 <img src="images/cli.png" alt="CLI Interface" className="hero-image hero-image-cli"/>
