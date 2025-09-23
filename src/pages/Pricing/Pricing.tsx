@@ -58,9 +58,11 @@ const Pricing: React.FC = () => {
             <div className="pricing">
                 <Header isSubpage={true}/>
                 <main className="pricing-main">
-                    <div className="pricing-loading">
-                        <div className="loading-spinner"></div>
-                        <p>Loading pricing plans...</p>
+                    <div className="pricing-loading-spacer">
+                        <div className="pricing-loading">
+                            <div className="loading-spinner"></div>
+                            <p>Loading pricing plans...</p>
+                        </div>
                     </div>
                 </main>
                 <Footer/>
