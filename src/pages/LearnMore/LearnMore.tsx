@@ -30,27 +30,6 @@ const LearnMore: React.FC = () => {
                             <div className="step-card">
                                 <div className="step-number">1</div>
                                 <div className="step-content">
-                                    <h3>Download the Mobile App</h3>
-                                    <p>Get the Salamander app on your mobile device to control your computer
-                                        remotely.</p>
-                                    <div className="app-downloads">
-                                        <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander"
-                                           className="app-store-link" target="_blank" rel="noopener noreferrer">
-                                            <img src="images/play_store.png" alt="Get it on Google Play"
-                                                 className="app-store-badge"/>
-                                        </a>
-                                        <a href="https://apps.apple.com" className="app-store-link" target="_blank"
-                                           rel="noopener noreferrer">
-                                            <img src="images/app_store.svg" alt="Download on the App Store"
-                                                 className="app-store-badge"/>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="step-card">
-                                <div className="step-number">2</div>
-                                <div className="step-content">
                                     <h3>Install Claude Code CLI</h3>
                                     <p>First, install the Claude Code CLI which powers the AI capabilities.</p>
                                     <div className="code-block">
@@ -67,7 +46,7 @@ const LearnMore: React.FC = () => {
                             </div>
 
                             <div className="step-card">
-                                <div className="step-number">3</div>
+                                <div className="step-number">2</div>
                                 <div className="step-content">
                                     <h3>Install & Authenticate Salamander CLI</h3>
                                     <p>Install the Salamander CLI and link it with your mobile app using your
@@ -85,7 +64,7 @@ const LearnMore: React.FC = () => {
                             </div>
 
                             <div className="step-card">
-                                <div className="step-number">4</div>
+                                <div className="step-number">3</div>
                                 <div className="step-content">
                                     <h3>Create a Runner</h3>
                                     <p>Set up a runner in your project directory to enable AI task execution.</p>
@@ -98,7 +77,7 @@ const LearnMore: React.FC = () => {
                             </div>
 
                             <div className="step-card">
-                                <div className="step-number">5</div>
+                                <div className="step-number">4</div>
                                 <div className="step-content">
                                     <h3>Start Your Runner & Control from Mobile</h3>
                                     <p>Launch the runner and start giving commands from your mobile app.</p>
@@ -115,7 +94,7 @@ const LearnMore: React.FC = () => {
                             </div>
 
                             <div className="step-card">
-                                <div className="step-number">6</div>
+                                <div className="step-number">5</div>
                                 <div className="step-content">
                                     <h3>Keep your machine awake</h3>
                                     <p>You will need to keep your machine from going to sleep.
@@ -145,6 +124,27 @@ const LearnMore: React.FC = () => {
                                         color: 'var(--primary-color)',
                                         textDecoration: 'underline'
                                     }}>mouse mover</a></p>
+                                </div>
+                            </div>
+
+                            <div className="step-card">
+                                <div className="step-number">6</div>
+                                <div className="step-content">
+                                    <h3>Download the Mobile App</h3>
+                                    <p>Get the Salamander app on your phone to control your computer
+                                        remotely and get notified when work is complete.</p>
+                                    <div className="app-downloads">
+                                        <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander"
+                                           className="app-store-link" target="_blank" rel="noopener noreferrer">
+                                            <img src="images/play_store.png" alt="Get it on Google Play"
+                                                 className="app-store-badge"/>
+                                        </a>
+                                        <a href="https://apps.apple.com" className="app-store-link" target="_blank"
+                                           rel="noopener noreferrer">
+                                            <img src="images/app_store.svg" alt="Download on the App Store"
+                                                 className="app-store-badge"/>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
