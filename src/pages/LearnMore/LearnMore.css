@@ -600,3 +600,105 @@
         padding: 3rem 0;
     }
 }
+
+/* Help Section */
+.help-section {
+    padding: 4rem 0;
+    background: var(--background-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.help-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.help-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.help-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.help-options {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.help-button-github {
+    background: var(--background-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.help-button-github:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+}
+
+.help-button-email {
+    background: var(--primary-color);
+    color: white;
+}
+
+.help-button-email:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.25);
+}
+
+@media (max-width: 768px) {
+    .help-section {
+        padding: 3rem 0;
+    }
+
+    .help-title {
+        font-size: 1.75rem;
+    }
+
+    .help-description {
+        font-size: 1rem;
+    }
+
+    .help-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .help-button {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}

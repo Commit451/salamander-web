@@ -69,24 +69,22 @@ const LearnMore: React.FC = () => {
                                     <h3>Create a Runner</h3>
                                     <p>Set up a runner in your project directory to enable AI task execution.</p>
                                     <div className="code-block">
-                                        <code>cd /path/to/your/project</code>
-                                        <code>salamander runner create</code>
+                                        <code>/path/to/your/git/enabled/project</code>
                                     </div>
-                                    <p className="step-note">Choose a directory where you want AI assistance</p>
+                                    <p>If you have multiple projects you want to manage remotely, you can set up
+                                        multiple runners.</p>
+                                    <p className="step-note">Choose a directory where you want AI assistance. We highly
+                                        recommend you have git set up, so that you can always roll back if needed.</p>
                                 </div>
                             </div>
 
                             <div className="step-card">
                                 <div className="step-number">4</div>
                                 <div className="step-content">
-                                    <h3>Start Your Runner & Control from Mobile</h3>
+                                    <h3>Start your runner on your machine & control it from your phone</h3>
                                     <p>Launch the runner and start giving commands from your mobile app.</p>
-                                    <div className="code-block">
-                                        <code>salamander runner start</code>
-                                    </div>
                                     <ul className="feature-list">
-                                        <li>Send text commands from mobile app</li>
-                                        <li>Monitor task progress</li>
+                                        <li>Send prompts from the mobile app</li>
                                         <li>Receive push notifications</li>
                                         <li>View command outputs</li>
                                     </ul>
@@ -146,6 +144,33 @@ const LearnMore: React.FC = () => {
                                         </a>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="help-section">
+                    <div className="content-container">
+                        <div className="help-content">
+                            <h2 className="help-title">Stuck? Reach out to us!</h2>
+                            <p className="help-description">
+                                Need assistance getting set up or running into issues? We're here to help!
+                            </p>
+                            <div className="help-options">
+                                <a
+                                    href="https://github.com/Commit451/salamander-issue-tracker/issues"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="help-button help-button-github"
+                                >
+                                    📝 Report an Issue on GitHub
+                                </a>
+                                <a
+                                    href="mailto:commit451@gmail.com"
+                                    className="help-button help-button-email"
+                                >
+                                    ✉️ Email Us
+                                </a>
                             </div>
                         </div>
                     </div>
