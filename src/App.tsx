@@ -50,19 +50,60 @@ const AppContent: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontFamily: 'system-ui, -apple-system, sans-serif'
+                backgroundColor: '#111827',
+                padding: '20px',
+                fontFamily: '"Fira Code", "JetBrains Mono", "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace'
             }}>
-                <div style={{textAlign: 'center'}}>
+                <div style={{
+                    background: '#1f2937',
+                    border: '1px solid #374151',
+                    borderRadius: '16px',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                    padding: '48px 40px',
+                    textAlign: 'center',
+                    maxWidth: '400px',
+                    width: '100%'
+                }}>
                     <div style={{
-                        width: '3rem',
-                        height: '3rem',
-                        border: '4px solid #e2e8f0',
-                        borderTop: '4px solid #2563eb',
+                        width: '48px',
+                        height: '48px',
+                        margin: '0 auto 24px',
+                        background: '#ff6b35',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '24px',
+                        color: 'white',
+                        fontWeight: 'bold'
+                    }}>
+                        S
+                    </div>
+                    <h1 style={{
+                        fontSize: '24px',
+                        fontWeight: '600',
+                        color: '#f9fafb',
+                        margin: '0 0 8px 0'
+                    }}>
+                        Salamander
+                    </h1>
+                    <p style={{
+                        fontSize: '14px',
+                        color: '#d1d5db',
+                        margin: '0 0 32px 0',
+                        fontWeight: '500'
+                    }}>
+                        Never be AFK
+                    </p>
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        border: '3px solid #374151',
+                        borderTop: '3px solid #ff6b35',
                         borderRadius: '50%',
                         animation: 'spin 1s linear infinite',
-                        margin: '0 auto 1rem'
+                        margin: '0 auto'
                     }}></div>
-                    <p>Loading...</p>
                 </div>
             </div>
         );

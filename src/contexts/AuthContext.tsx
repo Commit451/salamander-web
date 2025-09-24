@@ -1,12 +1,13 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
-import {GoogleAuthProvider, signInWithCredential} from 'firebase/auth';
+import {GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithPopup, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../config/firebase';
 import {getUserFromFirestore, User} from '../services/userService';
 
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
-    login: (credential: string) => Promise<void>;
+    login: (credential: string, provider?: 'google' | 'apple') => Promise<void>;
+    loginWithApple: () => Promise<void>;
     logout: () => void;
     updateUser: (user: User) => void;
     refreshUserData: () => Promise<void>;
@@ -23,59 +24,62 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Load user from localStorage on app start
-        loadUserFromStorage();
+        // Listen to Firebase auth state changes
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                // User is signed in, fetch their profile data
+                try {
+                    const userData = await getUserFromFirestore(firebaseUser.uid);
+                    const appUser: User = {
+                        id: userData.id,
+                        displayName: userData.displayName,
+                        email: userData.email,
+                        plan: userData.plan,
+                        messagesRemaining: userData.messagesRemaining,
+                    };
+                    setUser(appUser);
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                    setUser(null);
+                }
+            } else {
+                // User is signed out
+                setUser(null);
+            }
+            setIsLoading(false);
+        });
+
+        // Cleanup subscription on unmount
+        return () => unsubscribe();
     }, []);
 
-    const loadUserFromStorage = () => {
-        try {
-            const storedUser = localStorage.getItem('salamander_user');
-            const storedToken = localStorage.getItem('salamander_token');
-
-            if (storedUser && storedToken) {
-                const userData = JSON.parse(storedUser);
-                setUser(userData);
-            }
-        } catch (error) {
-            console.error('Error loading user from storage:', error);
-            // Clear invalid data
-            localStorage.removeItem('salamander_user');
-            localStorage.removeItem('salamander_token');
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const login = async (credential: string): Promise<void> => {
+    const login = async (credential: string, provider: 'google' | 'apple' = 'google'): Promise<void> => {
         try {
             console.log('Starting login process...');
 
-            // Sign in with Firebase Auth using Google credential
-            const googleCredential = GoogleAuthProvider.credential(credential);
-            const userCredential = await signInWithCredential(auth, googleCredential);
-            const firebaseUser = userCredential.user;
+            let authCredential;
+            if (provider === 'apple') {
+                // For Apple, the credential might be an authorization object
+                const appleProvider = new OAuthProvider('apple.com');
+                if (typeof credential === 'string') {
+                    authCredential = appleProvider.credential({
+                        idToken: credential,
+                    });
+                } else {
+                    // Handle Apple authorization response object
+                    const appleAuth = credential as any;
+                    authCredential = appleProvider.credential({
+                        idToken: appleAuth.id_token,
+                        accessToken: appleAuth.access_token,
+                    });
+                }
+            } else {
+                // Sign in with Firebase Auth using Google credential
+                authCredential = GoogleAuthProvider.credential(credential);
+            }
 
-            console.log('Firebase Auth successful for user:', firebaseUser.uid);
-
-            // Try to get existing user from Firestore
-            let userData = await getUserFromFirestore(firebaseUser.uid);
-
-            // Convert Firestore user to AppUser
-            const appUser: User = {
-                id: userData.id,
-                displayName: userData.displayName,
-                email: userData.email,
-                plan: userData.plan,
-                messagesRemaining: userData.messagesRemaining, // Map messagesRemaining to remainingMessages
-            };
-
-            // Store user data and token
-            localStorage.setItem('salamander_user', JSON.stringify(appUser));
-            localStorage.setItem('salamander_token', credential);
-
-            setUser(appUser);
-
-            console.log('User signed in:', appUser);
+            await signInWithCredential(auth, authCredential);
+            // Note: onAuthStateChanged will handle user data fetching and setting
 
         } catch (error) {
             console.error('Failed to process login:', error);
@@ -83,13 +87,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         }
     };
 
-    const logout = () => {
+    const logout = async () => {
         try {
-            // Clear stored data
-            localStorage.removeItem('salamander_user');
-            localStorage.removeItem('salamander_token');
-
-            setUser(null);
+            await auth.signOut();
+            // Note: onAuthStateChanged will handle clearing user state
 
             // Redirect to welcome page
             window.location.hash = 'welcome';
@@ -102,14 +103,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     const updateUser = (updatedUser: User) => {
         setUser(updatedUser);
-        localStorage.setItem('salamander_user', JSON.stringify(updatedUser));
+        // User data will be refetched from Firestore on next auth state change
     };
 
     const refreshUserData = useCallback(async (): Promise<void> => {
-        if (!user) return;
+        const firebaseUser = auth.currentUser;
+        if (!firebaseUser) return;
 
         try {
-            const userData = await getUserFromFirestore(user.id);
+            const userData = await getUserFromFirestore(firebaseUser.uid);
             if (userData) {
                 const appUser: User = {
                     id: userData.id,
@@ -120,17 +122,39 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                 };
 
                 setUser(appUser);
-                localStorage.setItem('salamander_user', JSON.stringify(appUser));
             }
         } catch (error) {
             console.error('Failed to refresh user data:', error);
         }
-    }, [user]);
+    }, []);
+
+    const loginWithApple = async (): Promise<void> => {
+        try {
+            console.log('Starting Apple login with Firebase...');
+
+            // Create Apple provider
+            const appleProvider = new OAuthProvider('apple.com');
+            appleProvider.addScope('name');
+            appleProvider.addScope('email');
+
+            // Sign in with popup
+            await signInWithPopup(auth, appleProvider);
+            // Note: onAuthStateChanged will handle user data fetching and setting
+
+        } catch (error: any) {
+            console.error('Failed to process Apple login:', error);
+            if (error.code === 'auth/operation-not-allowed') {
+                throw new Error('Apple Sign-In is not enabled. Please configure it in Firebase Console.');
+            }
+            throw new Error('Apple sign-in failed. Please try again.');
+        }
+    };
 
     const value: AuthContextType = {
         user,
         isLoading,
         login,
+        loginWithApple,
         logout,
         updateUser,
         refreshUserData,
