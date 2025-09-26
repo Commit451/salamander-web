@@ -114,7 +114,7 @@ const Pricing: React.FC = () => {
                                             <h3 className="plan-name">{plan.name}</h3>
                                             <div className="plan-price">
                                                 <span className="price-amount">
-                                                    ${(plan.priceInCents / 100).toFixed(0)}
+                                                    ${(plan.priceInCents / 100).toFixed(2)}
                                                 </span>
                                                 <span className="price-period">/mo</span>
                                             </div>
