@@ -27,15 +27,13 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                     </button>
                     <button onClick={() => window.location.hash = 'pricing'} className="nav-link">Pricing</button>
                     {user ? (
-                        // Profile link temporarily hidden
-                        // <button
-                        //     className="nav-link"
-                        //     onClick={() => window.location.hash = 'account'}
-                        //     title={`${user.displayName || user.email} - View Account`}
-                        // >
-                        //     Profile
-                        // </button>
-                        null
+                        <button
+                            className="nav-link"
+                            onClick={() => window.location.hash = 'account'}
+                            title={`${user.displayName || user.email} - View Account`}
+                        >
+                            Profile
+                        </button>
                     ) : (
                         <>
                             <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
