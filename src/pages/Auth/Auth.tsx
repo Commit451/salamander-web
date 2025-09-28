@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './Auth.css';
 import {useAuth} from '../../contexts/AuthContext';
+import {auth} from '../../config/firebase';
 
 const CLIENT_ID = '87955960620-dv9h8pfv4a97mno598dcc3m1nlt0h6u4.apps.googleusercontent.com';
 
@@ -21,20 +22,77 @@ declare global {
 
 const Auth: React.FC = () => {
     const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
-    const {login, loginWithApple} = useAuth();
+    const {user, login, loginWithApple} = useAuth();
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [isRedirecting, setIsRedirecting] = useState(false);
+
+    // Get redirect URL from URL params (for CLI integration)
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect_url');
+
+    const generateTokenAndRedirect = async () => {
+        if (!redirectUrl || !user) return;
+
+        setIsGenerating(true);
+        try {
+            // Get the current user's ID token
+            const idToken = await auth.currentUser?.getIdToken();
+            if (!idToken) {
+                throw new Error('Failed to get authentication token');
+            }
+
+            // Call the salamander-service to generate custom token
+            const response = await fetch('https://api.salamander.space/v1/generate-custom-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firebaseIdToken: idToken
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to generate custom token');
+            }
+
+            const result = await response.json();
+
+            setIsRedirecting(true);
+            // Redirect to the specified URL with the token
+            window.location.href = `${redirectUrl}?token=${encodeURIComponent(result.customToken)}`;
+        } catch (err: any) {
+            console.error('Error generating custom token:', err);
+            alert(err.message || 'Failed to generate authentication token');
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
+    useEffect(() => {
+        // If user is signed in and we have a redirect URL, generate token and redirect
+        if (user && redirectUrl && !isGenerating && !isRedirecting) {
+            generateTokenAndRedirect();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user, redirectUrl, isGenerating, isRedirecting]);
 
     const handleCredentialResponse = useCallback(async (response: any) => {
         console.log('Encoded JWT ID token: ' + response.credential);
 
         try {
             await login(response.credential);
-            // Redirect to account page after successful login
-            window.location.hash = 'account';
+            // If we have a redirect URL, the useEffect will handle the redirect
+            if (!redirectUrl) {
+                // Redirect to account page after successful login
+                window.location.hash = 'account';
+            }
         } catch (error) {
             console.error('Failed to process login:', error);
             alert(error instanceof Error ? error.message : 'Sign-in failed. Please try again.');
         }
-    }, [login]);
+    }, [login, redirectUrl]);
 
     useEffect(() => {
         const initializeGoogle = () => {
@@ -71,13 +129,51 @@ const Auth: React.FC = () => {
     const handleAppleAuth = async () => {
         try {
             await loginWithApple();
-            // Redirect to account page after successful login
-            window.location.hash = 'account';
+            // If we have a redirect URL, the useEffect will handle the redirect
+            if (!redirectUrl) {
+                // Redirect to account page after successful login
+                window.location.hash = 'account';
+            }
         } catch (error) {
             console.error('Apple sign-in failed:', error);
             alert(error instanceof Error ? error.message : 'Apple sign-in failed. Please try again.');
         }
     };
+
+    // Show loading state if generating token or redirecting
+    if (isGenerating || isRedirecting) {
+        return (
+            <div className="auth-container">
+                <div className="auth-card">
+                    <div className="auth-header">
+                        <img src="images/logo_salamander.png" alt="Salamander" className="auth-logo"/>
+                        <h1 className="auth-title">Salamander</h1>
+                        <p className="auth-tagline">Never be AFK</p>
+                    </div>
+
+                    <div className="auth-content" style={{ textAlign: 'center' }}>
+                        <div style={{
+                            width: '32px',
+                            height: '32px',
+                            border: '3px solid #374151',
+                            borderTop: '3px solid #ff6b35',
+                            borderRadius: '50%',
+                            animation: 'spin 1s linear infinite',
+                            margin: '0 auto 16px'
+                        }}></div>
+                        <p style={{ color: '#d1d5db', fontSize: '14px' }}>
+                            {isRedirecting ? 'Redirecting to CLI...' : 'Generating authentication token...'}
+                        </p>
+                        {isRedirecting && (
+                            <p style={{ color: '#9ca3af', fontSize: '12px', marginTop: '16px', fontStyle: 'italic' }}>
+                                If the redirect doesn't work, you can close this window and return to your terminal.
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="auth-container">

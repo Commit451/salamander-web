@@ -92,6 +92,44 @@
     font-size: 18px;
 }
 
+.google-login-btn {
+    background: white;
+    color: #1f2937;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.google-login-btn:hover {
+    background: #f9fafb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.google-login-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.google-auth-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
 .auth-message {
     color: #d1d5db;
     font-size: 14px;
