@@ -27,6 +27,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         // Listen to Firebase auth state changes
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
+                console.log('Auth state changed - user signed in:', firebaseUser.uid);
                 // User is signed in, fetch their profile data
                 try {
                     const userData = await getUserFromFirestore(firebaseUser.uid);
@@ -43,6 +44,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                     setUser(null);
                 }
             } else {
+                console.log('Auth state changed - user signed out');
                 // User is signed out
                 setUser(null);
             }
@@ -137,35 +139,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             appleProvider.addScope('name');
             appleProvider.addScope('email');
 
-            // Sign in with popup
+            console.log('Apple provider configured, attempting popup sign-in...');
+
+            // Try popup sign-in with detailed error handling
             const result = await signInWithPopup(auth, appleProvider);
 
-            // The signed-in user info
-            const user = result.user;
-            console.log('Apple login successful for user:', user.uid);
+            console.log('Apple sign-in successful:', result.user.uid);
 
-            // Apple credential
+            // Extract credential details
             const credential = OAuthProvider.credentialFromResult(result);
-            const accessToken = credential?.accessToken;
-            const idToken = credential?.idToken;
-
-            console.log('Apple login credentials obtained');
-            // Note: onAuthStateChanged will handle user data fetching and setting
+            if (credential) {
+                console.log('Apple credentials obtained');
+                console.log('Access token available:', !!credential.accessToken);
+                console.log('ID token available:', !!credential.idToken);
+            }
 
         } catch (error: any) {
             console.error('Failed to process Apple login:', error);
 
-            // Handle Errors here
+            // Detailed error logging
+            console.log('Error code:', error?.code);
+            console.log('Error message:', error?.message);
+            console.log('Error customData:', error?.customData);
+            console.log('Full error object:', error);
+
+            // Handle specific errors
             const errorCode = error.code;
             const errorMessage = error.message;
-
-            // The email of the user's account used
-            const email = error.customData?.email;
-
-            // The credential that was used
-            const credential = OAuthProvider.credentialFromError(error);
-
-            console.log('Apple login error details:', { errorCode, errorMessage, email });
 
             if (errorCode === 'auth/operation-not-allowed') {
                 throw new Error('Apple Sign-In is not enabled. Please configure it in Firebase Console.');
@@ -173,6 +173,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                 throw new Error('Sign-in was cancelled by user.');
             } else if (errorCode === 'auth/popup-blocked') {
                 throw new Error('Popup was blocked by browser. Please allow popups and try again.');
+            } else if (errorCode === 'auth/invalid-credential') {
+                throw new Error('Apple Sign-In configuration error. Please check your Firebase and Apple Developer Console settings.');
             }
 
             throw new Error(`Apple sign-in failed: ${errorMessage}`);
