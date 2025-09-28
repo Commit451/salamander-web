@@ -6,7 +6,6 @@ import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import LearnMore from './pages/LearnMore';
 import Pricing from './pages/Pricing';
-import CliAuth from './pages/CliAuth/CliAuth';
 import {AuthProvider, useAuth} from './contexts/AuthContext';
 
 const AppContent: React.FC = () => {
@@ -28,8 +27,6 @@ const AppContent: React.FC = () => {
                 setCurrentPage('learn-more');
             } else if (hash === 'pricing') {
                 setCurrentPage('pricing');
-            } else if (hash === 'cli-auth') {
-                setCurrentPage('cli-auth');
             } else if (hash === 'welcome') {
                 setCurrentPage('welcome');
             } else {
@@ -154,10 +151,6 @@ const AppContent: React.FC = () => {
 
     if (currentPage === 'pricing') {
         return <Pricing/>;
-    }
-
-    if (currentPage === 'cli-auth') {
-        return <CliAuth/>;
     }
 
     return <Welcome/>;
