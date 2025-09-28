@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
-    const {user} = useAuth();
+    const {user, isInitialized} = useAuth();
 
     return (
         <header className="app-header">
@@ -26,13 +26,17 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                             className="nav-link nav-link-secondary">Get Started
                     </button>
                     <button onClick={() => window.location.hash = 'pricing'} className="nav-link">Pricing</button>
-                    {user ? (
+                    {!isInitialized ? (
+                        <div className="nav-link" style={{opacity: 0.6}}>
+                            Loading...
+                        </div>
+                    ) : user ? (
                         <button
                             className="nav-link"
                             onClick={() => window.location.hash = 'account'}
                             title={`${user.displayName || user.email} - View Account`}
                         >
-                            Profile
+                            Account
                         </button>
                     ) : (
                         <>

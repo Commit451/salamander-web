@@ -1,11 +1,12 @@
-import React, {createContext, ReactNode, useCallback, useContext, useState} from 'react';
-import {GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithPopup} from 'firebase/auth';
+import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
+import {GoogleAuthProvider, OAuthProvider, onAuthStateChanged, signInWithCredential, signInWithPopup} from 'firebase/auth';
 import {auth} from '../config/firebase';
 import {getUserFromFirestore, User} from '../services/userService';
 
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
+    isInitialized: boolean;
     loadUserState: () => Promise<void>;
     login: (credential: string, provider?: 'google' | 'apple') => Promise<void>;
     loginWithApple: () => Promise<void>;
@@ -23,6 +24,60 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isInitialized, setIsInitialized] = useState(false);
+    const [userCache, setUserCache] = useState<Map<string, { user: User; timestamp: number }>>(new Map());
+
+    // Cache timeout: 5 minutes
+    const CACHE_TIMEOUT = 5 * 60 * 1000;
+
+    // Function to load user from Firestore with caching
+    const loadUserFromFirestore = useCallback(async (uid: string): Promise<User | null> => {
+        // Check cache first
+        const cached = userCache.get(uid);
+        if (cached && Date.now() - cached.timestamp < CACHE_TIMEOUT) {
+            return cached.user;
+        }
+
+        try {
+            const userData = await getUserFromFirestore(uid);
+            const appUser: User = {
+                id: userData.id,
+                displayName: userData.displayName,
+                email: userData.email,
+                plan: userData.plan,
+                messagesRemaining: userData.messagesRemaining,
+            };
+
+            // Update cache
+            setUserCache(prev => new Map(prev).set(uid, { user: appUser, timestamp: Date.now() }));
+
+            return appUser;
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            return null;
+        }
+    }, [userCache, CACHE_TIMEOUT]);
+
+    // Firebase auth state listener
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            setIsLoading(true);
+
+            if (firebaseUser) {
+                const userData = await loadUserFromFirestore(firebaseUser.uid);
+                setUser(userData);
+            } else {
+                setUser(null);
+                // Clear cache when user logs out
+                setUserCache(new Map());
+            }
+
+            setIsLoading(false);
+            setIsInitialized(true);
+        });
+
+        return () => unsubscribe();
+    }, [loadUserFromFirestore]);
 
     // Function to manually load user state when needed
     const loadUserState = useCallback(async () => {
@@ -30,25 +85,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         const firebaseUser = auth.currentUser;
 
         if (firebaseUser) {
-            try {
-                const userData = await getUserFromFirestore(firebaseUser.uid);
-                const appUser: User = {
-                    id: userData.id,
-                    displayName: userData.displayName,
-                    email: userData.email,
-                    plan: userData.plan,
-                    messagesRemaining: userData.messagesRemaining,
-                };
-                setUser(appUser);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                setUser(null);
-            }
+            const userData = await loadUserFromFirestore(firebaseUser.uid);
+            setUser(userData);
         } else {
             setUser(null);
         }
         setIsLoading(false);
-    }, []);
+    }, [loadUserFromFirestore]);
 
     const login = async (credential: string, provider: 'google' | 'apple' = 'google'): Promise<void> => {
         try {
@@ -100,23 +143,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         const firebaseUser = auth.currentUser;
         if (!firebaseUser) return;
 
-        try {
-            const userData = await getUserFromFirestore(firebaseUser.uid);
-            if (userData) {
-                const appUser: User = {
-                    id: userData.id,
-                    displayName: userData.displayName,
-                    email: userData.email,
-                    plan: userData.plan,
-                    messagesRemaining: userData.messagesRemaining,
-                };
+        // Clear cache for this user to force refresh
+        setUserCache(prev => {
+            const newCache = new Map(prev);
+            newCache.delete(firebaseUser.uid);
+            return newCache;
+        });
 
-                setUser(appUser);
-            }
-        } catch (error) {
-            console.error('Failed to refresh user data:', error);
+        const userData = await loadUserFromFirestore(firebaseUser.uid);
+        if (userData) {
+            setUser(userData);
         }
-    }, []);
+    }, [loadUserFromFirestore]);
 
     const loginWithApple = async (): Promise<void> => {
         try {
@@ -151,6 +189,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const value: AuthContextType = {
         user,
         isLoading,
+        isInitialized,
         loadUserState,
         login,
         loginWithApple,
