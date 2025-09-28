@@ -28,7 +28,7 @@ const Privacy: React.FC = () => {
             }}>
                 <header style={{marginBottom: '2rem', textAlign: 'center'}}>
                     <h1 style={{color: '#1f2937', marginBottom: '0.5rem'}}>Privacy Policy</h1>
-                    <p style={{color: '#6b7280'}}>Last updated: {new Date().toLocaleDateString()}</p>
+                    <p style={{color: '#6b7280'}}>Last updated: 9/28/2025</p>
                 </header>
 
                 <div style={{lineHeight: '1.6', color: '#374151'}}>

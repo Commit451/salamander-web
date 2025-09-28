@@ -28,7 +28,7 @@ const Terms: React.FC = () => {
             }}>
                 <header style={{marginBottom: '2rem', textAlign: 'center'}}>
                     <h1 style={{color: '#1f2937', marginBottom: '0.5rem'}}>Terms of Service</h1>
-                    <p style={{color: '#6b7280'}}>Last updated: {new Date().toLocaleDateString()}</p>
+                    <p style={{color: '#6b7280'}}>Last updated: 9/28/2025</p>
                 </header>
 
                 <div style={{lineHeight: '1.6', color: '#374151'}}>
@@ -222,9 +222,86 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>7. Usage Quotas and Service Levels</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>7. Subscription Terms</h2>
                         <p>
-                            Your account includes usage quotas that may limit:
+                            Salamander offers an optional subscription service that provides enhanced features and
+                            increased usage limits.
+                        </p>
+
+                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Subscription
+                            Details</h3>
+                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
+                            <li><strong>Cost:</strong> $4.99 USD per month</li>
+                            <li><strong>Billing Frequency:</strong> Monthly recurring subscription</li>
+                            <li><strong>Auto-Renewal:</strong> Your subscription automatically renews each month unless
+                                cancelled
+                            </li>
+                            <li><strong>Payment Processing:</strong> Handled securely through Google Play Store or Apple
+                                App Store
+                            </li>
+                        </ul>
+
+                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Subscription
+                            Benefits</h3>
+                        <p>The subscription provides:</p>
+                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
+                            <li>Increased daily message limits</li>
+                            <li>Additional AI runner instances</li>
+                            <li>Priority support and faster response times</li>
+                            <li>Enhanced data storage and transfer limits</li>
+                            <li>Early access to new features and AI models</li>
+                        </ul>
+
+                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Important Notes
+                            About the Subscription</h3>
+                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
+                            <li><strong>Optional Service:</strong> A subscription is NOT required to use Salamander. The
+                                core functionality of the app is available to all users with a free account
+                            </li>
+                            <li><strong>Cancellation:</strong> You may cancel your subscription at any time through your
+                                Google Play Store or Apple App Store account settings
+                            </li>
+                            <li><strong>Effective Period:</strong> Cancellations take effect at the end of your current
+                                billing cycle
+                            </li>
+                            <li><strong>No Refunds:</strong> Subscription fees are non-refundable, except as required by
+                                applicable law
+                            </li>
+                            <li><strong>Price Changes:</strong> We may change subscription pricing with 30 days' advance
+                                notice
+                            </li>
+                            <li><strong>Geographic Availability:</strong> Subscription availability and pricing may vary
+                                by region
+                            </li>
+                        </ul>
+
+                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Free Tier
+                            Limitations</h3>
+                        <p>
+                            Users without an active subscription have access to the full Salamander platform with the
+                            following limitations:
+                        </p>
+                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
+                            <li>Reduced daily message and command limits</li>
+                            <li>Limited number of concurrent AI runners</li>
+                            <li>Standard support response times</li>
+                            <li>Basic data storage and transfer allowances</li>
+                        </ul>
+
+                        <p style={{marginTop: '1rem'}}>
+                            <strong>Subscription Management:</strong> All subscription billing, cancellations, and
+                            refund requests must be handled
+                            through the respective app store (Google Play Store or Apple App Store) where you purchased
+                            the subscription.
+                            Salamander does not directly process subscription payments or handle billing inquiries.
+                        </p>
+                    </section>
+
+                    <section style={{marginBottom: '2rem'}}>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>8. Usage Quotas and Service Levels</h2>
+                        <p>
+                            Your account includes usage quotas that may vary based on your subscription status and may
+                            limit:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>Number of messages or commands per period</li>
@@ -240,7 +317,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>8. Third-Party Services and
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>9. Third-Party Services and
                             Integration</h2>
                         <p>
                             Salamander relies heavily on third-party services. Your use of the Service involves
@@ -262,7 +339,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>9. DISCLAIMER OF WARRANTIES</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>10. DISCLAIMER OF WARRANTIES</h2>
                         <p>
                             <strong>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND,
                                 EXPRESS OR IMPLIED.</strong>
@@ -284,7 +361,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>10. LIMITATION OF LIABILITY</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>11. LIMITATION OF LIABILITY</h2>
                         <p>
                             <strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, COMMIT 451 AND ITS AFFILIATES, OFFICERS,
                                 EMPLOYEES, AGENTS, PARTNERS,
@@ -315,7 +392,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>11. Indemnification</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>12. Indemnification</h2>
                         <p>
                             You agree to indemnify, defend, and hold harmless Commit 451, its affiliates, officers,
                             directors, employees,
@@ -334,7 +411,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>12. Termination</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>13. Termination</h2>
                         <p>
                             Either party may terminate your access to the Service at any time, with or without cause or
                             notice.
@@ -354,7 +431,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>13. Service Availability and Changes</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>14. Service Availability and Changes</h2>
                         <p>
                             We strive to maintain service availability but cannot guarantee uninterrupted access.
                             The Service may be temporarily or permanently unavailable due to:
@@ -374,7 +451,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>14. Governing Law and Dispute
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>15. Governing Law and Dispute
                             Resolution</h2>
                         <p>
                             These Terms are governed by and construed in accordance with the laws of the jurisdiction
@@ -389,15 +466,13 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>15. Changes to Terms</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>16. Changes to Terms</h2>
                         <p>
                             We reserve the right to modify these Terms at any time. When we make material changes, we
                             will:
                         </p>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>Update the "Last updated" date at the top of these Terms</li>
-                            <li>Notify you via email, push notification, or prominent notice in the Service</li>
-                            <li>Provide at least 30 days' notice for material changes that affect your rights</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>
                             Your continued use of the Service after changes become effective constitutes acceptance of
@@ -408,7 +483,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>16. Miscellaneous</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>17. Miscellaneous</h2>
                         <p>
                             These Terms constitute the entire agreement between you and Commit 451 regarding the
                             Service.
@@ -421,7 +496,7 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>17. Contact Information</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>18. Contact Information</h2>
                         <p>
                             If you have questions about these Terms of Service, please contact Commit 451:
                         </p>
