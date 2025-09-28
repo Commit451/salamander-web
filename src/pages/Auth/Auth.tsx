@@ -70,13 +70,11 @@ const Auth: React.FC = () => {
 
     const handleAppleAuth = async () => {
         try {
-            console.log('Apple button clicked, calling loginWithApple...');
             await loginWithApple();
-            console.log('loginWithApple completed successfully');
             // Redirect to account page after successful login
             window.location.hash = 'account';
         } catch (error) {
-            console.error('Apple sign-in failed in handleAppleAuth:', error);
+            console.error('Apple sign-in failed:', error);
             alert(error instanceof Error ? error.message : 'Apple sign-in failed. Please try again.');
         }
     };

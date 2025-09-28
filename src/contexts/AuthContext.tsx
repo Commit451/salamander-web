@@ -27,7 +27,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         // Listen to Firebase auth state changes
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
-                console.log('Auth state changed - user signed in:', firebaseUser.uid);
                 // User is signed in, fetch their profile data
                 try {
                     const userData = await getUserFromFirestore(firebaseUser.uid);
@@ -44,7 +43,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
                     setUser(null);
                 }
             } else {
-                console.log('Auth state changed - user signed out');
                 // User is signed out
                 setUser(null);
             }
@@ -57,8 +55,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     const login = async (credential: string, provider: 'google' | 'apple' = 'google'): Promise<void> => {
         try {
-            console.log('Starting login process...');
-
             let authCredential;
             if (provider === 'apple') {
                 // For Apple, the credential might be an authorization object
@@ -81,7 +77,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             }
 
             await signInWithCredential(auth, authCredential);
-            // Note: onAuthStateChanged will handle user data fetching and setting
 
         } catch (error) {
             console.error('Failed to process login:', error);
@@ -92,12 +87,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const logout = async () => {
         try {
             await auth.signOut();
-            // Note: onAuthStateChanged will handle clearing user state
 
             // Redirect to welcome page
             window.location.hash = 'welcome';
-
-            console.log('User signed out');
         } catch (error) {
             console.error('Error during logout:', error);
         }
@@ -105,7 +97,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     const updateUser = (updatedUser: User) => {
         setUser(updatedUser);
-        // User data will be refetched from Firestore on next auth state change
     };
 
     const refreshUserData = useCallback(async (): Promise<void> => {
@@ -132,38 +123,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     const loginWithApple = async (): Promise<void> => {
         try {
-            console.log('Starting Apple login with Firebase...');
-
             // Create Apple provider
             const appleProvider = new OAuthProvider('apple.com');
             appleProvider.addScope('name');
             appleProvider.addScope('email');
 
-            console.log('Apple provider configured, attempting popup sign-in...');
-
-            // Try popup sign-in with detailed error handling
-            const result = await signInWithPopup(auth, appleProvider);
-
-            console.log('Apple sign-in successful:', result.user.uid);
-
-            // Extract credential details
-            const credential = OAuthProvider.credentialFromResult(result);
-            if (credential) {
-                console.log('Apple credentials obtained');
-                console.log('Access token available:', !!credential.accessToken);
-                console.log('ID token available:', !!credential.idToken);
-            }
+            // Sign in with popup
+            await signInWithPopup(auth, appleProvider);
 
         } catch (error: any) {
             console.error('Failed to process Apple login:', error);
 
-            // Detailed error logging
-            console.log('Error code:', error?.code);
-            console.log('Error message:', error?.message);
-            console.log('Error customData:', error?.customData);
-            console.log('Full error object:', error);
-
-            // Handle specific errors
             const errorCode = error.code;
             const errorMessage = error.message;
 
