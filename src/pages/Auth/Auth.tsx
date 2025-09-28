@@ -27,8 +27,10 @@ const Auth: React.FC = () => {
     const [isRedirecting, setIsRedirecting] = useState(false);
 
     // Get redirect URL from URL params (for CLI integration)
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectUrl = urlParams.get('redirect_url');
+    // Parse URL parameters from the hash (e.g., #auth?callback=...)
+    const hashParts = window.location.hash.split('?');
+    const urlParams = new URLSearchParams(hashParts[1] || '');
+    const redirectUrl = urlParams.get('redirect_url') || urlParams.get('callback');
 
     const generateTokenAndRedirect = async () => {
         if (!redirectUrl || !user) return;

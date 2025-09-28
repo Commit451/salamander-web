@@ -113,9 +113,17 @@ const AppContent: React.FC = () => {
     }
 
     // If user is logged in and trying to access auth page, redirect to account
+    // UNLESS there's a callback/redirect_url parameter (CLI auth flow)
     if (user && currentPage === 'auth') {
-        window.location.hash = 'account';
-        return null;
+        // Parse URL parameters from the hash (e.g., #auth?callback=...)
+        const hashParts = window.location.hash.split('?');
+        const urlParams = new URLSearchParams(hashParts[1] || '');
+        const hasCallback = urlParams.get('callback') || urlParams.get('redirect_url');
+
+        if (!hasCallback) {
+            window.location.hash = 'account';
+            return null;
+        }
     }
 
     // If user is not logged in and trying to access account page, redirect to welcome
