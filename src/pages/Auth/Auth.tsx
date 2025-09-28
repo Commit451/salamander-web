@@ -26,7 +26,7 @@ const Auth: React.FC = () => {
     const {login, loginWithApple} = useAuth();
     const [isGenerating, setIsGenerating] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
-    const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
+    // Remove unused firebaseUser state since we handle auth state directly in useEffect
     const [checkingAuth, setCheckingAuth] = useState(true);
 
     // Get redirect URL from URL params (for CLI integration)
@@ -38,7 +38,6 @@ const Auth: React.FC = () => {
     // Check Firebase auth state on mount
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
-            setFirebaseUser(user);
             setCheckingAuth(false);
 
             // If user is signed in and we have a callback URL, generate token and redirect

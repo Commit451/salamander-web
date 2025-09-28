@@ -14,19 +14,22 @@ const AppContent: React.FC = () => {
     useEffect(() => {
         const handleHashChange = () => {
             const hash = window.location.hash.slice(1);
-            if (hash === 'auth') {
+            // Extract just the route part before any query parameters
+            const route = hash.split('?')[0];
+
+            if (route === 'auth') {
                 setCurrentPage('auth');
-            } else if (hash === 'account') {
+            } else if (route === 'account') {
                 setCurrentPage('account');
-            } else if (hash === 'terms') {
+            } else if (route === 'terms') {
                 setCurrentPage('terms');
-            } else if (hash === 'privacy') {
+            } else if (route === 'privacy') {
                 setCurrentPage('privacy');
-            } else if (hash === 'learn-more') {
+            } else if (route === 'learn-more') {
                 setCurrentPage('learn-more');
-            } else if (hash === 'pricing') {
+            } else if (route === 'pricing') {
                 setCurrentPage('pricing');
-            } else if (hash === 'welcome') {
+            } else if (route === 'welcome') {
                 setCurrentPage('welcome');
             } else {
                 setCurrentPage('welcome');
