@@ -1,11 +1,12 @@
-import React, {createContext, ReactNode, useCallback, useContext, useEffect, useState} from 'react';
-import {GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithPopup, onAuthStateChanged} from 'firebase/auth';
+import React, {createContext, ReactNode, useCallback, useContext, useState} from 'react';
+import {GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithPopup} from 'firebase/auth';
 import {auth} from '../config/firebase';
 import {getUserFromFirestore, User} from '../services/userService';
 
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
+    loadUserState: () => Promise<void>;
     login: (credential: string, provider?: 'google' | 'apple') => Promise<void>;
     loginWithApple: () => Promise<void>;
     logout: () => void;
@@ -21,36 +22,32 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        // Listen to Firebase auth state changes
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                // User is signed in, fetch their profile data
-                try {
-                    const userData = await getUserFromFirestore(firebaseUser.uid);
-                    const appUser: User = {
-                        id: userData.id,
-                        displayName: userData.displayName,
-                        email: userData.email,
-                        plan: userData.plan,
-                        messagesRemaining: userData.messagesRemaining,
-                    };
-                    setUser(appUser);
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    setUser(null);
-                }
-            } else {
-                // User is signed out
+    // Function to manually load user state when needed
+    const loadUserState = useCallback(async () => {
+        setIsLoading(true);
+        const firebaseUser = auth.currentUser;
+
+        if (firebaseUser) {
+            try {
+                const userData = await getUserFromFirestore(firebaseUser.uid);
+                const appUser: User = {
+                    id: userData.id,
+                    displayName: userData.displayName,
+                    email: userData.email,
+                    plan: userData.plan,
+                    messagesRemaining: userData.messagesRemaining,
+                };
+                setUser(appUser);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
                 setUser(null);
             }
-            setIsLoading(false);
-        });
-
-        // Cleanup subscription on unmount
-        return () => unsubscribe();
+        } else {
+            setUser(null);
+        }
+        setIsLoading(false);
     }, []);
 
     const login = async (credential: string, provider: 'google' | 'apple' = 'google'): Promise<void> => {
@@ -154,6 +151,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const value: AuthContextType = {
         user,
         isLoading,
+        loadUserState,
         login,
         loginWithApple,
         logout,

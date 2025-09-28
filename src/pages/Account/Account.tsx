@@ -7,7 +7,12 @@ import {getPlansFromFirestore, getRunnersFromFirestore, Plan, Runner} from '../.
 import {ApiError, RunnerApiService} from '../../services/apiService';
 
 const Account: React.FC = () => {
-    const {user, logout, refreshUserData} = useAuth();
+    const {user, logout, refreshUserData, loadUserState, isLoading} = useAuth();
+
+    useEffect(() => {
+        // Load user state when Account page mounts
+        loadUserState();
+    }, [loadUserState]);
     const [plans, setPlans] = useState<Plan[]>([]);
     const [isLoadingPlans, setIsLoadingPlans] = useState(true);
     const [runners, setRunners] = useState<Runner[]>([]);
@@ -147,8 +152,31 @@ const Account: React.FC = () => {
     };
 
 
+    // If no user after loading, redirect to auth
+    if (!user && !isLoading) {
+        window.location.hash = 'auth';
+        return null;
+    }
+
+    // Still loading user state
     if (!user) {
-        return null; // This should not happen since App component handles redirects
+        return (
+            <div className="account-container">
+                <Header isSubpage={true}/>
+                <div className="account-content" style={{paddingTop: '6rem', textAlign: 'center'}}>
+                    <div style={{
+                        width: '32px',
+                        height: '32px',
+                        border: '3px solid #374151',
+                        borderTop: '3px solid #ff6b35',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite',
+                        margin: '0 auto 16px'
+                    }}></div>
+                    <p style={{ color: '#d1d5db' }}>Loading your account...</p>
+                </div>
+            </div>
+        );
     }
 
     if (isLoadingPlans || isLoadingRunners) {

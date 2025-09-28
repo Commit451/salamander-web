@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import './Auth.css';
 import {useAuth} from '../../contexts/AuthContext';
 import {auth} from '../../config/firebase';
+import {User as FirebaseUser} from 'firebase/auth';
 
 const CLIENT_ID = '87955960620-dv9h8pfv4a97mno598dcc3m1nlt0h6u4.apps.googleusercontent.com';
 
@@ -22,9 +23,11 @@ declare global {
 
 const Auth: React.FC = () => {
     const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
-    const {user, login, loginWithApple} = useAuth();
+    const {login, loginWithApple} = useAuth();
     const [isGenerating, setIsGenerating] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
+    const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
+    const [checkingAuth, setCheckingAuth] = useState(true);
 
     // Get redirect URL from URL params (for CLI integration)
     // Parse URL parameters from the hash (e.g., #auth?callback=...)
@@ -32,7 +35,26 @@ const Auth: React.FC = () => {
     const urlParams = new URLSearchParams(hashParts[1] || '');
     const redirectUrl = urlParams.get('redirect_url') || urlParams.get('callback');
 
-    const generateTokenAndRedirect = async () => {
+    // Check Firebase auth state on mount
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setFirebaseUser(user);
+            setCheckingAuth(false);
+
+            // If user is signed in and we have a callback URL, generate token and redirect
+            if (user && redirectUrl) {
+                generateTokenAndRedirect(user);
+            } else if (user && !redirectUrl) {
+                // Normal web flow - redirect to account
+                window.location.hash = 'account';
+            }
+        });
+
+        return () => unsubscribe();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [redirectUrl]);
+
+    const generateTokenAndRedirect = async (user: FirebaseUser) => {
         if (!redirectUrl || !user) return;
 
         setIsGenerating(true);
@@ -72,29 +94,19 @@ const Auth: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        // If user is signed in and we have a redirect URL, generate token and redirect
-        if (user && redirectUrl && !isGenerating && !isRedirecting) {
-            generateTokenAndRedirect();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user, redirectUrl, isGenerating, isRedirecting]);
+    // This useEffect is no longer needed as we handle auth state in the onAuthStateChanged above
 
     const handleCredentialResponse = useCallback(async (response: any) => {
         console.log('Encoded JWT ID token: ' + response.credential);
 
         try {
             await login(response.credential);
-            // If we have a redirect URL, the useEffect will handle the redirect
-            if (!redirectUrl) {
-                // Redirect to account page after successful login
-                window.location.hash = 'account';
-            }
+            // Auth state change will handle the redirect automatically
         } catch (error) {
             console.error('Failed to process login:', error);
             alert(error instanceof Error ? error.message : 'Sign-in failed. Please try again.');
         }
-    }, [login, redirectUrl]);
+    }, [login]);
 
     useEffect(() => {
         const initializeGoogle = () => {
@@ -131,19 +143,15 @@ const Auth: React.FC = () => {
     const handleAppleAuth = async () => {
         try {
             await loginWithApple();
-            // If we have a redirect URL, the useEffect will handle the redirect
-            if (!redirectUrl) {
-                // Redirect to account page after successful login
-                window.location.hash = 'account';
-            }
+            // Auth state change will handle the redirect automatically
         } catch (error) {
             console.error('Apple sign-in failed:', error);
             alert(error instanceof Error ? error.message : 'Apple sign-in failed. Please try again.');
         }
     };
 
-    // Show loading state if generating token or redirecting
-    if (isGenerating || isRedirecting) {
+    // Show loading state if checking auth, generating token, or redirecting
+    if (checkingAuth || isGenerating || isRedirecting) {
         return (
             <div className="auth-container">
                 <div className="auth-card">
@@ -164,7 +172,7 @@ const Auth: React.FC = () => {
                             margin: '0 auto 16px'
                         }}></div>
                         <p style={{ color: '#d1d5db', fontSize: '14px' }}>
-                            {isRedirecting ? 'Redirecting to CLI...' : 'Generating authentication token...'}
+                            {isRedirecting ? 'Redirecting to CLI...' : isGenerating ? 'Generating authentication token...' : 'Loading...'}
                         </p>
                         {isRedirecting && (
                             <p style={{ color: '#9ca3af', fontSize: '12px', marginTop: '16px', fontStyle: 'italic' }}>

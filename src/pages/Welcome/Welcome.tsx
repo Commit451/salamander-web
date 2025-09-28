@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Welcome.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Welcome: React.FC = () => {
+    const { loadUserState } = useAuth();
+
+    useEffect(() => {
+        // Load user state when Welcome page mounts
+        loadUserState();
+    }, [loadUserState]);
     return (
         <div className="welcome">
             <Header/>
