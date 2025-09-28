@@ -138,15 +138,44 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             appleProvider.addScope('email');
 
             // Sign in with popup
-            await signInWithPopup(auth, appleProvider);
+            const result = await signInWithPopup(auth, appleProvider);
+
+            // The signed-in user info
+            const user = result.user;
+            console.log('Apple login successful for user:', user.uid);
+
+            // Apple credential
+            const credential = OAuthProvider.credentialFromResult(result);
+            const accessToken = credential?.accessToken;
+            const idToken = credential?.idToken;
+
+            console.log('Apple login credentials obtained');
             // Note: onAuthStateChanged will handle user data fetching and setting
 
         } catch (error: any) {
             console.error('Failed to process Apple login:', error);
-            if (error.code === 'auth/operation-not-allowed') {
+
+            // Handle Errors here
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            // The email of the user's account used
+            const email = error.customData?.email;
+
+            // The credential that was used
+            const credential = OAuthProvider.credentialFromError(error);
+
+            console.log('Apple login error details:', { errorCode, errorMessage, email });
+
+            if (errorCode === 'auth/operation-not-allowed') {
                 throw new Error('Apple Sign-In is not enabled. Please configure it in Firebase Console.');
+            } else if (errorCode === 'auth/popup-closed-by-user') {
+                throw new Error('Sign-in was cancelled by user.');
+            } else if (errorCode === 'auth/popup-blocked') {
+                throw new Error('Popup was blocked by browser. Please allow popups and try again.');
             }
-            throw new Error('Apple sign-in failed. Please try again.');
+
+            throw new Error(`Apple sign-in failed: ${errorMessage}`);
         }
     };
 
