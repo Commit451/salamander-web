@@ -4,8 +4,15 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
 const LearnMore: React.FC = () => {
+    const [isIOS, setIsIOS] = React.useState(false);
+
     React.useEffect(() => {
         window.scrollTo(0, 0);
+
+        // Detect iOS
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
+        setIsIOS(isIOSDevice);
     }, []);
 
     return (
@@ -132,11 +139,13 @@ const LearnMore: React.FC = () => {
                                     <p>Get the Salamander app on your phone to control your computer
                                         remotely and get notified when work is complete.</p>
                                     <div className="app-downloads">
-                                        <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander"
-                                           className="app-store-link" target="_blank" rel="noopener noreferrer">
-                                            <img src="images/play_store.png" alt="Get it on Google Play"
-                                                 className="app-store-badge"/>
-                                        </a>
+                                        {!isIOS && (
+                                            <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander"
+                                               className="app-store-link" target="_blank" rel="noopener noreferrer">
+                                                <img src="images/play_store.png" alt="Get it on Google Play"
+                                                     className="app-store-badge"/>
+                                            </a>
+                                        )}
                                         <a href="https://apps.apple.com" className="app-store-link" target="_blank"
                                            rel="noopener noreferrer">
                                             <img src="images/app_store.svg" alt="Download on the App Store"
