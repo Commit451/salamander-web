@@ -146,7 +146,7 @@ const LearnMore: React.FC = () => {
                                                      className="app-store-badge"/>
                                             </a>
                                         )}
-                                        <a href="https://apps.apple.com" className="app-store-link" target="_blank"
+                                        <a href="https://apps.apple.com/app/salamander-ai/id6752116173" className="app-store-link" target="_blank"
                                            rel="noopener noreferrer">
                                             <img src="images/app_store.svg" alt="Download on the App Store"
                                                  className="app-store-badge"/>
