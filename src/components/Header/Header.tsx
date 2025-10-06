@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Header.css';
 import {useAuth} from '../../contexts/AuthContext';
 
@@ -8,37 +8,55 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
     const {user} = useAuth();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <header className="app-header">
             <nav className="app-nav">
-                {isSubpage && (
-                    <button onClick={() => window.location.hash = ''} className="back-arrow" title="Back to Home">
-                        ←
-                    </button>
-                )}
                 <div className="nav-logo" onClick={() => window.location.hash = ''} style={{cursor: 'pointer'}}>
                     <img src="images/logo_salamander.png" alt="Salamander" className="logo-image"/>
                     <h1>Salamander</h1>
                 </div>
-                <div className="nav-links">
-                    <button onClick={() => window.location.hash = 'learn-more'}
-                            className="nav-link nav-link-secondary">Get Started
+                <button
+                    className="hamburger-menu"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+                    <button onClick={() => {
+                        window.location.hash = 'learn-more';
+                        setMobileMenuOpen(false);
+                    }} className="nav-link nav-link-secondary">Get Started
                     </button>
-                    <button onClick={() => window.location.hash = 'pricing'} className="nav-link">Pricing</button>
+                    <button onClick={() => {
+                        window.location.hash = 'pricing';
+                        setMobileMenuOpen(false);
+                    }} className="nav-link">Pricing</button>
                     {user ? (
                         <button
                             className="nav-link"
-                            onClick={() => window.location.hash = 'account'}
+                            onClick={() => {
+                                window.location.hash = 'account';
+                                setMobileMenuOpen(false);
+                            }}
                             title={`${user.displayName || user.email} - View Account`}
                         >
                             Profile
                         </button>
                     ) : (
                         <>
-                            <button onClick={() => window.location.hash = 'auth'} className="nav-link">Log In</button>
-                            <button onClick={() => window.location.hash = 'auth'}
-                                    className="nav-link nav-link-primary">Sign Up
+                            <button onClick={() => {
+                                window.location.hash = 'auth';
+                                setMobileMenuOpen(false);
+                            }} className="nav-link">Log In</button>
+                            <button onClick={() => {
+                                window.location.hash = 'auth';
+                                setMobileMenuOpen(false);
+                            }} className="nav-link nav-link-primary">Sign Up
                             </button>
                         </>
                     )}

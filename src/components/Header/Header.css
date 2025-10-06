@@ -65,7 +65,6 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin: 0 auto;
 }
 
 .logo-image {
@@ -77,6 +76,29 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.hamburger-menu span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-secondary);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-menu:hover span {
+    background-color: var(--primary-color);
 }
 
 .nav-links {
@@ -215,17 +237,36 @@
         font-size: 1.25rem;
     }
 
-    .nav-logo {
-        margin-left: 3rem;
+    .hamburger-menu {
+        display: flex;
     }
 
     .nav-links {
-        gap: 1rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: var(--background-primary);
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        gap: 1.5rem;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border-color);
+        z-index: 100;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links.mobile-open {
+        right: 0;
     }
 
     .nav-link {
-        font-size: 0.875rem;
-        padding: 6px 12px;
+        font-size: 1rem;
+        padding: 12px 16px;
+        width: 100%;
+        text-align: left;
     }
 
     .profile-button,
