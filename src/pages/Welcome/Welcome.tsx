@@ -185,18 +185,6 @@ const Welcome: React.FC = () => {
                         </p>
 
                         <div className="comparison-highlight">
-                            <div className="comparison-col before-col">
-                                <h4>Cloud AI IDEs</h4>
-                                <ul>
-                                    <li className="negative">Limited environment access</li>
-                                    <li className="negative">Heavy fees</li>
-                                    <li className="negative">Bot-attributed commits</li>
-                                    <li className="negative">Restricted tool access</li>
-                                </ul>
-                            </div>
-                            <div className="vs-divider">
-                                <span>VS</span>
-                            </div>
                             <div className="comparison-col after-col">
                                 <h4>Salamander</h4>
                                 <ul>
@@ -204,6 +192,18 @@ const Welcome: React.FC = () => {
                                     <li className="positive">Pay only for Claude API usage or Claude Pro</li>
                                     <li className="positive">Your commits, your credit</li>
                                     <li className="positive">Use any tool you want</li>
+                                </ul>
+                            </div>
+                            <div className="vs-divider">
+                                <span>VS</span>
+                            </div>
+                            <div className="comparison-col before-col">
+                                <h4>Cloud AI IDEs</h4>
+                                <ul>
+                                    <li className="negative">Limited environment access</li>
+                                    <li className="negative">Heavy fees</li>
+                                    <li className="negative">Bot-attributed commits</li>
+                                    <li className="negative">Restricted tool access</li>
                                 </ul>
                             </div>
                         </div>
@@ -284,7 +284,7 @@ const Welcome: React.FC = () => {
                             <div className="faq-item">
                                 <h3>How secure is the connection?</h3>
                                 <p>All communications are encrypted end-to-end. We use industry-standard security
-                                   protocols and Firebase authentication to ensure your data is protected.</p>
+                                   protocols and trusted authentication providers to ensure your data is protected.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>What data do you collect?</h3>
