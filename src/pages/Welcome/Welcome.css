@@ -401,12 +401,12 @@
     font-family: inherit;
 }
 
-.btn-primary {
+.welcome .btn-primary {
     background: var(--primary-color);
     color: white;
 }
 
-.btn-primary:hover {
+.welcome .btn-primary:hover {
     background: var(--primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);

@@ -33,9 +33,6 @@ const Welcome: React.FC = () => {
                             <button onClick={() => window.location.hash = 'learn-more'}
                                     className="btn btn-primary">Get Started Free
                             </button>
-                            <button onClick={() => window.location.hash = 'pricing'}
-                                    className="btn btn-secondary">View Pricing
-                            </button>
                         </div>
 
                         <p className="hero-tagline">Never be AFK</p>
