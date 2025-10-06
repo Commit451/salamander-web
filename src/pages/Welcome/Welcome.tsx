@@ -22,7 +22,7 @@ const Welcome: React.FC = () => {
                     <div className="hero-content">
                         <div className="hero-badge">Powered by Anthropic Claude</div>
                         <h1 className="hero-title">
-                            Your Computer's AI Assistant,<br/>In Your Pocket
+                            Your Terminal's AI Agent,<br/>Now In Your Pocket
                         </h1>
                         <p className="hero-description">
                             Start AI coding tasks on your computer, from your phone.
