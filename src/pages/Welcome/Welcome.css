@@ -162,7 +162,7 @@
 }
 
 .hero-image-cli {
-    max-width: 390px;
+    max-width: 500px;
     border-radius: 0.5rem;
 }
 
@@ -931,7 +931,7 @@
     }
 
     .hero-image-cli {
-        max-width: 325px;
+        max-width: 450px;
     }
 
     .connection-flow {
