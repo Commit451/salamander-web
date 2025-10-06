@@ -294,16 +294,6 @@
     z-index: 1;
 }
 
-.connection-label {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    text-align: center;
-    white-space: nowrap;
-}
-
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -947,11 +937,6 @@
     .connection-flow {
         transform: rotate(90deg);
         min-width: 100px;
-    }
-
-    .connection-label {
-        transform: rotate(-90deg);
-        white-space: nowrap;
     }
 
     .section-title {

@@ -58,7 +58,6 @@ const Welcome: React.FC = () => {
                                         <div className="flow-dot dot-3"></div>
                                     </div>
                                 </div>
-                                <div className="connection-label">Real-time sync</div>
                             </div>
 
                             {/* Step 2: CLI Processing */}
@@ -75,10 +74,9 @@ const Welcome: React.FC = () => {
                                         <div className="pulse-ring ring-1"></div>
                                         <div className="pulse-ring ring-2"></div>
                                         <div className="pulse-ring ring-3"></div>
-                                        <div className="notification-icon">📱</div>
+                                        <div className="notification-icon">🔔</div>
                                     </div>
                                 </div>
-                                <div className="connection-label">Push notification</div>
                             </div>
 
                             {/* Step 3: Mobile Notification */}
