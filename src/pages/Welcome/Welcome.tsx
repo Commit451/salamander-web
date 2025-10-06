@@ -11,22 +11,34 @@ const Welcome: React.FC = () => {
         // Load user state when Welcome page mounts
         loadUserState();
     }, [loadUserState]);
+
     return (
         <div className="welcome">
             <Header/>
 
             <main className="welcome-main">
+                {/* Hero Section */}
                 <section className="hero">
                     <div className="hero-content">
+                        <div className="hero-badge">Powered by Anthropic Claude</div>
                         <h1 className="hero-title">
-                            Never be AFK
+                            Your Computer's AI Assistant,<br/>In Your Pocket
                         </h1>
                         <p className="hero-description">
-                            With the power of AI, you can always have a presence at your computer.
-                            Create a runner, choose a directory, and start a conversation with your AI.
-                            While it's working, you can be out and about doing something you love.
-                            Powered by Anthropic Claude and your imagination.
+                            Start AI coding tasks on your computer, from your phone.
+                            Get notified when they're done. All using your own machine and your own tools.
                         </p>
+
+                        <div className="hero-actions">
+                            <button onClick={() => window.location.hash = 'learn-more'}
+                                    className="btn btn-primary">Get Started Free
+                            </button>
+                            <button onClick={() => window.location.hash = 'pricing'}
+                                    className="btn btn-secondary">View Pricing
+                            </button>
+                        </div>
+
+                        <p className="hero-tagline">Never be AFK</p>
 
                         <div className="hero-images">
                             {/* Step 1: Mobile Prompt */}
@@ -76,46 +88,264 @@ const Welcome: React.FC = () => {
                                 <div className="step-label">3. Get notified</div>
                             </div>
                         </div>
+                    </div>
+                </section>
 
-                        <section className="byom-section">
-                            <div className="byom-content">
-                                <h3 className="byom-title">Bring Your Own Machine</h3>
-                                <p className="byom-description">
-                                    Break free from cloud sandbox limitations and pricing tiers.
-                                    Run your AI on your own hardware with your configured environment,
-                                    your set of tools, and complete control over your development setup.
-                                    And best of all, all work can be attributed to you, not a GitHub bot.
-                                </p>
-                                <div className="byom-benefits">
-                                    <div className="benefit-item">
-                                        <div className="benefit-icon">💰</div>
-                                        <span>No cloud pricing</span>
-                                    </div>
-                                    <div className="benefit-item">
-                                        <div className="benefit-icon">⚙️</div>
-                                        <span>Full environment access</span>
-                                    </div>
-                                    <div className="benefit-item">
-                                        <div className="benefit-icon">🔧</div>
-                                        <span>Give AI your favorite tools</span>
-                                    </div>
-                                </div>
+                {/* Problem/Solution Section */}
+                <section className="problem-solution">
+                    <div className="content-container">
+                        <div className="problem-solution-grid">
+                            <div className="problem-card">
+                                <div className="card-icon">😓</div>
+                                <h3>The Problem</h3>
+                                <p>Stuck waiting for AI tasks to complete? Need to step away but want to stay productive?
+                                   Long-running builds, tests, and code reviews keeping you tethered to your desk?</p>
                             </div>
-                        </section>
-
-                        <div className="hero-actions">
-                            <button onClick={() => window.location.hash = 'learn-more'}
-                                    className="btn btn-secondary">Get Started
-                            </button>
+                            <div className="solution-card">
+                                <div className="card-icon">✨</div>
+                                <h3>The Solution</h3>
+                                <p>Salamander lets you run AI tasks from your phone and get notified when
+                                   they're done. Work from anywhere while your machine handles the heavy lifting.</p>
+                            </div>
                         </div>
                     </div>
                 </section>
 
+                {/* Use Cases Section */}
+                <section className="use-cases">
+                    <div className="content-container">
+                        <h2 className="section-title">Perfect For...</h2>
+                        <div className="use-cases-grid">
+                            <div className="use-case-card">
+                                <div className="use-case-icon">☕</div>
+                                <h3>Running Test Suites</h3>
+                                <p>Start your test suite and grab coffee. Get notified when tests complete or fail.</p>
+                            </div>
+                            <div className="use-case-card">
+                                <div className="use-case-icon">🌮</div>
+                                <h3>Code Reviews</h3>
+                                <p>Analyze pull requests during your lunch break. Review AI suggestions on the go.</p>
+                            </div>
+                            <div className="use-case-card">
+                                <div className="use-case-icon">🛋️</div>
+                                <h3>Debugging Sessions</h3>
+                                <p>Let AI debug from your couch. Monitor progress and jump in when needed.</p>
+                            </div>
+                            <div className="use-case-card">
+                                <div className="use-case-icon">🏢</div>
+                                <h3>Long Builds</h3>
+                                <p>Deploy a build before signing off for the day. Know when it's done or if there are issues without having to stay at your keyboard.</p>
+                            </div>
+                            <div className="use-case-card">
+                                <div className="use-case-icon">💻</div>
+                                <h3>Multi-Project Management</h3>
+                                <p>Manage multiple projects simultaneously with separate runners for each.</p>
+                            </div>
+                            <div className="use-case-card">
+                                <div className="use-case-icon">🔄</div>
+                                <h3>Background Refactoring</h3>
+                                <p>Let AI handle refactoring tasks while you focus on new features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
+                {/* Why Salamander Section */}
+                <section className="why-salamander">
+                    <div className="content-container">
+                        <h2 className="section-title">Why Salamander?</h2>
+                        <div className="benefits-grid">
+                            <div className="benefit-card">
+                                <div className="benefit-icon-large">🖥️</div>
+                                <h3>Your Hardware, Your Rules</h3>
+                                <p>No usage limits, no cloud pricing tiers. Use your own computational resources.</p>
+                            </div>
+                            <div className="benefit-card">
+                                <div className="benefit-icon-large">⚙️</div>
+                                <h3>Your Environment</h3>
+                                <p>Full compatibility with your tools, configurations, and development setup.</p>
+                            </div>
+                            <div className="benefit-card">
+                                <div className="benefit-icon-large">✍️</div>
+                                <h3>Your Commits</h3>
+                                <p>Work is attributed to you, not a bot. Maintain proper commit history.</p>
+                            </div>
+                            <div className="benefit-card">
+                                <div className="benefit-icon-large">📱</div>
+                                <h3>Work Anywhere</h3>
+                                <p>Control everything from your phone. Stay productive from anywhere.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* BYOM Section */}
+                <section className="byom-section-enhanced">
+                    <div className="content-container">
+                        <h2 className="byom-title">Bring Your Own Machine</h2>
+                        <p className="byom-description">
+                            Break free from cloud sandbox limitations and pricing tiers.
+                            Run your AI on your own hardware with your configured environment,
+                            your set of tools, and complete control over your development setup.
+                        </p>
+
+                        <div className="comparison-highlight">
+                            <div className="comparison-col before-col">
+                                <h4>Cloud AI IDEs</h4>
+                                <ul>
+                                    <li className="negative">Limited environment access</li>
+                                    <li className="negative">Monthly subscription fees</li>
+                                    <li className="negative">Bot-attributed commits</li>
+                                    <li className="negative">Restricted tool access</li>
+                                </ul>
+                            </div>
+                            <div className="vs-divider">
+                                <span>VS</span>
+                            </div>
+                            <div className="comparison-col after-col">
+                                <h4>Salamander</h4>
+                                <ul>
+                                    <li className="positive">Full environment control</li>
+                                    <li className="positive">Pay only for API usage</li>
+                                    <li className="positive">Your commits, your credit</li>
+                                    <li className="positive">Use any tool you want</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="byom-benefits">
+                            <div className="benefit-item">
+                                <div className="benefit-icon">💰</div>
+                                <span>No cloud pricing limits</span>
+                            </div>
+                            <div className="benefit-item">
+                                <div className="benefit-icon">🔧</div>
+                                <span>Your favorite tools always available</span>
+                            </div>
+                            <div className="benefit-item">
+                                <div className="benefit-icon">🔒</div>
+                                <span>Your code stays on your machine</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Comparison Table */}
+                <section className="comparison-table-section">
+                    <div className="content-container">
+                        <h2 className="section-title">How We Compare</h2>
+                        <div className="comparison-table-wrapper">
+                            <table className="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th className="highlight-col">Salamander</th>
+                                        <th>Cloud AI IDEs</th>
+                                        <th>GitHub Copilot</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Use your own machine</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile control</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Your tools & environment</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="partial">Limited</span></td>
+                                        <td><span className="partial">Limited</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direct commit attribution</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="cross">Bot commits</span></td>
+                                        <td><span className="cross">Bot commits</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Push notifications</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Claude Sonnet 4.5</td>
+                                        <td className="highlight-col"><span className="check">✓</span></td>
+                                        <td><span className="partial">Varies</span></td>
+                                        <td><span className="cross">✗</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                {/* FAQ/Security Section */}
+                <section className="faq-section">
+                    <div className="content-container">
+                        <h2 className="section-title">Frequently Asked Questions</h2>
+                        <div className="faq-grid">
+                            <div className="faq-item">
+                                <h3>Is my code sent anywhere?</h3>
+                                <p>Your code stays on your machine. Only the prompts and responses are transmitted
+                                   through our secure servers to enable mobile communication. The actual AI processing
+                                   happens locally via Claude Code CLI.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>How secure is the connection?</h3>
+                                <p>All communications are encrypted end-to-end. We use industry-standard security
+                                   protocols and Firebase authentication to ensure your data is protected.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>What data do you collect?</h3>
+                                <p>We collect minimal data: your account information, runner status, and message
+                                   metadata for notifications. We never store your code or access your files.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>Do I need to keep my computer on?</h3>
+                                <p>Yes, your computer needs to be awake and running for the AI to execute tasks.
+                                   We recommend using tools like Caffeine (macOS) or Insomnia (Windows) to prevent sleep.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>What do I need to get started?</h3>
+                                <p>You'll need Node.js 18+, Claude Code CLI installed, an Anthropic API key,
+                                   and a git-enabled project directory. Setup takes about 10 minutes.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>Can I run multiple projects?</h3>
+                                <p>Yes! You can set up multiple runners for different projects and manage them
+                                   all from the mobile app. Pro plan supports unlimited concurrent runners.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA Section */}
                 <section className="cta">
                     <div className="cta-content">
-                        <h2>Ready to enhance your workflow?</h2>
-                        <p>Download the Salamander app and start your AI-powered productivity journey today.</p>
+                        <h2>Ready to work smarter, from anywhere?</h2>
+                        <p>Download Salamander and start your AI-powered productivity journey today. Setup takes 10 minutes.</p>
+                        <div className="cta-stats">
+                            <div className="stat-item">
+                                <div className="stat-number">10 min</div>
+                                <div className="stat-label">Setup time</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">Free</div>
+                                <div className="stat-label">To start</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">∞</div>
+                                <div className="stat-label">Possibilities</div>
+                            </div>
+                        </div>
                         <div className="cta-buttons">
                             <a href="https://play.google.com/store/apps/details?id=com.commit451.salamander"
                                className="app-store-link" target="_blank" rel="noopener noreferrer">
@@ -128,6 +358,10 @@ const Welcome: React.FC = () => {
                                      className="app-store-badge"/>
                             </a>
                         </div>
+                        <button onClick={() => window.location.hash = 'learn-more'}
+                                className="btn btn-secondary cta-learn-more">
+                            View Setup Guide
+                        </button>
                     </div>
                 </section>
             </main>
