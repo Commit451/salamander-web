@@ -26,7 +26,7 @@ const Welcome: React.FC = () => {
                         </h1>
                         <p className="hero-description">
                             Start AI coding tasks on your computer, from your phone.
-                            Get notified when they're done. All using your own machine and your own tools.
+                            Get notified when they're done. All using your own machine and your own tools. Attributed to you.
                         </p>
 
                         <div className="hero-actions">
@@ -39,55 +39,6 @@ const Welcome: React.FC = () => {
                         </div>
 
                         <p className="hero-tagline">Never be AFK</p>
-
-                        <div className="hero-images">
-                            {/* Step 1: Mobile Prompt */}
-                            <div className="hero-image-container step-1">
-                                <img src="images/prompt.png" alt="Mobile Prompt"
-                                     className="hero-image hero-image-mobile"/>
-                                <div className="step-label">1. Send prompt</div>
-                            </div>
-
-                            {/* Realtime Connection */}
-                            <div className="connection-flow realtime-connection">
-                                <div className="connection-curve">
-                                    <div className="curve-line"></div>
-                                    <div className="flow-dots">
-                                        <div className="flow-dot dot-1"></div>
-                                        <div className="flow-dot dot-2"></div>
-                                        <div className="flow-dot dot-3"></div>
-                                    </div>
-                                </div>
-                                <div className="connection-label">Real-time sync</div>
-                            </div>
-
-                            {/* Step 2: CLI Processing */}
-                            <div className="hero-image-container step-2">
-                                <img src="images/cli.png" alt="CLI Processing" className="hero-image hero-image-cli"/>
-                                <div className="step-label">2. AI processes</div>
-                            </div>
-
-                            {/* Push Notification Connection */}
-                            <div className="connection-flow push-connection">
-                                <div className="connection-curve push-curve">
-                                    <div className="curve-line push-line"></div>
-                                    <div className="notification-pulse">
-                                        <div className="pulse-ring ring-1"></div>
-                                        <div className="pulse-ring ring-2"></div>
-                                        <div className="pulse-ring ring-3"></div>
-                                        <div className="notification-icon">📱</div>
-                                    </div>
-                                </div>
-                                <div className="connection-label">Push notification</div>
-                            </div>
-
-                            {/* Step 3: Mobile Notification */}
-                            <div className="hero-image-container step-3">
-                                <img src="images/notification.png" alt="Mobile Notification"
-                                     className="hero-image hero-image-mobile"/>
-                                <div className="step-label">3. Get notified</div>
-                            </div>
-                        </div>
                     </div>
                 </section>
 
@@ -194,7 +145,7 @@ const Welcome: React.FC = () => {
                                 <h4>Cloud AI IDEs</h4>
                                 <ul>
                                     <li className="negative">Limited environment access</li>
-                                    <li className="negative">Monthly subscription fees</li>
+                                    <li className="negative">Heavy fees</li>
                                     <li className="negative">Bot-attributed commits</li>
                                     <li className="negative">Restricted tool access</li>
                                 </ul>
@@ -206,7 +157,7 @@ const Welcome: React.FC = () => {
                                 <h4>Salamander</h4>
                                 <ul>
                                     <li className="positive">Full environment control</li>
-                                    <li className="positive">Pay only for API usage</li>
+                                    <li className="positive">Pay only for Claude API usage or Claude Pro</li>
                                     <li className="positive">Your commits, your credit</li>
                                     <li className="positive">Use any tool you want</li>
                                 </ul>
