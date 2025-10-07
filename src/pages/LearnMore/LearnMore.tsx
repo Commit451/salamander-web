@@ -41,8 +41,8 @@ const LearnMore: React.FC = () => {
                             </div>
                             <div className="prereq-card">
                                 <div className="prereq-icon">🔑</div>
-                                <h3>Anthropic API key or Claude Pro subscription</h3>
-                                <p>Powers Claude Code CLI</p>
+                                <h3>AI API Key</h3>
+                                <p>Anthropic API key (for Claude) or OpenAI API key (for Codex)</p>
                             </div>
                             <div className="prereq-card">
                                 <div className="prereq-icon">📁</div>
@@ -77,23 +77,28 @@ const LearnMore: React.FC = () => {
                             <div className="step-card">
                                 <div className="step-number">1</div>
                                 <div className="step-content">
-                                    <h3>Install Claude Code CLI</h3>
-                                    <p>First, install the Claude Code CLI which powers the AI capabilities.</p>
-                                    <div className="code-block">
-                                        <code>Visit <a href="https://docs.anthropic.com/en/docs/claude-code/overview"
+                                    <h3>Install AI CLI (Claude Code or Codex)</h3>
+                                    <p>First, install either Claude Code CLI and/or Codex CLI which powers the AI capabilities.</p>
+                                    <div className="step-tips">
+                                        <div className="tip-item">
+                                            <span className="tip-icon">🤖</span>
+                                            <span><strong>For Claude:</strong> Visit <a href="https://docs.anthropic.com/en/docs/claude-code/overview"
                                                        target="_blank" rel="noopener noreferrer" style={{
                                             color: 'var(--primary-color)',
                                             textDecoration: 'underline'
-                                        }}>Claude Code Documentation</a> for installation instructions</code>
-                                    </div>
-                                    <div className="step-tips">
-                                        <div className="tip-item">
-                                            <span className="tip-icon">💡</span>
-                                            <span>Follow the setup guide for your operating system</span>
+                                        }}>Claude Code Documentation</a> for installation instructions</span>
                                         </div>
                                         <div className="tip-item">
-                                            <span className="tip-icon">✅</span>
-                                            <span>Run the <code className="inline-code">claude</code> command for initial setup once installed</span>
+                                            <span className="tip-icon">🤖</span>
+                                            <span><strong>For Codex:</strong> Visit <a href="https://platform.openai.com/docs"
+                                                       target="_blank" rel="noopener noreferrer" style={{
+                                            color: 'var(--primary-color)',
+                                            textDecoration: 'underline'
+                                        }}>OpenAI Documentation</a> for setup instructions</span>
+                                        </div>
+                                        <div className="tip-item">
+                                            <span className="tip-icon">💡</span>
+                                            <span>Follow the setup guide for your operating system and chosen AI model</span>
                                         </div>
                                     </div>
                                 </div>

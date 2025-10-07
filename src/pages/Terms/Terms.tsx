@@ -59,8 +59,7 @@ const Terms: React.FC = () => {
                             <li><strong>Remote AI Command Execution:</strong> Execute AI commands on your local machine
                                 from mobile or web interfaces
                             </li>
-                            <li><strong>Multi-Platform AI Integration:</strong> Support for Claude (Anthropic), Gemini
-                                (Google), and Codex (OpenAI) AI models (with Gemini and Codex coming at a later date)
+                            <li><strong>Multi-Platform AI Integration:</strong> Support for Claude (Anthropic) and Codex (OpenAI) AI models, with Gemini (Google) coming at a later date
                             </li>
                             <li><strong>Cross-Device Synchronization:</strong> Access your AI runners from mobile apps,
                                 web browser, and command-line tools
@@ -166,8 +165,8 @@ const Terms: React.FC = () => {
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
                             <li>All applicable local, state, federal, and international laws and regulations</li>
                             <li>Anthropic's Claude API terms of service and usage policies</li>
+                            <li>OpenAI's Codex API terms of service and usage policies</li>
                             <li>Google's terms of service for Firebase, OAuth, and related services</li>
-                            <li>OpenAI's usage policies (for Codex integration)</li>
                             <li>Google's AI principles and usage policies (for Gemini integration)</li>
                         </ul>
                         <p style={{marginTop: '1rem'}}>You expressly agree NOT to use the Service to:</p>

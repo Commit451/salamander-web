@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import './Welcome.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { useAuth } from '../../contexts/AuthContext';
+import {useAuth} from '../../contexts/AuthContext';
 
 const Welcome: React.FC = () => {
-    const { loadUserState } = useAuth();
+    const {loadUserState} = useAuth();
 
     useEffect(() => {
         // Load user state when Welcome page mounts
@@ -20,13 +20,14 @@ const Welcome: React.FC = () => {
                 {/* Hero Section */}
                 <section className="hero">
                     <div className="hero-content">
-                        <div className="hero-badge">Powered by Anthropic Claude</div>
+                        <div className="hero-badge">Powered by Claude & Codex</div>
                         <h1 className="hero-title">
-                            Your Terminal's AI Agent,<br/>Now In Your Pocket
+                            Your Terminal's AI Agent, Now In Your Pocket
                         </h1>
                         <p className="hero-description">
                             Start AI coding tasks on your computer, from your phone.
-                            Get notified when they're done. All using your own machine and your own tools. Attributed to you.
+                            Get notified when they're done. All using your own machine and your own tools. Attributed to
+                            you.
                         </p>
 
                         <div className="hero-actions">
@@ -93,14 +94,15 @@ const Welcome: React.FC = () => {
                             <div className="problem-card">
                                 <div className="card-icon">😓</div>
                                 <h3>The Problem</h3>
-                                <p>Stuck waiting for AI tasks to complete? Need to step away but want to stay productive?
-                                   Long-running builds, tests, and code reviews keeping you tethered to your desk?</p>
+                                <p>Stuck waiting for AI tasks to complete? Need to step away but want to stay
+                                    productive?
+                                    Long-running builds, tests, and code reviews keeping you tethered to your desk?</p>
                             </div>
                             <div className="solution-card">
                                 <div className="card-icon">✨</div>
                                 <h3>The Solution</h3>
                                 <p>Salamander lets you run AI tasks from your phone and get notified when
-                                   they're done. Work from anywhere while your machine handles the heavy lifting.</p>
+                                    they're done. Work from anywhere while your machine handles the heavy lifting.</p>
                             </div>
                         </div>
                     </div>
@@ -129,7 +131,8 @@ const Welcome: React.FC = () => {
                             <div className="use-case-card">
                                 <div className="use-case-icon">🏢</div>
                                 <h3>Long Builds</h3>
-                                <p>Deploy a build before signing off for the day. Know when it's done or if there are issues without having to stay at your keyboard.</p>
+                                <p>Deploy a build before signing off for the day. Know when it's done or if there are
+                                    issues without having to stay at your keyboard.</p>
                             </div>
                             <div className="use-case-card">
                                 <div className="use-case-icon">💻</div>
@@ -189,7 +192,7 @@ const Welcome: React.FC = () => {
                                 <h4>Salamander</h4>
                                 <ul>
                                     <li className="positive">Full environment control</li>
-                                    <li className="positive">Pay only for Claude API usage or Claude Pro</li>
+                                    <li className="positive">Pay only for AI API usage (Claude or Codex)</li>
                                     <li className="positive">Your commits, your credit</li>
                                     <li className="positive">Use any tool you want</li>
                                 </ul>
@@ -232,38 +235,38 @@ const Welcome: React.FC = () => {
                         <div className="comparison-table-wrapper">
                             <table className="comparison-table">
                                 <thead>
-                                    <tr>
-                                        <th>Feature</th>
-                                        <th className="highlight-col">Salamander</th>
-                                        <th>Cloud AI IDEs</th>
-                                        <th>GitHub Copilot</th>
-                                    </tr>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th className="highlight-col">Salamander</th>
+                                    <th>Cloud AI IDEs</th>
+                                    <th>GitHub Copilot</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Use your own machine</td>
-                                        <td className="highlight-col"><span className="check">✓</span></td>
-                                        <td><span className="cross">✗</span></td>
-                                        <td><span className="cross">✗</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mobile control</td>
-                                        <td className="highlight-col"><span className="check">✓</span></td>
-                                        <td><span className="cross">✗</span></td>
-                                        <td><span className="cross">✗</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Your tools & environment</td>
-                                        <td className="highlight-col"><span className="check">✓</span></td>
-                                        <td><span className="partial">Limited</span></td>
-                                        <td><span className="partial">Limited</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Direct commit attribution</td>
-                                        <td className="highlight-col"><span className="check">✓</span></td>
-                                        <td><span className="cross">Bot commits</span></td>
-                                        <td><span className="cross">Bot commits</span></td>
-                                    </tr>
+                                <tr>
+                                    <td>Use your own machine</td>
+                                    <td className="highlight-col"><span className="check">✓</span></td>
+                                    <td><span className="cross">✗</span></td>
+                                    <td><span className="cross">✗</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile control</td>
+                                    <td className="highlight-col"><span className="check">✓</span></td>
+                                    <td><span className="cross">✗</span></td>
+                                    <td><span className="cross">✗</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Your tools & environment</td>
+                                    <td className="highlight-col"><span className="check">✓</span></td>
+                                    <td><span className="partial">Limited</span></td>
+                                    <td><span className="partial">Limited</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Direct commit attribution</td>
+                                    <td className="highlight-col"><span className="check">✓</span></td>
+                                    <td><span className="cross">Bot commits</span></td>
+                                    <td><span className="cross">Bot commits</span></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -278,33 +281,36 @@ const Welcome: React.FC = () => {
                             <div className="faq-item">
                                 <h3>Is my code sent anywhere?</h3>
                                 <p>Your code stays on your machine. Only the prompts and responses are transmitted
-                                   through our secure servers to enable mobile communication. The actual AI processing
-                                   happens locally via Claude Code CLI.</p>
+                                    through our secure servers to enable mobile communication. The actual AI processing
+                                    happens locally via the agent CLI you choose.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>How secure is the connection?</h3>
                                 <p>All communications are encrypted end-to-end. We use industry-standard security
-                                   protocols and trusted authentication providers to ensure your data is protected.</p>
+                                    protocols and trusted authentication providers to ensure your data is protected.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>What data do you collect?</h3>
                                 <p>We collect minimal data: your account information, runner status, and message
-                                   metadata for notifications. We never store your code or access your files.</p>
+                                    metadata for notifications. We never store your code or access your files.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>Do I need to keep my computer on?</h3>
                                 <p>Yes, your computer needs to be awake and running for the AI to execute tasks.
-                                   We recommend using tools like Caffeine (macOS) or Insomnia (Windows) to prevent sleep.</p>
+                                    We recommend using tools like Caffeine (macOS) or Insomnia (Windows) to prevent
+                                    sleep.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>What do I need to get started?</h3>
-                                <p>You'll need Node.js 18+, Claude Code CLI installed, a Claude API key or Pro subscription,
-                                   and (we recommend) a git-enabled project directory. Setup takes about 10 minutes.</p>
+                                <p>You'll need Node.js 18+, either Claude Code CLI or Codex CLI installed, an
+                                    API key (Claude or OpenAI),
+                                    and (we recommend) a git-enabled project directory. Setup takes about 10
+                                    minutes.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>Can I run multiple projects?</h3>
                                 <p>Yes! You can set up multiple runners for different projects and manage them
-                                   all from the mobile app. Our Pro plan supports 25 concurrent runners.</p>
+                                    all from the mobile app. Our Pro plan supports 25 concurrent runners.</p>
                             </div>
                         </div>
                     </div>
@@ -314,7 +320,8 @@ const Welcome: React.FC = () => {
                 <section className="cta">
                     <div className="cta-content">
                         <h2>Ready to work smarter, from anywhere?</h2>
-                        <p>Download Salamander and start your AI-powered productivity journey today. Setup takes 10 minutes.</p>
+                        <p>Download Salamander and start your AI-powered productivity journey today. Setup takes 10
+                            minutes.</p>
                         <div className="cta-stats">
                             <div className="stat-item">
                                 <div className="stat-number">10 min</div>
@@ -335,7 +342,8 @@ const Welcome: React.FC = () => {
                                 <img src="images/play_store.png" alt="Get it on Google Play"
                                      className="app-store-badge"/>
                             </a>
-                            <a href="https://apps.apple.com/app/salamander-ai/id6752116173" className="app-store-link" target="_blank"
+                            <a href="https://apps.apple.com/app/salamander-ai/id6752116173" className="app-store-link"
+                               target="_blank"
                                rel="noopener noreferrer">
                                 <img src="images/app_store.svg" alt="Download on the App Store"
                                      className="app-store-badge"/>
