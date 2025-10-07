@@ -124,8 +124,8 @@ const LearnMore: React.FC = () => {
                                             <span>Available on both iOS and Android</span>
                                         </div>
                                         <div className="tip-item">
-                                            <span className="tip-icon">🔐</span>
-                                            <span>Sign in with Google to create your account</span>
+                                            <span className="tip-icon">🔔</span>
+                                            <span>Allow notifications for the best experience</span>
                                         </div>
                                     </div>
                                 </div>
@@ -147,10 +147,6 @@ const LearnMore: React.FC = () => {
                                         <div className="tip-item">
                                             <span className="tip-icon">⚠️</span>
                                             <span>Requires Node.js 18 or higher</span>
-                                        </div>
-                                        <div className="tip-item">
-                                            <span className="tip-icon">🌐</span>
-                                            <span>Authentication opens a browser to complete setup with your Google account</span>
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +206,7 @@ const LearnMore: React.FC = () => {
                                     <div className="step-tips">
                                         <div className="tip-item">
                                             <span className="tip-icon">🖱️</span>
-                                            <span>If these apps are not permitted, you can use a <a
+                                            <span>Or, you can use a <a
                                                 href="https://a.co/d/cygzeFj" target="_blank" rel="noopener noreferrer" style={{
                                                 color: 'var(--primary-color)',
                                                 textDecoration: 'underline'
