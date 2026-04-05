@@ -170,12 +170,6 @@
     line-height: 1.5;
 }
 
-.plan-price {
-    margin: 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
 
 /* Usage Card */
 .usage-info {
@@ -478,15 +472,6 @@
     color: #f9fafb;
 }
 
-.plan-price-badge {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #9ca3af;
-    padding: 0.25rem 0.5rem;
-    background: rgba(156, 163, 175, 0.1);
-    border-radius: 0.375rem;
-    width: fit-content;
-}
 
 .current-badge {
     font-size: 0.75rem;

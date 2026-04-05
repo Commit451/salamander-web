@@ -13,8 +13,7 @@ export interface Plan {
     id: string;
     messageLimit: number;
     name: string;
-    priceCurrency: string;
-    priceInCents: number;
+
     runnerLimit: number;
     tagline: string;
 }
@@ -79,8 +78,7 @@ export const getPlansFromFirestore = async (): Promise<Plan[]> => {
                 id: doc.id,
                 messageLimit: data.messageLimit,
                 name: data.name,
-                priceCurrency: data.priceCurrency,
-                priceInCents: data.priceInCents,
+
                 runnerLimit: data.runnerLimit,
                 tagline: data.tagline,
             });

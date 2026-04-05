@@ -32,10 +32,6 @@ const Header: React.FC<HeaderProps> = ({isSubpage = false}) => {
                         setMobileMenuOpen(false);
                     }} className="nav-link nav-link-secondary">Get Started
                     </button>
-                    <button onClick={() => {
-                        window.location.hash = 'pricing';
-                        setMobileMenuOpen(false);
-                    }} className="nav-link">Pricing</button>
                     {user ? (
                         <button
                             className="nav-link"

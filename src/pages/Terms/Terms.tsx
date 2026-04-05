@@ -221,79 +221,23 @@ const Terms: React.FC = () => {
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>
-                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>7. Subscription Terms</h2>
+                        <h2 style={{color: '#1f2937', marginBottom: '1rem'}}>7. Service Plans</h2>
                         <p>
-                            Salamander offers an optional subscription service that provides enhanced features and
-                            increased usage limits.
+                            Salamander offers different service plans that may provide varying features and
+                            usage limits. Plan details and availability are subject to change.
                         </p>
 
-                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Subscription
-                            Details</h3>
+                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Plan
+                            Management</h3>
                         <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Cost:</strong> $4.99 USD per month</li>
-                            <li><strong>Billing Frequency:</strong> Monthly recurring subscription</li>
-                            <li><strong>Auto-Renewal:</strong> Your subscription automatically renews each month unless
-                                cancelled
+                            <li><strong>Changes:</strong> You may change your plan at any time through the mobile app
                             </li>
-                            <li><strong>Payment Processing:</strong> Handled securely through Google Play Store or Apple
-                                App Store
+                            <li><strong>Modifications:</strong> We may modify plan terms with 30 days'
+                                advance notice
+                            </li>
+                            <li><strong>Geographic Availability:</strong> Plan availability may vary by region
                             </li>
                         </ul>
-
-                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Subscription
-                            Benefits</h3>
-                        <p>The subscription provides:</p>
-                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li>Increased daily message limits</li>
-                            <li>Additional AI runner instances</li>
-                            <li>Priority support and faster response times</li>
-                            <li>Enhanced data storage and transfer limits</li>
-                            <li>Early access to new features and AI models</li>
-                        </ul>
-
-                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Important Notes
-                            About the Subscription</h3>
-                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li><strong>Optional Service:</strong> A subscription is NOT required to use Salamander. The
-                                core functionality of the app is available to all users with a free account
-                            </li>
-                            <li><strong>Cancellation:</strong> You may cancel your subscription at any time through your
-                                Google Play Store or Apple App Store account settings
-                            </li>
-                            <li><strong>Effective Period:</strong> Cancellations take effect at the end of your current
-                                billing cycle
-                            </li>
-                            <li><strong>No Refunds:</strong> Subscription fees are non-refundable, except as required by
-                                applicable law
-                            </li>
-                            <li><strong>Price Changes:</strong> We may change subscription pricing with 30 days' advance
-                                notice
-                            </li>
-                            <li><strong>Geographic Availability:</strong> Subscription availability and pricing may vary
-                                by region
-                            </li>
-                        </ul>
-
-                        <h3 style={{color: '#374151', marginBottom: '0.5rem', marginTop: '1.5rem'}}>Free Tier
-                            Limitations</h3>
-                        <p>
-                            Users without an active subscription have access to the full Salamander platform with the
-                            following limitations:
-                        </p>
-                        <ul style={{marginLeft: '1.5rem', marginTop: '0.5rem'}}>
-                            <li>Reduced daily message and command limits</li>
-                            <li>Limited number of concurrent AI runners</li>
-                            <li>Standard support response times</li>
-                            <li>Basic data storage and transfer allowances</li>
-                        </ul>
-
-                        <p style={{marginTop: '1rem'}}>
-                            <strong>Subscription Management:</strong> All subscription billing, cancellations, and
-                            refund requests must be handled
-                            through the respective app store (Google Play Store or Apple App Store) where you purchased
-                            the subscription.
-                            Salamander does not directly process subscription payments or handle billing inquiries.
-                        </p>
                     </section>
 
                     <section style={{marginBottom: '2rem'}}>

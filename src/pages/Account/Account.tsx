@@ -331,7 +331,6 @@ const Account: React.FC = () => {
                     <div className="plans-list">
                         {plans.map((planOption) => {
                             const isCurrentPlan = planOption.id === user.plan;
-                            const planPrice = planOption.priceInCents === 0 ? 'Free' : `$${(planOption.priceInCents / 100).toFixed(2)}/month`;
                             const messageText = planOption.messageLimit === -1 ? 'Unlimited messages' : `${planOption.messageLimit} messages per day`;
 
                             return (
@@ -346,7 +345,6 @@ const Account: React.FC = () => {
                                     <div className="plan-header">
                                         <div className="plan-name-price">
                                             <h4 className="plan-name">{planOption.name}</h4>
-                                            <span className="plan-price-badge">{planPrice}</span>
                                         </div>
                                         {isCurrentPlan && (
                                             <span className="current-badge"
@@ -366,17 +364,10 @@ const Account: React.FC = () => {
                                             <span className="feature-text">{planOption.runnerLimit} runners</span>
                                         </div>
                                     </div>
-                                    {isCurrentPlan && planOption.priceInCents > 0 && (
+                                    {!isCurrentPlan && (
                                         <div className="mobile-subscription-notice">
                                             <p className="mobile-notice-text">
-                                                You can manage your subscription within the mobile app.
-                                            </p>
-                                        </div>
-                                    )}
-                                    {!isCurrentPlan && planOption.priceInCents > 0 && (
-                                        <div className="mobile-subscription-notice">
-                                            <p className="mobile-notice-text">
-                                                Upgrade in the mobile app
+                                                Switch plans in the mobile app
                                             </p>
                                         </div>
                                     )}

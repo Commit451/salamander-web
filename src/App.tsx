@@ -5,7 +5,6 @@ import Account from './pages/Account';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import LearnMore from './pages/LearnMore';
-import Pricing from './pages/Pricing';
 import {AuthProvider} from './contexts/AuthContext';
 
 const AppContent: React.FC = () => {
@@ -27,8 +26,6 @@ const AppContent: React.FC = () => {
                 setCurrentPage('privacy');
             } else if (route === 'learn-more') {
                 setCurrentPage('learn-more');
-            } else if (route === 'pricing') {
-                setCurrentPage('pricing');
             } else if (route === 'welcome') {
                 setCurrentPage('welcome');
             } else {
@@ -64,10 +61,6 @@ const AppContent: React.FC = () => {
 
     if (currentPage === 'learn-more') {
         return <LearnMore/>;
-    }
-
-    if (currentPage === 'pricing') {
-        return <Pricing/>;
     }
 
     return <Welcome/>;

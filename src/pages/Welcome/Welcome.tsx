@@ -32,7 +32,7 @@ const Welcome: React.FC = () => {
 
                         <div className="hero-actions">
                             <button onClick={() => window.location.hash = 'learn-more'}
-                                    className="btn btn-primary">Get Started Free
+                                    className="btn btn-primary">Get Started
                             </button>
                         </div>
 
@@ -156,7 +156,7 @@ const Welcome: React.FC = () => {
                             <div className="benefit-card">
                                 <div className="benefit-icon-large">🖥️</div>
                                 <h3>Your Hardware, Your Rules</h3>
-                                <p>No usage limits, no cloud pricing tiers. Use your own computational resources.</p>
+                                <p>No usage limits and no cloud lock-in. Use your own computational resources.</p>
                             </div>
                             <div className="benefit-card">
                                 <div className="benefit-icon-large">⚙️</div>
@@ -182,7 +182,7 @@ const Welcome: React.FC = () => {
                     <div className="content-container">
                         <h2 className="byom-title">Bring Your Own Machine</h2>
                         <p className="byom-description">
-                            Break free from cloud sandbox limitations and pricing tiers.
+                            Break free from cloud sandbox limitations.
                             Run your AI on your own hardware with your configured environment,
                             your set of tools, and complete control over your development setup.
                         </p>
@@ -192,7 +192,7 @@ const Welcome: React.FC = () => {
                                 <h4>Salamander</h4>
                                 <ul>
                                     <li className="positive">Full environment control</li>
-                                    <li className="positive">Pay only for AI API usage (Claude or Codex)</li>
+                                    <li className="positive">No platform fees — just your AI API costs</li>
                                     <li className="positive">Your commits, your credit</li>
                                     <li className="positive">Use any tool you want</li>
                                 </ul>
@@ -204,7 +204,7 @@ const Welcome: React.FC = () => {
                                 <h4>Cloud AI IDEs</h4>
                                 <ul>
                                     <li className="negative">Limited environment access</li>
-                                    <li className="negative">Heavy fees</li>
+                                    <li className="negative">Platform fees on top of AI costs</li>
                                     <li className="negative">Bot-attributed commits</li>
                                     <li className="negative">Restricted tool access</li>
                                 </ul>
@@ -214,7 +214,7 @@ const Welcome: React.FC = () => {
                         <div className="byom-benefits">
                             <div className="benefit-item">
                                 <div className="benefit-icon">💰</div>
-                                <span>No cloud pricing limits</span>
+                                <span>No cloud lock-in</span>
                             </div>
                             <div className="benefit-item">
                                 <div className="benefit-icon">🔧</div>
@@ -326,10 +326,6 @@ const Welcome: React.FC = () => {
                             <div className="stat-item">
                                 <div className="stat-number">10 min</div>
                                 <div className="stat-label">Setup time</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">Free</div>
-                                <div className="stat-label">To start</div>
                             </div>
                             <div className="stat-item">
                                 <div className="stat-number">∞</div>
