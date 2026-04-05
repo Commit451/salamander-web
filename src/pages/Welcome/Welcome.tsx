@@ -310,7 +310,7 @@ const Welcome: React.FC = () => {
                             <div className="faq-item">
                                 <h3>Can I run multiple projects?</h3>
                                 <p>Yes! You can set up multiple runners for different projects and manage them
-                                    all from the mobile app. Our Pro plan supports 25 concurrent runners.</p>
+                                    all from the mobile app.</p>
                             </div>
                         </div>
                     </div>
