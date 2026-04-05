@@ -35,14 +35,15 @@ export abstract class BaseApiService {
     protected static readonly API_BASE_URL = 'https://api.salamander.space/v1';
 
     /**
-     * Get authentication token from localStorage
+     * Get authentication token from Firebase Auth
      */
-    protected static getAuthToken(): string {
-        const token = localStorage.getItem('salamander_token');
-        if (!token) {
-            throw new Error('User not authenticated - no token found');
+    protected static async getAuthToken(): Promise<string> {
+        const { auth } = await import('../config/firebase');
+        const user = auth.currentUser;
+        if (!user) {
+            throw new Error('User not authenticated - no user signed in');
         }
-        return token;
+        return user.getIdToken();
     }
 
     /**
@@ -52,7 +53,7 @@ export abstract class BaseApiService {
         endpoint: string,
         options: RequestInit = {}
     ): Promise<T> {
-        const token = this.getAuthToken();
+        const token = await this.getAuthToken();
         const url = `${this.API_BASE_URL}${endpoint}`;
 
         const config: RequestInit = {
