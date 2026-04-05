@@ -25,7 +25,8 @@ const Auth: React.FC = () => {
     const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
     const {login, loginWithApple} = useAuth();
     const [isGenerating, setIsGenerating] = useState(false);
-    const [isRedirecting, setIsRedirecting] = useState(false);
+    const [generatedToken, setGeneratedToken] = useState<string | null>(null);
+    const [copied, setCopied] = useState(false);
     // Remove unused firebaseUser state since we handle auth state directly in useEffect
     const [checkingAuth, setCheckingAuth] = useState(true);
 
@@ -82,9 +83,17 @@ const Auth: React.FC = () => {
 
             const result = await response.json();
 
-            setIsRedirecting(true);
-            // Redirect to the specified URL with the token
-            window.location.href = `${redirectUrl}?token=${encodeURIComponent(result.customToken)}`;
+            // Show the token on the page for headless environments
+            setGeneratedToken(result.customToken);
+
+            // Try to send the token to the local CLI server (works when browser is on the same machine)
+            try {
+                await fetch(`${redirectUrl}?token=${encodeURIComponent(result.customToken)}`, {
+                    mode: 'no-cors',
+                });
+            } catch {
+                // Expected to fail in headless/remote environments
+            }
         } catch (err: any) {
             console.error('Error generating custom token:', err);
             alert(err.message || 'Failed to generate authentication token');
@@ -149,8 +158,84 @@ const Auth: React.FC = () => {
         }
     };
 
-    // Show loading state if checking auth, generating token, or redirecting
-    if (checkingAuth || isGenerating || isRedirecting) {
+    const handleCopyToken = async () => {
+        if (!generatedToken) return;
+        try {
+            await navigator.clipboard.writeText(generatedToken);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch {
+            // Fallback for environments where clipboard API is not available
+            const textArea = document.createElement('textarea');
+            textArea.value = generatedToken;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+    };
+
+    // Show token display after successful authentication (for CLI callback flow)
+    if (generatedToken) {
+        return (
+            <div className="auth-container">
+                <div className="auth-card">
+                    <div className="auth-header">
+                        <img src="images/logo_salamander.png" alt="Salamander" className="auth-logo"/>
+                        <h1 className="auth-title">Salamander</h1>
+                        <p className="auth-tagline">Never be AFK</p>
+                    </div>
+
+                    <div className="auth-content" style={{ textAlign: 'center' }}>
+                        <h2 style={{ color: '#10b981', fontSize: '20px', marginBottom: '12px' }}>Authentication Successful!</h2>
+                        <p style={{ color: '#d1d5db', fontSize: '14px', marginBottom: '16px' }}>
+                            If the CLI didn't sign in automatically, copy the token below and paste it in your terminal:
+                        </p>
+                        <div style={{
+                            background: '#1f2937',
+                            border: '1px solid #374151',
+                            borderRadius: '8px',
+                            padding: '12px',
+                            marginBottom: '16px',
+                            wordBreak: 'break-all',
+                            fontFamily: "'Fira Code', 'JetBrains Mono', monospace",
+                            fontSize: '12px',
+                            color: '#9ca3af',
+                            maxHeight: '120px',
+                            overflow: 'auto',
+                            userSelect: 'all' as const,
+                        }}>
+                            {generatedToken}
+                        </div>
+                        <button
+                            onClick={handleCopyToken}
+                            style={{
+                                background: copied ? '#10b981' : '#ff6b35',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '8px',
+                                padding: '10px 24px',
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                transition: 'background 0.2s',
+                            }}
+                        >
+                            {copied ? 'Copied!' : 'Copy Token'}
+                        </button>
+                        <p style={{ color: '#6b7280', fontSize: '12px', marginTop: '16px', fontStyle: 'italic' }}>
+                            If the CLI detected the token automatically, you can close this window.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Show loading state if checking auth or generating token
+    if (checkingAuth || isGenerating) {
         return (
             <div className="auth-container">
                 <div className="auth-card">
@@ -171,13 +256,8 @@ const Auth: React.FC = () => {
                             margin: '0 auto 16px'
                         }}></div>
                         <p style={{ color: '#d1d5db', fontSize: '14px' }}>
-                            {isRedirecting ? 'Redirecting to CLI...' : isGenerating ? 'Generating authentication token...' : 'Loading...'}
+                            {isGenerating ? 'Generating authentication token...' : 'Loading...'}
                         </p>
-                        {isRedirecting && (
-                            <p style={{ color: '#9ca3af', fontSize: '12px', marginTop: '16px', fontStyle: 'italic' }}>
-                                If the redirect doesn't work, you can close this window and return to your terminal.
-                            </p>
-                        )}
                     </div>
                 </div>
             </div>
